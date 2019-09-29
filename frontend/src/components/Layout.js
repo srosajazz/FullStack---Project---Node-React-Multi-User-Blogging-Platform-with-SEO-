@@ -1,12 +1,14 @@
-const Layout = ({ children}) => {
-    return (
-        <>
-        <p>header</p>
-        {children}
+import Header from "./Header";
 
-        <p>footer</p>
-        </>
-    )
-}
+const Layout = ({ children }) => {
+  return (
+    <>
+      <Header />
+      {children}
+
+      <p>footer</p>
+    </>
+  );
+};
 
 export default Layout;
