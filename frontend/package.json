@@ -1,18 +1,19 @@
 {
   "name": "frontend",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
-  "license": "MIT",
   "scripts": {
     "dev": "next",
     "build": "next build",
     "start": "next start"
   },
   "keywords": [],
-  "author": "Sergio Rosa",
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "next": "^9.0.7",
-    "react": "^16.10.1",
-    "react-dom": "^16.10.1"
+    "next": "^9.1.0",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2"
   }
 }

@@ -473,7 +473,7 @@ async function loadGetInitialProps(Component, ctx) {
 
   if (true) {
     if (_Object$keys(props).length === 0 && !ctx.ctx) {
-      console.warn(`${getDisplayName(Component)} returned an empty object from \`getInitialProps\`. This de-optimizes and prevents automatic prerendering. https://err.sh/zeit/next.js/empty-object-getInitialProps`);
+      console.warn(`${getDisplayName(Component)} returned an empty object from \`getInitialProps\`. This de-optimizes and prevents automatic static optimization. https://err.sh/zeit/next.js/empty-object-getInitialProps`);
     }
   }
 
@@ -723,17 +723,8 @@ class Head extends _react.Component {
       assetPrefix,
       files
     } = this.context._documentProps;
-
-    if (!files || files.length === 0) {
-      return null;
-    }
-
-    return files.map(file => {
-      // Only render .css files here
-      if (!/\.css$/.test(file)) {
-        return null;
-      }
-
+    const cssFiles = files && files.length ? files.filter(f => /\.css$/.test(f)) : [];
+    return cssFiles.length === 0 ? null : cssFiles.map(file => {
       return _react.default.createElement("link", {
         key: file,
         nonce: this.props.nonce,
@@ -898,15 +889,15 @@ class Head extends _react.Component {
     }
 
     return _react.default.createElement("head", this.props, this.context._documentProps.isDevelopment && this.context._documentProps.hasCssMode && _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("style", {
-      "data-next-hydrating": true,
+      "data-next-hide-fouc": true,
       dangerouslySetInnerHTML: {
         __html: "body{display:none}"
       }
     }), _react.default.createElement("noscript", {
-      "data-next-hydrating": true
+      "data-next-hide-fouc": true
     }, _react.default.createElement("style", {
       dangerouslySetInnerHTML: {
-        __html: "body{display:unset}"
+        __html: "body{display:block}"
       }
     }))), children, head, _react.default.createElement("meta", {
       name: "next-head-count",
@@ -1211,10 +1202,10 @@ module.exports = __webpack_require__(/*! ./dist/pages/_document */ "./node_modul
 
 /***/ }),
 
-/***/ "./src/pages/_document.js":
-/*!********************************!*\
-  !*** ./src/pages/_document.js ***!
-  \********************************/
+/***/ "./pages/_document.js":
+/*!****************************!*\
+  !*** ./pages/_document.js ***!
+  \****************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1224,7 +1215,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var next_document__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/document */ "./node_modules/next/document.js");
 /* harmony import */ var next_document__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_document__WEBPACK_IMPORTED_MODULE_1__);
-var _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/src/pages/_document.js";
+var _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/pages/_document.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -1301,7 +1292,7 @@ class MyDocument extends next_document__WEBPACK_IMPORTED_MODULE_1___default.a {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! private-next-pages/_document.js */"./src/pages/_document.js");
+module.exports = __webpack_require__(/*! private-next-pages/_document.js */"./pages/_document.js");
 
 
 /***/ }),
