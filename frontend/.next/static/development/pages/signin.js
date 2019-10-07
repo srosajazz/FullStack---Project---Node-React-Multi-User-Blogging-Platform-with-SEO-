@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static/development/pages/index.js"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static/development/pages/signin.js"],{
 
 /***/ "../../../node_modules/@babel/runtime/helpers/assertThisInitialized.js":
 /*!********************************************************************************************!*\
@@ -51979,21 +51979,21 @@ module.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
 
 /***/ }),
 
-/***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Findex.js!./":
-/*!******************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Findex.js ***!
-  \******************************************************************************************************************************************************************************************/
+/***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fsignin&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fsignin.js!./":
+/*!*************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fsignin&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fsignin.js ***!
+  \*************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-    (window.__NEXT_P=window.__NEXT_P||[]).push(["/", function() {
-      var mod = __webpack_require__(/*! ./pages/index.js */ "./pages/index.js")
+    (window.__NEXT_P=window.__NEXT_P||[]).push(["/signin", function() {
+      var mod = __webpack_require__(/*! ./pages/signin.js */ "./pages/signin.js")
       if(true) {
-        module.hot.accept(/*! ./pages/index.js */ "./pages/index.js", function() {
-          if(!next.router.components["/"]) return
-          var updatedPage = __webpack_require__(/*! ./pages/index.js */ "./pages/index.js")
-          next.router.update("/", updatedPage)
+        module.hot.accept(/*! ./pages/signin.js */ "./pages/signin.js", function() {
+          if(!next.router.components["/signin"]) return
+          var updatedPage = __webpack_require__(/*! ./pages/signin.js */ "./pages/signin.js")
+          next.router.update("/signin", updatedPage)
         })
       }
       return mod
@@ -57546,10 +57546,10 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./pages/index.js":
-/*!************************!*\
-  !*** ./pages/index.js ***!
-  \************************/
+/***/ "./pages/signin.js":
+/*!*************************!*\
+  !*** ./pages/signin.js ***!
+  \*************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -57558,12 +57558,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Layout */ "./components/Layout.js");
-var _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/pages/index.js";
+var _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/pages/signin.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
-var Index = function Index() {
+var Signin = function Signin() {
   return __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_1__["default"], {
     __source: {
       fileName: _jsxFileName,
@@ -57576,21 +57576,21 @@ var Index = function Index() {
       lineNumber: 6
     },
     __self: this
-  }, "Index Page"));
+  }, "SignIn page"));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Index);
+/* harmony default export */ __webpack_exports__["default"] = (Signin);
 
 /***/ }),
 
-/***/ 0:
-/*!**********************************************************************************************************************************************!*\
-  !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Findex.js ***!
-  \**********************************************************************************************************************************************/
+/***/ 2:
+/*!*****************************************************************************************************************************************************!*\
+  !*** multi next-client-pages-loader?page=%2Fsignin&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fsignin.js ***!
+  \*****************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Findex.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Findex.js!./");
+module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2Fsignin&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fsignin.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fsignin&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fsignin.js!./");
 
 
 /***/ }),
@@ -57606,5 +57606,5 @@ module.exports = dll_b35e09dc2ca94ac6d9c1;
 
 /***/ })
 
-},[[0,"static/runtime/webpack.js"]]]);
-//# sourceMappingURL=index.js.map
+},[[2,"static/runtime/webpack.js"]]]);
+//# sourceMappingURL=signin.js.map

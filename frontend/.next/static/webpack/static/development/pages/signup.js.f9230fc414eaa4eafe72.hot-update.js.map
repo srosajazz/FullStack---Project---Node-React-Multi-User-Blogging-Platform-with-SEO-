@@ -1,0 +1,1 @@
+{"version":3,"file":"static/webpack/static/development/pages/signup.js.f9230fc414eaa4eafe72.hot-update.js","sources":["webpack:///./components/auth/SignupComponent.js"],"sourcesContent":["const SignupComponent = () => {\n    return \n};\n\nexport default SignupComponent;"],"mappings":";;;;;;;;;;AAAA;AAAA;AACA;AACA;AACA;AACA;;;;A","sourceRoot":""}
