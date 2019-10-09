@@ -110,6 +110,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../config */ "./config.js");
 
 
+ // create a new user
 
 const signup = user => {
   return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1___default()(`${_config__WEBPACK_IMPORTED_MODULE_2__["API"]}/signup`, {
@@ -121,7 +122,7 @@ const signup = user => {
     body: _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(user)
   }).then(response => {
     return response.json();
-  }).catch(error => console.log(error));
+  }).catch(err => console.log(err));
 };
 
 /***/ }),
@@ -340,11 +341,11 @@ const SignupComponent = () => {
   } = values;
 
   const handleSubmit = e => {
-    e.preventDefault(); //console.table({ name,email, password, error, loading, message, showForm});
+    e.preventDefault(); //console.table({name, email, password, error, loading, message, showForm});
 
     setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, values, {
-      loading: true,
-      error: false
+      error: false,
+      loading: false
     }));
     const user = {
       name,
@@ -354,8 +355,7 @@ const SignupComponent = () => {
     Object(_actions_auth__WEBPACK_IMPORTED_MODULE_2__["signup"])(user).then(data => {
       if (data.error) {
         setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, values, {
-          error: data.error,
-          loading: false
+          error: data.error
         }));
       } else {
         setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, values, {
@@ -364,7 +364,7 @@ const SignupComponent = () => {
           password: '',
           error: '',
           loading: false,
-          message: data.message,
+          message: undefined.data.message,
           showForm: false
         }));
       }
@@ -383,14 +383,14 @@ const SignupComponent = () => {
       onSubmit: handleSubmit,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 50
+        lineNumber: 53
       },
       __self: undefined
     }, __jsx("div", {
       className: "form-group",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 51
+        lineNumber: 55
       },
       __self: undefined
     }, __jsx("input", {
@@ -401,14 +401,14 @@ const SignupComponent = () => {
       placeholder: "Type your name",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 52
+        lineNumber: 56
       },
       __self: undefined
     })), __jsx("div", {
       className: "form-group",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 60
+        lineNumber: 63
       },
       __self: undefined
     }, __jsx("input", {
@@ -416,17 +416,17 @@ const SignupComponent = () => {
       onChange: handleChange('email'),
       type: "email",
       className: "form-control",
-      placeholder: "E-mail",
+      placeholder: "Type your email",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 61
+        lineNumber: 64
       },
       __self: undefined
     })), __jsx("div", {
       className: "form-group",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 70
+        lineNumber: 73
       },
       __self: undefined
     }, __jsx("input", {
@@ -434,29 +434,35 @@ const SignupComponent = () => {
       onChange: handleChange('password'),
       type: "password",
       className: "form-control",
-      placeholder: "Password",
+      placeholder: "Type your password",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 71
+        lineNumber: 74
       },
       __self: undefined
     })), __jsx("div", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 79
+        lineNumber: 81
       },
       __self: undefined
     }, __jsx("button", {
       className: "btn btn-primary",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 80
+        lineNumber: 82
       },
       __self: undefined
-    }, "Signup")));
+    }, "Registreren")));
   };
 
-  return __jsx(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, signupForm());
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 91
+    },
+    __self: undefined
+  }, signupForm());
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (SignupComponent);
@@ -480,7 +486,7 @@ __webpack_require__.r(__webpack_exports__);
 const {
   publicRuntimeConfig
 } = next_config__WEBPACK_IMPORTED_MODULE_0___default()();
-const API = publicRuntimeConfig.PRODUCTION ? publicRuntimeConfig.API_PRODUCTION : publicRuntimeConfig.API_DEVELOPMENT;
+const API = publicRuntimeConfig.PRODUCTION ? 'https://sergiorosablog.com' : 'http://localhost:8000/api';
 const APP_NAME = publicRuntimeConfig.APP_NAME;
 
 /***/ }),

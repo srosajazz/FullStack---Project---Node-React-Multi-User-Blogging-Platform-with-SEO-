@@ -47542,7 +47542,7 @@ __webpack_require__.r(__webpack_exports__);
 var _getConfig = next_config__WEBPACK_IMPORTED_MODULE_0___default()(),
     publicRuntimeConfig = _getConfig.publicRuntimeConfig;
 
-var API = publicRuntimeConfig.PRODUCTION ? publicRuntimeConfig.API_PRODUCTION : publicRuntimeConfig.API_DEVELOPMENT;
+var API = publicRuntimeConfig.PRODUCTION ? 'https://sergiorosablog.com' : 'http://localhost:8000/api';
 var APP_NAME = publicRuntimeConfig.APP_NAME;
 
 /***/ }),
@@ -57599,7 +57599,7 @@ var Index = function Index() {
 
 /***/ }),
 
-/***/ 2:
+/***/ 0:
 /*!**********************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Findex.js ***!
   \**********************************************************************************************************************************************/
@@ -57622,5 +57622,5 @@ module.exports = dll_b35e09dc2ca94ac6d9c1;
 
 /***/ })
 
-},[[2,"static/runtime/webpack.js"]]]);
+},[[0,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=index.js.map

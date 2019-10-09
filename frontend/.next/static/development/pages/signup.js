@@ -47374,6 +47374,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../config */ "./config.js");
 
 
+ // create a new user
 
 var signup = function signup(user) {
   return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1___default()("".concat(_config__WEBPACK_IMPORTED_MODULE_2__["API"], "/signup"), {
@@ -47385,8 +47386,8 @@ var signup = function signup(user) {
     body: _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(user)
   }).then(function (response) {
     return response.json();
-  })["catch"](function (error) {
-    return console.log(error);
+  })["catch"](function (err) {
+    return console.log(err);
   });
 };
 
@@ -47575,7 +47576,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/auth */ "./actions/auth.js");
 
 
-var _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/components/auth/SignupComponent.js";
+
+var _this = undefined,
+    _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/components/auth/SignupComponent.js";
+
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
 
@@ -47603,11 +47607,11 @@ var SignupComponent = function SignupComponent() {
       showForm = values.showForm;
 
   var handleSubmit = function handleSubmit(e) {
-    e.preventDefault(); //console.table({ name,email, password, error, loading, message, showForm});
+    e.preventDefault(); //console.table({name, email, password, error, loading, message, showForm});
 
     setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__["default"])({}, values, {
-      loading: true,
-      error: false
+      error: false,
+      loading: false
     }));
     var user = {
       name: name,
@@ -47617,8 +47621,7 @@ var SignupComponent = function SignupComponent() {
     Object(_actions_auth__WEBPACK_IMPORTED_MODULE_3__["signup"])(user).then(function (data) {
       if (data.error) {
         setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__["default"])({}, values, {
-          error: data.error,
-          loading: false
+          error: data.error
         }));
       } else {
         setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__["default"])({}, values, {
@@ -47627,7 +47630,7 @@ var SignupComponent = function SignupComponent() {
           password: '',
           error: '',
           loading: false,
-          message: data.message,
+          message: _this.data.message,
           showForm: false
         }));
       }
@@ -47647,14 +47650,14 @@ var SignupComponent = function SignupComponent() {
       onSubmit: handleSubmit,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 50
+        lineNumber: 53
       },
       __self: this
     }, __jsx("div", {
       className: "form-group",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 51
+        lineNumber: 55
       },
       __self: this
     }, __jsx("input", {
@@ -47665,14 +47668,14 @@ var SignupComponent = function SignupComponent() {
       placeholder: "Type your name",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 52
+        lineNumber: 56
       },
       __self: this
     })), __jsx("div", {
       className: "form-group",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 60
+        lineNumber: 63
       },
       __self: this
     }, __jsx("input", {
@@ -47680,17 +47683,17 @@ var SignupComponent = function SignupComponent() {
       onChange: handleChange('email'),
       type: "email",
       className: "form-control",
-      placeholder: "E-mail",
+      placeholder: "Type your email",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 61
+        lineNumber: 64
       },
       __self: this
     })), __jsx("div", {
       className: "form-group",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 70
+        lineNumber: 73
       },
       __self: this
     }, __jsx("input", {
@@ -47698,29 +47701,35 @@ var SignupComponent = function SignupComponent() {
       onChange: handleChange('password'),
       type: "password",
       className: "form-control",
-      placeholder: "Password",
+      placeholder: "Type your password",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 71
+        lineNumber: 74
       },
       __self: this
     })), __jsx("div", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 79
+        lineNumber: 81
       },
       __self: this
     }, __jsx("button", {
       className: "btn btn-primary",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 80
+        lineNumber: 82
       },
       __self: this
-    }, "Signup")));
+    }, "Registreren")));
   };
 
-  return __jsx(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, signupForm());
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 91
+    },
+    __self: this
+  }, signupForm());
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (SignupComponent);
@@ -47745,7 +47754,7 @@ __webpack_require__.r(__webpack_exports__);
 var _getConfig = next_config__WEBPACK_IMPORTED_MODULE_0___default()(),
     publicRuntimeConfig = _getConfig.publicRuntimeConfig;
 
-var API = publicRuntimeConfig.PRODUCTION ? publicRuntimeConfig.API_PRODUCTION : publicRuntimeConfig.API_DEVELOPMENT;
+var API = publicRuntimeConfig.PRODUCTION ? 'https://sergiorosablog.com' : 'http://localhost:8000/api';
 var APP_NAME = publicRuntimeConfig.APP_NAME;
 
 /***/ }),
@@ -58469,7 +58478,7 @@ var Signup = function Signup() {
 
 /***/ }),
 
-/***/ 0:
+/***/ 1:
 /*!*****************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fsignup&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fsignup.js ***!
   \*****************************************************************************************************************************************************/
@@ -58492,5 +58501,5 @@ module.exports = dll_b35e09dc2ca94ac6d9c1;
 
 /***/ })
 
-},[[0,"static/runtime/webpack.js"]]]);
+},[[1,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=signup.js.map
