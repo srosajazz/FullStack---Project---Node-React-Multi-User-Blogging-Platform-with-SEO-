@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static/development/pages/signin.js"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static/development/pages/signup.js"],{
 
 /***/ "../../../node_modules/@babel/runtime/helpers/assertThisInitialized.js":
 /*!********************************************************************************************!*\
@@ -47668,9 +47668,9 @@ var Layout = function Layout(_ref) {
 
 /***/ }),
 
-/***/ "./components/auth/SigninComponent.js":
+/***/ "./components/auth/SignupComponent.js":
 /*!********************************************!*\
-  !*** ./components/auth/SigninComponent.js ***!
+  !*** ./components/auth/SignupComponent.js ***!
   \********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -47686,15 +47686,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_4__);
 
 
-var _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/components/auth/SigninComponent.js";
+var _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/components/auth/SignupComponent.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
 
 
 
 
-var SigninComponent = function SigninComponent() {
+var SignupComponent = function SignupComponent() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])({
+    name: 'Mary',
     email: 'mary@gmail.com',
     password: '123456',
     error: '',
@@ -47705,12 +47706,16 @@ var SigninComponent = function SigninComponent() {
       values = _useState[0],
       setValues = _useState[1];
 
-  var email = values.email,
+  var name = values.name,
+      email = values.email,
       password = values.password,
       error = values.error,
       loading = values.loading,
       message = values.message,
       showForm = values.showForm;
+  Object(react__WEBPACK_IMPORTED_MODULE_2__["useEffect"])(function () {
+    Object(_actions_auth__WEBPACK_IMPORTED_MODULE_3__["isAuth"])() && next_router__WEBPACK_IMPORTED_MODULE_4___default.a.push('/');
+  }, []);
 
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault(); // console.table({ name, email, password, error, loading, message, showForm });
@@ -47720,22 +47725,26 @@ var SigninComponent = function SigninComponent() {
       error: false
     }));
     var user = {
+      name: name,
       email: email,
       password: password
     };
-    Object(_actions_auth__WEBPACK_IMPORTED_MODULE_3__["signin"])(user).then(function (data) {
+    Object(_actions_auth__WEBPACK_IMPORTED_MODULE_3__["signup"])(user).then(function (data) {
       if (data.error) {
         setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__["default"])({}, values, {
           error: data.error,
           loading: false
         }));
       } else {
-        // save user tokem to cookie
-        // save user into to localstorage
-        // authenticate user
-        Object(_actions_auth__WEBPACK_IMPORTED_MODULE_3__["authenticate"])(data, function () {
-          next_router__WEBPACK_IMPORTED_MODULE_4___default.a.push('/');
-        });
+        setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__["default"])({}, values, {
+          name: '',
+          email: '',
+          password: '',
+          error: '',
+          loading: false,
+          message: data.message,
+          showForm: false
+        }));
       }
     });
   };
@@ -47754,7 +47763,7 @@ var SigninComponent = function SigninComponent() {
       className: "alert alert-info",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 44
+        lineNumber: 53
       },
       __self: this
     }, "Loading...") : '';
@@ -47765,7 +47774,7 @@ var SigninComponent = function SigninComponent() {
       className: "alert alert-danger",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 45
+        lineNumber: 54
       },
       __self: this
     }, error) : '';
@@ -47776,25 +47785,43 @@ var SigninComponent = function SigninComponent() {
       className: "alert alert-info",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 46
+        lineNumber: 55
       },
       __self: this
     }, message) : '';
   };
 
-  var signinForm = function signinForm() {
+  var signupForm = function signupForm() {
     return __jsx("form", {
       onSubmit: handleSubmit,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 52
+        lineNumber: 61
       },
       __self: this
     }, __jsx("div", {
       className: "form-group",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 62
+        lineNumber: 63
+      },
+      __self: this
+    }, __jsx("input", {
+      value: name,
+      onChange: handleChange('name'),
+      type: "text",
+      className: "form-control",
+      placeholder: "Type your name",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 64
+      },
+      __self: this
+    })), __jsx("div", {
+      className: "form-group",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 71
       },
       __self: this
     }, __jsx("input", {
@@ -47805,14 +47832,14 @@ var SigninComponent = function SigninComponent() {
       placeholder: "Type your email",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 63
+        lineNumber: 72
       },
       __self: this
     })), __jsx("div", {
       className: "form-group",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 72
+        lineNumber: 81
       },
       __self: this
     }, __jsx("input", {
@@ -47823,20 +47850,20 @@ var SigninComponent = function SigninComponent() {
       placeholder: "Type your password",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 73
+        lineNumber: 82
       },
       __self: this
     })), __jsx("div", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 80
+        lineNumber: 89
       },
       __self: this
     }, __jsx("button", {
       className: "btn btn-primary",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 81
+        lineNumber: 90
       },
       __self: this
     }, "Singin")));
@@ -47845,13 +47872,13 @@ var SigninComponent = function SigninComponent() {
   return __jsx(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 90
+      lineNumber: 99
     },
     __self: this
-  }, showError(), showMessage(), showLoading(), showForm && signinForm());
+  }, showError(), showMessage(), showLoading(), showForm && signupForm());
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (SigninComponent);
+/* harmony default export */ __webpack_exports__["default"] = (SignupComponent);
 
 /***/ }),
 
@@ -52629,21 +52656,21 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 /***/ }),
 
-/***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fsignin&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fsignin.js!./":
+/***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fsignup&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fsignup.js!./":
 /*!*************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fsignin&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fsignin.js ***!
+  !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fsignup&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fsignup.js ***!
   \*************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-    (window.__NEXT_P=window.__NEXT_P||[]).push(["/signin", function() {
-      var mod = __webpack_require__(/*! ./pages/signin.js */ "./pages/signin.js")
+    (window.__NEXT_P=window.__NEXT_P||[]).push(["/signup", function() {
+      var mod = __webpack_require__(/*! ./pages/signup.js */ "./pages/signup.js")
       if(true) {
-        module.hot.accept(/*! ./pages/signin.js */ "./pages/signin.js", function() {
-          if(!next.router.components["/signin"]) return
-          var updatedPage = __webpack_require__(/*! ./pages/signin.js */ "./pages/signin.js")
-          next.router.update("/signin", updatedPage)
+        module.hot.accept(/*! ./pages/signup.js */ "./pages/signup.js", function() {
+          if(!next.router.components["/signup"]) return
+          var updatedPage = __webpack_require__(/*! ./pages/signup.js */ "./pages/signup.js")
+          next.router.update("/signup", updatedPage)
         })
       }
       return mod
@@ -58730,9 +58757,9 @@ if (!self.fetch) {
 
 /***/ }),
 
-/***/ "./pages/signin.js":
+/***/ "./pages/signup.js":
 /*!*************************!*\
-  !*** ./pages/signin.js ***!
+  !*** ./pages/signup.js ***!
   \*************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -58742,14 +58769,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Layout */ "./components/Layout.js");
-/* harmony import */ var _components_auth_SigninComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/auth/SigninComponent */ "./components/auth/SigninComponent.js");
-var _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/pages/signin.js";
+/* harmony import */ var _components_auth_SignupComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/auth/SignupComponent */ "./components/auth/SignupComponent.js");
+var _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/pages/signup.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
-var Signin = function Signin() {
+var Signup = function Signup() {
   return __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_1__["default"], {
     __source: {
       fileName: _jsxFileName,
@@ -58763,7 +58790,7 @@ var Signin = function Signin() {
       lineNumber: 7
     },
     __self: this
-  }, "Signin"), __jsx("div", {
+  }, "SignUp"), __jsx("div", {
     className: "row",
     __source: {
       fileName: _jsxFileName,
@@ -58777,7 +58804,7 @@ var Signin = function Signin() {
       lineNumber: 9
     },
     __self: this
-  }, __jsx(_components_auth_SigninComponent__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, __jsx(_components_auth_SignupComponent__WEBPACK_IMPORTED_MODULE_2__["default"], {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 10
@@ -58786,18 +58813,18 @@ var Signin = function Signin() {
   }))));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Signin);
+/* harmony default export */ __webpack_exports__["default"] = (Signup);
 
 /***/ }),
 
-/***/ 2:
+/***/ 0:
 /*!*****************************************************************************************************************************************************!*\
-  !*** multi next-client-pages-loader?page=%2Fsignin&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fsignin.js ***!
+  !*** multi next-client-pages-loader?page=%2Fsignup&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fsignup.js ***!
   \*****************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2Fsignin&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fsignin.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fsignin&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fsignin.js!./");
+module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2Fsignup&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fsignup.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fsignup&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fsignup.js!./");
 
 
 /***/ }),
@@ -58813,5 +58840,5 @@ module.exports = dll_b35e09dc2ca94ac6d9c1;
 
 /***/ })
 
-},[[2,"static/runtime/webpack.js"]]]);
-//# sourceMappingURL=signin.js.map
+},[[0,"static/runtime/webpack.js"]]]);
+//# sourceMappingURL=signup.js.map
