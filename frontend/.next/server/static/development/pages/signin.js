@@ -97,24 +97,33 @@ module.exports =
 /*!*************************!*\
   !*** ./actions/auth.js ***!
   \*************************/
-/*! exports provided: signup, signin */
+/*! exports provided: signup, signin, setCookie, removeCookie, getCookie, setLocalStorage, removeLocalStorage, authenticate, isAuth */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signup", function() { return signup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signin", function() { return signin; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setCookie", function() { return setCookie; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeCookie", function() { return removeCookie; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCookie", function() { return getCookie; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setLocalStorage", function() { return setLocalStorage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeLocalStorage", function() { return removeLocalStorage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "authenticate", function() { return authenticate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isAuth", function() { return isAuth; });
 /* harmony import */ var _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/json/stringify */ "./node_modules/@babel/runtime-corejs2/core-js/json/stringify.js");
 /* harmony import */ var _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! isomorphic-fetch */ "isomorphic-fetch");
 /* harmony import */ var isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../config */ "./config.js");
+/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! js-cookie */ "js-cookie");
+/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(js_cookie__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../config */ "./config.js");
 
 
- // create signup a new user
+
 
 const signup = user => {
-  return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1___default()(`${_config__WEBPACK_IMPORTED_MODULE_2__["API"]}/signup`, {
+  return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1___default()(`${_config__WEBPACK_IMPORTED_MODULE_3__["API"]}/signup`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -124,10 +133,9 @@ const signup = user => {
   }).then(response => {
     return response.json();
   }).catch(err => console.log(err));
-}; // create signin a new user
-
+};
 const signin = user => {
-  return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1___default()(`${_config__WEBPACK_IMPORTED_MODULE_2__["API"]}/signin`, {
+  return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1___default()(`${_config__WEBPACK_IMPORTED_MODULE_3__["API"]}/signin`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -137,6 +145,33 @@ const signin = user => {
   }).then(response => {
     return response.json();
   }).catch(err => console.log(err));
+}; // set cookie
+
+const setCookie = (key, value) => {
+  if (false) {}
+};
+const removeCookie = key => {
+  if (false) {}
+}; // get cookie
+
+const getCookie = key => {
+  if (false) {}
+}; // localstorage
+
+const setLocalStorage = (key, value) => {
+  if (false) {}
+};
+const removeLocalStorage = key => {
+  if (false) {}
+}; // autheticate user by pass data to cookie and localstorage
+
+const authenticate = (data, next) => {
+  setCookie('token', data.token);
+  setLocalStorage('user', data.user);
+  next();
+};
+const isAuth = () => {
+  if (false) {}
 };
 
 /***/ }),
@@ -370,7 +405,9 @@ const SigninComponent = () => {
         // save user tokem to cookie
         // save user into to localstorage
         // authenticate user
-        next_router__WEBPACK_IMPORTED_MODULE_3___default.a.push('/');
+        Object(_actions_auth__WEBPACK_IMPORTED_MODULE_2__["authenticate"])(data, () => {
+          next_router__WEBPACK_IMPORTED_MODULE_3___default.a.push('/');
+        });
       }
     });
   };
@@ -387,7 +424,7 @@ const SigninComponent = () => {
     className: "alert alert-info",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 41
+      lineNumber: 44
     },
     __self: undefined
   }, "Loading...") : '';
@@ -396,7 +433,7 @@ const SigninComponent = () => {
     className: "alert alert-danger",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 42
+      lineNumber: 45
     },
     __self: undefined
   }, error) : '';
@@ -405,7 +442,7 @@ const SigninComponent = () => {
     className: "alert alert-info",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 43
+      lineNumber: 46
     },
     __self: undefined
   }, message) : '';
@@ -415,14 +452,14 @@ const SigninComponent = () => {
       onSubmit: handleSubmit,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 49
+        lineNumber: 52
       },
       __self: undefined
     }, __jsx("div", {
       className: "form-group",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 59
+        lineNumber: 62
       },
       __self: undefined
     }, __jsx("input", {
@@ -433,14 +470,14 @@ const SigninComponent = () => {
       placeholder: "Type your email",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 60
+        lineNumber: 63
       },
       __self: undefined
     })), __jsx("div", {
       className: "form-group",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 69
+        lineNumber: 72
       },
       __self: undefined
     }, __jsx("input", {
@@ -451,20 +488,20 @@ const SigninComponent = () => {
       placeholder: "Type your password",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 70
+        lineNumber: 73
       },
       __self: undefined
     })), __jsx("div", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 77
+        lineNumber: 80
       },
       __self: undefined
     }, __jsx("button", {
       className: "btn btn-primary",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 78
+        lineNumber: 81
       },
       __self: undefined
     }, "Singin")));
@@ -473,7 +510,7 @@ const SigninComponent = () => {
   return __jsx(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 87
+      lineNumber: 90
     },
     __self: undefined
   }, showError(), showMessage(), showLoading(), showForm && signinForm());
@@ -2467,6 +2504,17 @@ module.exports = require("core-js/library/fn/promise");
 /***/ (function(module, exports) {
 
 module.exports = require("isomorphic-fetch");
+
+/***/ }),
+
+/***/ "js-cookie":
+/*!****************************!*\
+  !*** external "js-cookie" ***!
+  \****************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("js-cookie");
 
 /***/ }),
 

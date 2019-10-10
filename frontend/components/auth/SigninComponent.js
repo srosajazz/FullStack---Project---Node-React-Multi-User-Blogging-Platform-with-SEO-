@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { signin } from '../../actions/auth';
+import { signin, authenticate } from '../../actions/auth';
 import Route from 'next/router';
 
 const SigninComponent = () => {
@@ -27,11 +27,14 @@ const SigninComponent = () => {
         // save user tokem to cookie
        // save user into to localstorage
       // authenticate user
+      authenticate(data, () => {
+          
+        Route.push('/');
 
-            Route.push('/');
-            }
-        });
-    };
+        }) 
+      }
+    });
+};
 
     const handleChange = name => e => {
         setValues({ ...values, error: false, [name]: e.target.value });
