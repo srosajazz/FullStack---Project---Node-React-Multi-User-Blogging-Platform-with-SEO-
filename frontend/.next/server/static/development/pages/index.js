@@ -250,13 +250,7 @@ const Layout = ({
       lineNumber: 6
     },
     __self: undefined
-  }), children, __jsx("p", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 8
-    },
-    __self: undefined
-  }, "footer"));
+  }), children);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Layout);

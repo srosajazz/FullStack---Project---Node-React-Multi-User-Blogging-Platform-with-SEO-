@@ -47511,13 +47511,7 @@ var Layout = function Layout(_ref) {
       lineNumber: 6
     },
     __self: this
-  }), children, __jsx("p", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 8
-    },
-    __self: this
-  }, "footer"));
+  }), children);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Layout);
@@ -57599,7 +57593,7 @@ var Index = function Index() {
 
 /***/ }),
 
-/***/ 0:
+/***/ 1:
 /*!**********************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Findex.js ***!
   \**********************************************************************************************************************************************/
@@ -57622,5 +57616,5 @@ module.exports = dll_b35e09dc2ca94ac6d9c1;
 
 /***/ })
 
-},[[0,"static/runtime/webpack.js"]]]);
+},[[1,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=index.js.map
