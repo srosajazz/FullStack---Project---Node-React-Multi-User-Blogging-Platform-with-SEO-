@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const expressJwt = require('express-jwt');
 
 exports.signup = (req, res) => {
+  // console.log(req.body);
   User.findOne({ email: req.body.email }).exec((err, user) => {
     if (user) {
       return res.status(400).json({
@@ -18,10 +19,12 @@ exports.signup = (req, res) => {
     let newUser = new User({ name, email, password, profile, username });
     newUser.save((err, success) => {
       if (err) {
-        return res.status(400).json({});
+        return res.status(400).json({
+          error: err,
+        });
       }
       // res.json({
-      //   User: success,
+      //     user: success
       // });
       res.json({
         message: 'Signup success! Please signin.',
@@ -36,17 +39,15 @@ exports.signin = (req, res) => {
   User.findOne({ email }).exec((err, user) => {
     if (err || !user) {
       return res.status(400).json({
-        error: 'User with this email does not exist. Please signup.',
+        error: 'User with that email does not exist. Please signup.',
       });
     }
-
     // authenticate
     if (!user.authenticate(password)) {
       return res.status(400).json({
         error: 'Email and password do not match.',
       });
     }
-
     // generate a token and send to client
     const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
       expiresIn: '1d',
@@ -61,7 +62,6 @@ exports.signin = (req, res) => {
   });
 };
 
-//signout
 exports.signout = (req, res) => {
   res.clearCookie('token');
   res.json({
@@ -69,7 +69,6 @@ exports.signout = (req, res) => {
   });
 };
 
-//TOKEN EXPIRE
 exports.requireSignin = expressJwt({
   secret: process.env.JWT_SECRET,
 });
