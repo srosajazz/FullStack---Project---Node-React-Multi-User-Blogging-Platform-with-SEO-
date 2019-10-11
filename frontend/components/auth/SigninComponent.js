@@ -33,9 +33,12 @@ const SigninComponent = () => {
        // save user into to localstorage
       // authenticate user
       authenticate(data, () => {
-          
-        Route.push('/');
-
+        if(isAuth() && isAuth().role === 1) {
+            Router.push(`/admin`);
+        
+            } else {
+                Router.push(`/user`);
+            }
         }) 
       }
     });
