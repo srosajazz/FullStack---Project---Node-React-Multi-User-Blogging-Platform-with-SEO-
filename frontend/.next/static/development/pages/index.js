@@ -58499,7 +58499,7 @@ var Index = function Index() {
 
 /***/ }),
 
-/***/ 1:
+/***/ 4:
 /*!**********************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Findex.js ***!
   \**********************************************************************************************************************************************/
@@ -58522,5 +58522,5 @@ module.exports = dll_b35e09dc2ca94ac6d9c1;
 
 /***/ })
 
-},[[1,"static/runtime/webpack.js"]]]);
+},[[4,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=index.js.map
