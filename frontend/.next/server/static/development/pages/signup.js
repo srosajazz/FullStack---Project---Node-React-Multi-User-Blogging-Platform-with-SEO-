@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -420,9 +420,9 @@ const Layout = ({
 
 /***/ }),
 
-/***/ "./components/auth/SigninComponent.js":
+/***/ "./components/auth/SignupComponent.js":
 /*!********************************************!*\
-  !*** ./components/auth/SigninComponent.js ***!
+  !*** ./components/auth/SignupComponent.js ***!
   \********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -436,18 +436,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/router */ "next/router");
 /* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_3__);
 
-var _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/components/auth/SigninComponent.js";
+var _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/components/auth/SignupComponent.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
 
 
-const SigninComponent = () => {
+const SignupComponent = () => {
   const {
     0: values,
     1: setValues
   } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
+    name: 'Mary',
     email: 'mary@gmail.com',
     password: '123456',
     error: '',
@@ -456,6 +457,7 @@ const SigninComponent = () => {
     showForm: true
   });
   const {
+    name,
     email,
     password,
     error,
@@ -475,26 +477,26 @@ const SigninComponent = () => {
       error: false
     }));
     const user = {
+      name,
       email,
       password
     };
-    Object(_actions_auth__WEBPACK_IMPORTED_MODULE_2__["signin"])(user).then(data => {
+    Object(_actions_auth__WEBPACK_IMPORTED_MODULE_2__["signup"])(user).then(data => {
       if (data.error) {
         setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, values, {
           error: data.error,
           loading: false
         }));
       } else {
-        // save user tokem to cookie
-        // save user into to localstorage
-        // authenticate user
-        Object(_actions_auth__WEBPACK_IMPORTED_MODULE_2__["authenticate"])(data, () => {
-          if (Object(_actions_auth__WEBPACK_IMPORTED_MODULE_2__["isAuth"])() && Object(_actions_auth__WEBPACK_IMPORTED_MODULE_2__["isAuth"])().role === 1) {
-            next_router__WEBPACK_IMPORTED_MODULE_3___default.a.push(`/admin`);
-          } else {
-            next_router__WEBPACK_IMPORTED_MODULE_3___default.a.push(`/user`);
-          }
-        });
+        setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, values, {
+          name: '',
+          email: '',
+          password: '',
+          error: '',
+          loading: false,
+          message: data.message,
+          showForm: false
+        }));
       }
     });
   };
@@ -511,7 +513,7 @@ const SigninComponent = () => {
     className: "alert alert-info",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 52
+      lineNumber: 53
     },
     __self: undefined
   }, "Loading...") : '';
@@ -520,7 +522,7 @@ const SigninComponent = () => {
     className: "alert alert-danger",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 53
+      lineNumber: 54
     },
     __self: undefined
   }, error) : '';
@@ -529,24 +531,42 @@ const SigninComponent = () => {
     className: "alert alert-info",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 54
+      lineNumber: 55
     },
     __self: undefined
   }, message) : '';
 
-  const signinForm = () => {
+  const signupForm = () => {
     return __jsx("form", {
       onSubmit: handleSubmit,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 60
+        lineNumber: 61
       },
       __self: undefined
     }, __jsx("div", {
       className: "form-group",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 70
+        lineNumber: 63
+      },
+      __self: undefined
+    }, __jsx("input", {
+      value: name,
+      onChange: handleChange('name'),
+      type: "text",
+      className: "form-control",
+      placeholder: "Type your name",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 64
+      },
+      __self: undefined
+    })), __jsx("div", {
+      className: "form-group",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 71
       },
       __self: undefined
     }, __jsx("input", {
@@ -557,14 +577,14 @@ const SigninComponent = () => {
       placeholder: "Type your email",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 71
+        lineNumber: 72
       },
       __self: undefined
     })), __jsx("div", {
       className: "form-group",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 80
+        lineNumber: 81
       },
       __self: undefined
     }, __jsx("input", {
@@ -575,20 +595,20 @@ const SigninComponent = () => {
       placeholder: "Type your password",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 81
+        lineNumber: 82
       },
       __self: undefined
     })), __jsx("div", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 88
+        lineNumber: 89
       },
       __self: undefined
     }, __jsx("button", {
       className: "btn btn-primary",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 89
+        lineNumber: 90
       },
       __self: undefined
     }, "Singin")));
@@ -597,13 +617,13 @@ const SigninComponent = () => {
   return __jsx(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 98
+      lineNumber: 99
     },
     __self: undefined
-  }, showError(), showMessage(), showLoading(), showForm && signinForm());
+  }, showError(), showMessage(), showLoading(), showForm && signupForm());
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (SigninComponent);
+/* harmony default export */ __webpack_exports__["default"] = (SignupComponent);
 
 /***/ }),
 
@@ -2412,9 +2432,9 @@ module.exports = __webpack_require__(/*! ./dist/client/link */ "./node_modules/n
 
 /***/ }),
 
-/***/ "./pages/signin.js":
+/***/ "./pages/signup.js":
 /*!*************************!*\
-  !*** ./pages/signin.js ***!
+  !*** ./pages/signup.js ***!
   \*************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -2424,14 +2444,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Layout */ "./components/Layout.js");
-/* harmony import */ var _components_auth_SigninComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/auth/SigninComponent */ "./components/auth/SigninComponent.js");
-var _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/pages/signin.js";
+/* harmony import */ var _components_auth_SignupComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/auth/SignupComponent */ "./components/auth/SignupComponent.js");
+var _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/pages/signup.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
-const Signin = () => {
+const Signup = () => {
   return __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_1__["default"], {
     __source: {
       fileName: _jsxFileName,
@@ -2445,7 +2465,7 @@ const Signin = () => {
       lineNumber: 7
     },
     __self: undefined
-  }, "Signin"), __jsx("div", {
+  }, "SignUp"), __jsx("div", {
     className: "row",
     __source: {
       fileName: _jsxFileName,
@@ -2459,7 +2479,7 @@ const Signin = () => {
       lineNumber: 9
     },
     __self: undefined
-  }, __jsx(_components_auth_SigninComponent__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, __jsx(_components_auth_SignupComponent__WEBPACK_IMPORTED_MODULE_2__["default"], {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 10
@@ -2468,18 +2488,18 @@ const Signin = () => {
   }))));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Signin);
+/* harmony default export */ __webpack_exports__["default"] = (Signup);
 
 /***/ }),
 
-/***/ 5:
+/***/ 3:
 /*!*******************************!*\
-  !*** multi ./pages/signin.js ***!
+  !*** multi ./pages/signup.js ***!
   \*******************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/sergiorosa_local/Desktop/BlogSEO/frontend/pages/signin.js */"./pages/signin.js");
+module.exports = __webpack_require__(/*! /Users/sergiorosa_local/Desktop/BlogSEO/frontend/pages/signup.js */"./pages/signup.js");
 
 
 /***/ }),
@@ -2705,4 +2725,4 @@ module.exports = require("url");
 /***/ })
 
 /******/ });
-//# sourceMappingURL=signin.js.map
+//# sourceMappingURL=signup.js.map
