@@ -723,8 +723,7 @@ const CreateBlog = ({
     console.log('ready to publishBlog');
   };
 
-  const handleChange = name => e => {
-    console.log(e.target.value);
+  const handleChange = name => e => {// console.log(e.target.value);
   };
 
   const handleBody = e => {
@@ -771,6 +770,8 @@ const CreateBlog = ({
       },
       __self: undefined
     }, __jsx(ReactQuill, {
+      modules: CreateBlog.modules,
+      formats: CreateBlog.formats,
       value: body,
       placeholder: "Write something amazing...",
       onChange: handleBody,
@@ -782,7 +783,7 @@ const CreateBlog = ({
     })), __jsx("div", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 53
+        lineNumber: 57
       },
       __self: undefined
     }, __jsx("button", {
@@ -790,7 +791,7 @@ const CreateBlog = ({
       className: "btn btn-primary",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 54
+        lineNumber: 58
       },
       __self: undefined
     }, "Publish")));
@@ -799,12 +800,30 @@ const CreateBlog = ({
   return __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 60
+      lineNumber: 64
     },
     __self: undefined
   }, createBlogForm());
 };
 
+CreateBlog.modules = {
+  toolbar: [[{
+    header: '1'
+  }, {
+    header: '2'
+  }, {
+    header: [3, 4, 5, 6]
+  }, {
+    font: []
+  }], [{
+    size: []
+  }], ['bold', 'italic', 'underline', 'strike', 'blockquote'], [{
+    list: 'ordered'
+  }, {
+    list: 'bullet'
+  }], ['link', 'image', 'video'], ['clean'], ['code-block']]
+};
+CreateBlog.formats = ['header', 'font', 'size', 'bold', 'italic', 'underline', 'strike', 'blockquote', 'list', 'bullet', 'link', 'image', 'video', 'code-block'];
 /* harmony default export */ __webpack_exports__["default"] = (Object(next_router__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(CreateBlog));
 
 /***/ }),

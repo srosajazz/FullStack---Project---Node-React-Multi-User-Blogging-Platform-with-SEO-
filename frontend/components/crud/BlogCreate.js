@@ -31,7 +31,7 @@ const CreateBlog = ({ router }) => {
     }
 
     const handleChange = name => e => {
-        console.log(e.target.value);
+        // console.log(e.target.value);
     }
 
     const handleBody = e => {
@@ -47,7 +47,11 @@ const CreateBlog = ({ router }) => {
                 </div>
 
                 <div className="form-group">
-                    <ReactQuill value={body} placeholder="Write something amazing..." onChange={handleBody}/>
+                    <ReactQuill modules={CreateBlog.modules} 
+                    formats={CreateBlog.formats} 
+                    value={body} 
+                    placeholder="Write something amazing..." 
+                    onChange={handleBody}/>
                 </div>
 
                 <div>
@@ -63,5 +67,34 @@ const CreateBlog = ({ router }) => {
         </div>
     );
 };
+
+CreateBlog.modules = {
+    toolbar: [
+        [{ header: '1' }, { header: '2' }, { header: [3, 4, 5, 6] }, { font: [] }],
+        [{ size: [] }],
+        ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+        [{ list: 'ordered' }, { list: 'bullet' }],
+        ['link', 'image', 'video'],
+        ['clean'],
+        ['code-block']
+    ]
+};
+ 
+CreateBlog.formats = [
+    'header',
+    'font',
+    'size',
+    'bold',
+    'italic',
+    'underline',
+    'strike',
+    'blockquote',
+    'list',
+    'bullet',
+    'link',
+    'image',
+    'video',
+    'code-block'
+];
 
 export default withRouter(CreateBlog)
