@@ -21,7 +21,11 @@ const CreateBlog = ({ router }) => {
         } else {
             return false;
         }
-    }
+    };
+
+    const [categories, setCategories] = useState([]);
+    const [tags, setTags] = useState([]);
+
 
     const [body, setBody] = useState(blogFromLocalStorage());
     const [values, setValues] = useState({
@@ -38,7 +42,29 @@ const CreateBlog = ({ router }) => {
 
     useEffect(() => {
         setValues({...values, formData: new FormData()});
+        initCategories(),
+        initTags()
     },[router]);
+    
+    const initCategories = () => {
+        getCategories().then(data => {
+            if(data.error) {
+                setValues({...values, error: data.error});
+            } else {
+                setCategories(data);
+            }
+        })
+    }
+
+     const initTags = () => {
+        getTags().then(data => {
+            if(data.error) {
+                 setValues({...values, error: data.error});
+            } else {
+                setTags(data);
+            }
+        });
+    }
 
 
     const publishBlog = (e) => {
@@ -59,10 +85,33 @@ const CreateBlog = ({ router }) => {
         formData.set('body', e) 
         if(typeof window !== 'undefined') {
             localStorage.setItem('blog',JSON.stringify(e));
-        
 
     }
 };
+
+//check box for categories
+    const showCategories = () => {
+        return (
+            categories && categories.map((c, i) => {
+                <li key={i} className="list-unstyled">
+                    <input type="checkbox" className="mr-2"/>
+                    <label className="form-check-label">{c.name}</label>
+                </li>
+            })
+        )
+    }
+
+    //check box for tags
+    const showTags = () => {
+        return (
+            tags && tags.map((t, i) => {
+                <li key={i} className="list-unstyled">
+                    <input type="checkbox" className="mr-2"/>
+                    <label className="form-check-label">{t.name}</label>
+                </li>
+            })
+        )
+    }
 
     const createBlogForm = () => {
         return (
@@ -87,13 +136,34 @@ const CreateBlog = ({ router }) => {
         )
     }
     return (
-        <div>
-            {createBlogForm()}
+        <div className="container-fluid">
+           <div className="row">
+               <div className="col-md-8">
+                    {createBlogForm()}
            <hr/>
            {JSON.stringify(title)};
 
             <hr/>
            {JSON.stringify(body)};
+            <hr/>
+           {JSON.stringify(categories)};
+            <hr/>
+           {JSON.stringify(tags)};
+               </div>
+
+               <div className="col-md-4">
+                   <div>
+                       <h5>Categories</h5>
+                   <hr/>
+                    <ul style={{maxHeight: '200px', overflowY: 'scroll'}}>{showCategories()}</ul>
+                   </div>
+                   <div>
+                       <h5>Tags</h5>
+                   <hr/>
+                   <ul style={{maxHeight: '200px', overflowY: 'scroll'}}>{showTags()}</ul>
+                   </div>
+               </div>
+           </div>
         </div>
     );
 };

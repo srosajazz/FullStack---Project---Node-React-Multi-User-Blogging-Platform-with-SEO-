@@ -712,6 +712,14 @@ const CreateBlog = ({
   };
 
   const {
+    0: categories,
+    1: setCategories
+  } = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])([]);
+  const {
+    0: tags,
+    1: setTags
+  } = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])([]);
+  const {
     0: body,
     1: setBody
   } = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(blogFromLocalStorage());
@@ -738,7 +746,32 @@ const CreateBlog = ({
     setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__["default"])({}, values, {
       formData: new FormData()
     }));
+    initCategories(), initTags();
   }, [router]);
+
+  const initCategories = () => {
+    Object(_actions_category__WEBPACK_IMPORTED_MODULE_7__["getCategories"])().then(data => {
+      if (data.error) {
+        setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__["default"])({}, values, {
+          error: data.error
+        }));
+      } else {
+        setCategories(data);
+      }
+    });
+  };
+
+  const initTags = () => {
+    Object(_actions_tag__WEBPACK_IMPORTED_MODULE_8__["getTags"])().then(data => {
+      if (data.error) {
+        setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__["default"])({}, values, {
+          error: data.error
+        }));
+      } else {
+        setTags(data);
+      }
+    });
+  };
 
   const publishBlog = e => {
     e.preventDefault();
@@ -762,6 +795,66 @@ const CreateBlog = ({
     formData.set('body', e);
 
     if (false) {}
+  }; //check box for categories
+
+
+  const showCategories = () => {
+    return categories && categories.map((c, i) => {
+      __jsx("li", {
+        key: i,
+        className: "list-unstyled",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 96
+        },
+        __self: undefined
+      }, __jsx("input", {
+        type: "checkbox",
+        className: "mr-2",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 97
+        },
+        __self: undefined
+      }), __jsx("label", {
+        className: "form-check-label",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 98
+        },
+        __self: undefined
+      }, c.name));
+    });
+  }; //check box for tags
+
+
+  const showTags = () => {
+    return tags && tags.map((t, i) => {
+      __jsx("li", {
+        key: i,
+        className: "list-unstyled",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 108
+        },
+        __self: undefined
+      }, __jsx("input", {
+        type: "checkbox",
+        className: "mr-2",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 109
+        },
+        __self: undefined
+      }), __jsx("label", {
+        className: "form-check-label",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 110
+        },
+        __self: undefined
+      }, t.name));
+    });
   };
 
   const createBlogForm = () => {
@@ -769,21 +862,21 @@ const CreateBlog = ({
       onSubmit: publishBlog,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 69
+        lineNumber: 118
       },
       __self: undefined
     }, __jsx("div", {
       className: "form-group",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 70
+        lineNumber: 119
       },
       __self: undefined
     }, __jsx("label", {
       className: "text-muted",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 71
+        lineNumber: 120
       },
       __self: undefined
     }, "Title"), __jsx("input", {
@@ -793,14 +886,14 @@ const CreateBlog = ({
       onChange: handleChange('title'),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 72
+        lineNumber: 121
       },
       __self: undefined
     })), __jsx("div", {
       className: "form-group",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 75
+        lineNumber: 124
       },
       __self: undefined
     }, __jsx(ReactQuill, {
@@ -811,13 +904,13 @@ const CreateBlog = ({
       onChange: handleBody,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 76
+        lineNumber: 125
       },
       __self: undefined
     })), __jsx("div", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 83
+        lineNumber: 132
       },
       __self: undefined
     }, __jsx("button", {
@@ -825,31 +918,121 @@ const CreateBlog = ({
       className: "btn btn-primary",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 84
+        lineNumber: 133
       },
       __self: undefined
     }, "Publish")));
   };
 
   return __jsx("div", {
+    className: "container-fluid",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 90
+      lineNumber: 139
+    },
+    __self: undefined
+  }, __jsx("div", {
+    className: "row",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 140
+    },
+    __self: undefined
+  }, __jsx("div", {
+    className: "col-md-8",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 141
     },
     __self: undefined
   }, createBlogForm(), __jsx("hr", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 92
+      lineNumber: 143
     },
     __self: undefined
   }), _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(title), ";", __jsx("hr", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 95
+      lineNumber: 146
     },
     __self: undefined
-  }), _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(body), ";");
+  }), _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(body), ";", __jsx("hr", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 148
+    },
+    __self: undefined
+  }), _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(categories), ";", __jsx("hr", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 150
+    },
+    __self: undefined
+  }), _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(tags), ";"), __jsx("div", {
+    className: "col-md-4",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 154
+    },
+    __self: undefined
+  }, __jsx("div", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 155
+    },
+    __self: undefined
+  }, __jsx("h5", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 156
+    },
+    __self: undefined
+  }, "Categories"), __jsx("hr", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 157
+    },
+    __self: undefined
+  }), __jsx("ul", {
+    style: {
+      maxHeight: '200px',
+      overflowY: 'scroll'
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 158
+    },
+    __self: undefined
+  }, showCategories())), __jsx("div", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 160
+    },
+    __self: undefined
+  }, __jsx("h5", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 161
+    },
+    __self: undefined
+  }, "Tags"), __jsx("hr", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 162
+    },
+    __self: undefined
+  }), __jsx("ul", {
+    style: {
+      maxHeight: '200px',
+      overflowY: 'scroll'
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 163
+    },
+    __self: undefined
+  }, showTags())))));
 };
 
 CreateBlog.modules = {
