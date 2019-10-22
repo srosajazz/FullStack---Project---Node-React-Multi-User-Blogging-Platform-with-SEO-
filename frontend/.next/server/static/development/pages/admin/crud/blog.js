@@ -720,6 +720,16 @@ const CreateBlog = ({
     1: setTags
   } = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])([]);
   const {
+    0: checked,
+    1: setChecked
+  } = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])([]); // categories
+
+  const {
+    0: checkedTag,
+    1: setCheckedTag
+  } = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])([]); // tag
+
+  const {
     0: body,
     1: setBody
   } = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(blogFromLocalStorage());
@@ -795,6 +805,25 @@ const CreateBlog = ({
     formData.set('body', e);
 
     if (false) {}
+  };
+
+  const handleToggle = c => () => {
+    setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__["default"])({}, values, {
+      error: ''
+    })); //return the first index or -1
+
+    const clickedCategory = checked.indexOf(c);
+    const all = [...checked];
+
+    if (clickedCategory === -1) {
+      all.push(c);
+    } else {
+      all.splice(clickedCategory, 1);
+    }
+
+    console.log(all);
+    setChecked(all);
+    formData.set('categories', all);
   }; //check box for categories
 
 
@@ -805,22 +834,23 @@ const CreateBlog = ({
         className: "list-unstyled",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 96
+          lineNumber: 115
         },
         __self: undefined
       }, __jsx("input", {
+        onChange: handleToggle(c._id),
         type: "checkbox",
         className: "mr-2",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 97
+          lineNumber: 116
         },
         __self: undefined
       }), __jsx("label", {
         className: "form-check-label",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 98
+          lineNumber: 117
         },
         __self: undefined
       }, c.name));
@@ -835,7 +865,7 @@ const CreateBlog = ({
         className: "list-unstyled",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 108
+          lineNumber: 127
         },
         __self: undefined
       }, __jsx("input", {
@@ -843,14 +873,14 @@ const CreateBlog = ({
         className: "mr-2",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 109
+          lineNumber: 128
         },
         __self: undefined
       }), __jsx("label", {
         className: "form-check-label",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 110
+          lineNumber: 129
         },
         __self: undefined
       }, t.name));
@@ -862,21 +892,21 @@ const CreateBlog = ({
       onSubmit: publishBlog,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 118
+        lineNumber: 137
       },
       __self: undefined
     }, __jsx("div", {
       className: "form-group",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 119
+        lineNumber: 138
       },
       __self: undefined
     }, __jsx("label", {
       className: "text-muted",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 120
+        lineNumber: 139
       },
       __self: undefined
     }, "Title"), __jsx("input", {
@@ -886,14 +916,14 @@ const CreateBlog = ({
       onChange: handleChange('title'),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 121
+        lineNumber: 140
       },
       __self: undefined
     })), __jsx("div", {
       className: "form-group",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 124
+        lineNumber: 143
       },
       __self: undefined
     }, __jsx(ReactQuill, {
@@ -904,13 +934,13 @@ const CreateBlog = ({
       onChange: handleBody,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 125
+        lineNumber: 144
       },
       __self: undefined
     })), __jsx("div", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 132
+        lineNumber: 151
       },
       __self: undefined
     }, __jsx("button", {
@@ -918,7 +948,7 @@ const CreateBlog = ({
       className: "btn btn-primary",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 133
+        lineNumber: 152
       },
       __self: undefined
     }, "Publish")));
@@ -928,70 +958,70 @@ const CreateBlog = ({
     className: "container-fluid",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 139
+      lineNumber: 158
     },
     __self: undefined
   }, __jsx("div", {
     className: "row",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 140
+      lineNumber: 159
     },
     __self: undefined
   }, __jsx("div", {
     className: "col-md-8",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 141
+      lineNumber: 160
     },
     __self: undefined
   }, createBlogForm(), __jsx("hr", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 143
+      lineNumber: 162
     },
     __self: undefined
   }), _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(title), ";", __jsx("hr", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 146
+      lineNumber: 165
     },
     __self: undefined
   }), _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(body), ";", __jsx("hr", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 148
+      lineNumber: 167
     },
     __self: undefined
   }), _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(categories), ";", __jsx("hr", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 150
+      lineNumber: 169
     },
     __self: undefined
   }), _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(tags), ";"), __jsx("div", {
     className: "col-md-4",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 154
+      lineNumber: 173
     },
     __self: undefined
   }, __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 155
+      lineNumber: 174
     },
     __self: undefined
   }, __jsx("h5", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 156
+      lineNumber: 175
     },
     __self: undefined
   }, "Categories"), __jsx("hr", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 157
+      lineNumber: 176
     },
     __self: undefined
   }), __jsx("ul", {
@@ -1001,25 +1031,25 @@ const CreateBlog = ({
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 158
+      lineNumber: 177
     },
     __self: undefined
   }, showCategories())), __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 160
+      lineNumber: 179
     },
     __self: undefined
   }, __jsx("h5", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 161
+      lineNumber: 180
     },
     __self: undefined
   }, "Tags"), __jsx("hr", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 162
+      lineNumber: 181
     },
     __self: undefined
   }), __jsx("ul", {
@@ -1029,7 +1059,7 @@ const CreateBlog = ({
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 163
+      lineNumber: 182
     },
     __self: undefined
   }, showTags())))));
