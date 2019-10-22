@@ -24,6 +24,10 @@ const CreateBlog = ({ router }) => {
 
     const { error, sizeError,success, formData, title, hidePublishButton} = values;
 
+    useEffect(() => {
+        setValues({...values, formData: new FormData()});
+    },[router]);
+
 
     const publishBlog = (e) => {
         e.preventDefault()
@@ -32,11 +36,21 @@ const CreateBlog = ({ router }) => {
 
     const handleChange = name => e => {
         // console.log(e.target.value);
-    }
+        const value = name === 'photo' ? e.target.files[0] : e.target.value;
+        formData.set(name, value);
+        setValues({...values, [name]: value, formData, error: ''});
+    };
 
     const handleBody = e => {
-        console.log(e);
+        // console.log(e);
+        setBody(e)
+        formData.set('body', e) 
+        if(typeof window !== 'undefined') {
+            localStorage.setItem('blog',JSON.stringify(e));
+        
+
     }
+};
 
     const createBlogForm = () => {
         return (
@@ -63,7 +77,11 @@ const CreateBlog = ({ router }) => {
     return (
         <div>
             {createBlogForm()}
-           
+           <hr/>
+           {JSON.stringify(title)};
+
+            <hr/>
+           {JSON.stringify(body)};
         </div>
     );
 };
