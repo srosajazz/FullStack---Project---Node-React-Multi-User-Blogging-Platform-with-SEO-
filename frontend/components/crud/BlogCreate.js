@@ -11,7 +11,19 @@ const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 import '../../node_modules/react-quill/dist/quill.snow.css';
 
 const CreateBlog = ({ router }) => {
-    const [body, setBody] = useState({});
+    const blogFromLocalStorage = () => {
+        if(typeof window === 'undefined') {
+            return false;
+        }
+
+        if(localStorage.getItem('blog')) {
+            return JSON.parse(localStorage.getItem('blog'));
+        } else {
+            return false;
+        }
+    }
+
+    const [body, setBody] = useState(blogFromLocalStorage());
     const [values, setValues] = useState({
         error:'',
         sizeError: '',

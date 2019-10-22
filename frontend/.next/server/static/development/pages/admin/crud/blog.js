@@ -699,10 +699,22 @@ const ReactQuill = next_dynamic__WEBPACK_IMPORTED_MODULE_5___default()(() => Pro
 const CreateBlog = ({
   router
 }) => {
+  const blogFromLocalStorage = () => {
+    if (true) {
+      return false;
+    }
+
+    if (localStorage.getItem('blog')) {
+      return JSON.parse(localStorage.getItem('blog'));
+    } else {
+      return false;
+    }
+  };
+
   const {
     0: body,
     1: setBody
-  } = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])({});
+  } = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(blogFromLocalStorage());
   const {
     0: values,
     1: setValues
@@ -757,21 +769,21 @@ const CreateBlog = ({
       onSubmit: publishBlog,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 57
+        lineNumber: 69
       },
       __self: undefined
     }, __jsx("div", {
       className: "form-group",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 58
+        lineNumber: 70
       },
       __self: undefined
     }, __jsx("label", {
       className: "text-muted",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 59
+        lineNumber: 71
       },
       __self: undefined
     }, "Title"), __jsx("input", {
@@ -781,14 +793,14 @@ const CreateBlog = ({
       onChange: handleChange('title'),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 60
+        lineNumber: 72
       },
       __self: undefined
     })), __jsx("div", {
       className: "form-group",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 63
+        lineNumber: 75
       },
       __self: undefined
     }, __jsx(ReactQuill, {
@@ -799,13 +811,13 @@ const CreateBlog = ({
       onChange: handleBody,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 64
+        lineNumber: 76
       },
       __self: undefined
     })), __jsx("div", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 71
+        lineNumber: 83
       },
       __self: undefined
     }, __jsx("button", {
@@ -813,7 +825,7 @@ const CreateBlog = ({
       className: "btn btn-primary",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 72
+        lineNumber: 84
       },
       __self: undefined
     }, "Publish")));
@@ -822,19 +834,19 @@ const CreateBlog = ({
   return __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 78
+      lineNumber: 90
     },
     __self: undefined
   }, createBlogForm(), __jsx("hr", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 80
+      lineNumber: 92
     },
     __self: undefined
   }), _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(title), ";", __jsx("hr", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 83
+      lineNumber: 95
     },
     __self: undefined
   }), _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(body), ";");
