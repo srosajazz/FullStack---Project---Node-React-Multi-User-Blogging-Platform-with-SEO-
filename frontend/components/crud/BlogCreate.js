@@ -11,12 +11,12 @@ const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 import '../../node_modules/react-quill/dist/quill.snow.css';
 
 const CreateBlog = ({ router }) => {
-    const blogFromLocalStorage = () => {
-        if(typeof window === 'undefined') {
+    const blogFromLS = () => {
+        if (typeof window === 'undefined') {
             return false;
         }
 
-        if(localStorage.getItem('blog')) {
+        if (localStorage.getItem('blog')) {
             return JSON.parse(localStorage.getItem('blog'));
         } else {
             return false;
@@ -27,162 +27,163 @@ const CreateBlog = ({ router }) => {
     const [tags, setTags] = useState([]);
 
     const [checked, setChecked] = useState([]); // categories
-    const [checkedTag, setCheckedTag] = useState([]); // tag
+    const [checkedTag, setCheckedTag] = useState([]); // tags
 
-
-    const [body, setBody] = useState(blogFromLocalStorage());
+    const [body, setBody] = useState(blogFromLS());
     const [values, setValues] = useState({
-        error:'',
+        error: '',
         sizeError: '',
         success: '',
         formData: '',
         title: '',
         hidePublishButton: false
-    })
-    
+    });
 
-    const { error, sizeError,success, formData, title, hidePublishButton} = values;
+    const { error, sizeError, success, formData, title, hidePublishButton } = values;
 
     useEffect(() => {
-        setValues({...values, formData: new FormData()});
-        initCategories(),
-        initTags()
-    },[router]);
-    
+        setValues({ ...values, formData: new FormData() });
+        initCategories();
+        initTags();
+    }, [router]);
+
     const initCategories = () => {
         getCategories().then(data => {
-            if(data.error) {
-                setValues({...values, error: data.error});
+            if (data.error) {
+                setValues({ ...values, error: data.error });
             } else {
                 setCategories(data);
             }
-        })
-    }
+        });
+    };
 
-     const initTags = () => {
+    const initTags = () => {
         getTags().then(data => {
-            if(data.error) {
-                 setValues({...values, error: data.error});
+            if (data.error) {
+                setValues({ ...values, error: data.error });
             } else {
                 setTags(data);
             }
         });
-    }
+    };
 
-
-    const publishBlog = (e) => {
-        e.preventDefault()
+    const publishBlog = e => {
+        e.preventDefault();
         console.log('ready to publishBlog');
-    }
+    };
 
     const handleChange = name => e => {
         // console.log(e.target.value);
         const value = name === 'photo' ? e.target.files[0] : e.target.value;
         formData.set(name, value);
-        setValues({...values, [name]: value, formData, error: ''});
+        setValues({ ...values, [name]: value, formData, error: '' });
     };
 
     const handleBody = e => {
         // console.log(e);
-        setBody(e)
-        formData.set('body', e) 
-        if(typeof window !== 'undefined') {
-            localStorage.setItem('blog',JSON.stringify(e));
-
-    }
-};
-
-        const handleToggle = (c) => () => {
-            setValues({...values, error: ''});
-            //return the first index or -1
-            const clickedCategory = checked.indexOf(c);
-            const all = [...checked]
-
-            if(clickedCategory === -1) {
-                all.push(c);
-            } else {
-                all.splice(clickedCategory, 1);
-            }
-            console.log(all);
-            setChecked(all);
-            formData.set('categories', all);
+        setBody(e);
+        formData.set('body', e);
+        if (typeof window !== 'undefined') {
+            localStorage.setItem('blog', JSON.stringify(e));
         }
+    };
 
-//check box for categories
+    const handleToggle = c => () => {
+        setValues({ ...values, error: '' });
+        // return the first index or -1
+        const clickedCategory = checked.indexOf(c);
+        const all = [...checked];
+
+        if (clickedCategory === -1) {
+            all.push(c);
+        } else {
+            all.splice(clickedCategory, 1);
+        }
+        console.log(all);
+        setChecked(all);
+        formData.set('categories', all);
+    };
+
     const showCategories = () => {
         return (
-            categories && categories.map((c, i) => {
+            categories &&
+            categories.map((c, i) => (
                 <li key={i} className="list-unstyled">
-                    <input onChange={handleToggle(c._id)} type="checkbox" className="mr-2"/>
+                    <input onChange={handleToggle(c._id)} type="checkbox" className="mr-2" />
                     <label className="form-check-label">{c.name}</label>
                 </li>
-            })
-        )
-    }
+            ))
+        );
+    };
 
-    //check box for tags
     const showTags = () => {
         return (
-            tags && tags.map((t, i) => {
+            tags &&
+            tags.map((t, i) => (
                 <li key={i} className="list-unstyled">
-                    <input type="checkbox" className="mr-2"/>
+                    <input type="checkbox" className="mr-2" />
                     <label className="form-check-label">{t.name}</label>
                 </li>
-            })
-        )
-    }
+            ))
+        );
+    };
 
     const createBlogForm = () => {
         return (
             <form onSubmit={publishBlog}>
                 <div className="form-group">
                     <label className="text-muted">Title</label>
-                    <input type="text" className="form-control" value={title} onChange={handleChange('title')}/>
+                    <input type="text" className="form-control" value={title} onChange={handleChange('title')} />
                 </div>
 
                 <div className="form-group">
-                    <ReactQuill modules={CreateBlog.modules} 
-                    formats={CreateBlog.formats} 
-                    value={body} 
-                    placeholder="Write something amazing..." 
-                    onChange={handleBody}/>
+                    <ReactQuill
+                        modules={CreateBlog.modules}
+                        formats={CreateBlog.formats}
+                        value={body}
+                        placeholder="Write something amazing..."
+                        onChange={handleBody}
+                    />
                 </div>
 
                 <div>
-                    <button type="submit" className="btn btn-primary">Publish</button>
+                    <button type="submit" className="btn btn-primary">
+                        Publish
+                    </button>
                 </div>
             </form>
-        )
-    }
+        );
+    };
+
     return (
         <div className="container-fluid">
-           <div className="row">
-               <div className="col-md-8">
+            <div className="row">
+                <div className="col-md-8">
                     {createBlogForm()}
-           <hr/>
-           {JSON.stringify(title)};
+                    <hr />
+                    {JSON.stringify(title)}
+                    <hr />
+                    {JSON.stringify(body)}
+                    <hr />
+                    {JSON.stringify(categories)}
+                    <hr />
+                    {JSON.stringify(tags)}
+                </div>
 
-            <hr/>
-           {JSON.stringify(body)};
-            <hr/>
-           {JSON.stringify(categories)};
-            <hr/>
-           {JSON.stringify(tags)};
-               </div>
+                <div className="col-md-4">
+                    <div>
+                        <h5>Categories</h5>
+                        <hr />
 
-               <div className="col-md-4">
-                   <div>
-                       <h5>Categories</h5>
-                   <hr/>
-                    <ul style={{maxHeight: '200px', overflowY: 'scroll'}}>{showCategories()}</ul>
-                   </div>
-                   <div>
-                       <h5>Tags</h5>
-                   <hr/>
-                   <ul style={{maxHeight: '200px', overflowY: 'scroll'}}>{showTags()}</ul>
-                   </div>
-               </div>
-           </div>
+                        <ul style={{ maxHeight: '200px', overflowY: 'scroll' }}>{showCategories()}</ul>
+                    </div>
+                    <div>
+                        <h5>Tags</h5>
+                        <hr />
+                        <ul style={{ maxHeight: '200px', overflowY: 'scroll' }}>{showTags()}</ul>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };
@@ -198,7 +199,7 @@ CreateBlog.modules = {
         ['code-block']
     ]
 };
- 
+
 CreateBlog.formats = [
     'header',
     'font',
@@ -216,4 +217,4 @@ CreateBlog.formats = [
     'code-block'
 ];
 
-export default withRouter(CreateBlog)
+export default withRouter(CreateBlog);

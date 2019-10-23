@@ -48014,7 +48014,7 @@ var ReactQuill = next_dynamic__WEBPACK_IMPORTED_MODULE_7___default()(function ()
 var CreateBlog = function CreateBlog(_ref) {
   var router = _ref.router;
 
-  var blogFromLocalStorage = function blogFromLocalStorage() {
+  var blogFromLS = function blogFromLS() {
     if (false) {}
 
     if (localStorage.getItem('blog')) {
@@ -48039,10 +48039,10 @@ var CreateBlog = function CreateBlog(_ref) {
 
   var _useState4 = Object(react__WEBPACK_IMPORTED_MODULE_4__["useState"])([]),
       checkedTag = _useState4[0],
-      setCheckedTag = _useState4[1]; // tag
+      setCheckedTag = _useState4[1]; // tags
 
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_4__["useState"])(blogFromLocalStorage()),
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_4__["useState"])(blogFromLS()),
       body = _useState5[0],
       setBody = _useState5[1];
 
@@ -48067,7 +48067,8 @@ var CreateBlog = function CreateBlog(_ref) {
     setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_3__["default"])({}, values, {
       formData: new FormData()
     }));
-    initCategories(), initTags();
+    initCategories();
+    initTags();
   }, [router]);
 
   var initCategories = function initCategories() {
@@ -48124,7 +48125,7 @@ var CreateBlog = function CreateBlog(_ref) {
     return function () {
       setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_3__["default"])({}, values, {
         error: ''
-      })); //return the first index or -1
+      })); // return the first index or -1
 
       var clickedCategory = checked.indexOf(c);
 
@@ -48140,17 +48141,16 @@ var CreateBlog = function CreateBlog(_ref) {
       setChecked(all);
       formData.set('categories', all);
     };
-  }; //check box for categories
-
+  };
 
   var showCategories = function showCategories() {
     return categories && categories.map(function (c, i) {
-      __jsx("li", {
+      return __jsx("li", {
         key: i,
         className: "list-unstyled",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 115
+          lineNumber: 111
         },
         __self: this
       }, __jsx("input", {
@@ -48159,29 +48159,28 @@ var CreateBlog = function CreateBlog(_ref) {
         className: "mr-2",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 116
+          lineNumber: 112
         },
         __self: this
       }), __jsx("label", {
         className: "form-check-label",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 117
+          lineNumber: 113
         },
         __self: this
       }, c.name));
     });
-  }; //check box for tags
-
+  };
 
   var showTags = function showTags() {
     return tags && tags.map(function (t, i) {
-      __jsx("li", {
+      return __jsx("li", {
         key: i,
         className: "list-unstyled",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 127
+          lineNumber: 123
         },
         __self: this
       }, __jsx("input", {
@@ -48189,14 +48188,14 @@ var CreateBlog = function CreateBlog(_ref) {
         className: "mr-2",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 128
+          lineNumber: 124
         },
         __self: this
       }), __jsx("label", {
         className: "form-check-label",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 129
+          lineNumber: 125
         },
         __self: this
       }, t.name));
@@ -48208,21 +48207,21 @@ var CreateBlog = function CreateBlog(_ref) {
       onSubmit: publishBlog,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 137
+        lineNumber: 133
       },
       __self: this
     }, __jsx("div", {
       className: "form-group",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 138
+        lineNumber: 134
       },
       __self: this
     }, __jsx("label", {
       className: "text-muted",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 139
+        lineNumber: 135
       },
       __self: this
     }, "Title"), __jsx("input", {
@@ -48232,14 +48231,14 @@ var CreateBlog = function CreateBlog(_ref) {
       onChange: handleChange('title'),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 140
+        lineNumber: 136
       },
       __self: this
     })), __jsx("div", {
       className: "form-group",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 143
+        lineNumber: 139
       },
       __self: this
     }, __jsx(ReactQuill, {
@@ -48250,13 +48249,13 @@ var CreateBlog = function CreateBlog(_ref) {
       onChange: handleBody,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 144
+        lineNumber: 140
       },
       __self: this
     })), __jsx("div", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 151
+        lineNumber: 149
       },
       __self: this
     }, __jsx("button", {
@@ -48264,7 +48263,7 @@ var CreateBlog = function CreateBlog(_ref) {
       className: "btn btn-primary",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 152
+        lineNumber: 150
       },
       __self: this
     }, "Publish")));
@@ -48274,48 +48273,48 @@ var CreateBlog = function CreateBlog(_ref) {
     className: "container-fluid",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 158
+      lineNumber: 159
     },
     __self: this
   }, __jsx("div", {
     className: "row",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 159
+      lineNumber: 160
     },
     __self: this
   }, __jsx("div", {
     className: "col-md-8",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 160
+      lineNumber: 161
     },
     __self: this
   }, createBlogForm(), __jsx("hr", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 162
+      lineNumber: 163
     },
     __self: this
-  }), _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_1___default()(title), ";", __jsx("hr", {
+  }), _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_1___default()(title), __jsx("hr", {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 165
     },
     __self: this
-  }), _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_1___default()(body), ";", __jsx("hr", {
+  }), _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_1___default()(body), __jsx("hr", {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 167
     },
     __self: this
-  }), _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_1___default()(categories), ";", __jsx("hr", {
+  }), _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_1___default()(categories), __jsx("hr", {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 169
     },
     __self: this
-  }), _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_1___default()(tags), ";"), __jsx("div", {
+  }), _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_1___default()(tags)), __jsx("div", {
     className: "col-md-4",
     __source: {
       fileName: _jsxFileName,
@@ -48347,25 +48346,25 @@ var CreateBlog = function CreateBlog(_ref) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 177
+      lineNumber: 178
     },
     __self: this
   }, showCategories())), __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 179
+      lineNumber: 180
     },
     __self: this
   }, __jsx("h5", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 180
+      lineNumber: 181
     },
     __self: this
   }, "Tags"), __jsx("hr", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 181
+      lineNumber: 182
     },
     __self: this
   }), __jsx("ul", {
@@ -48375,7 +48374,7 @@ var CreateBlog = function CreateBlog(_ref) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 182
+      lineNumber: 183
     },
     __self: this
   }, showTags())))));
@@ -60666,7 +60665,7 @@ var Blog = function Blog() {
 
 /***/ }),
 
-/***/ 6:
+/***/ 0:
 /*!*******************************************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fadmin%2Fcrud%2Fblog&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fadmin%2Fcrud%2Fblog.js ***!
   \*******************************************************************************************************************************************************************************/
@@ -60689,5 +60688,5 @@ module.exports = dll_b35e09dc2ca94ac6d9c1;
 
 /***/ })
 
-},[[6,"static/runtime/webpack.js","styles"]]]);
+},[[0,"static/runtime/webpack.js","styles"]]]);
 //# sourceMappingURL=blog.js.map
