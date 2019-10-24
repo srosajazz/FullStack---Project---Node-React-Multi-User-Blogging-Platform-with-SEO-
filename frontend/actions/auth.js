@@ -32,8 +32,7 @@ export const signin = user => {
         .catch(err => console.log(err));
 };
 
-//removeCookie
-export const signout = (next) => {
+export const signout = next => {
     removeCookie('token');
     removeLocalStorage('user');
     next();
@@ -41,15 +40,11 @@ export const signout = (next) => {
     return fetch(`${API}/signout`, {
         method: 'GET'
     })
-    .then(response => {
-        console.log('signout success');
-
-    })
-    .catch(err => console.log(err));
+        .then(response => {
+            console.log('signout success');
+        })
+        .catch(err => console.log(err));
 };
-
-
-
 
 // set cookie
 export const setCookie = (key, value) => {

@@ -2,60 +2,60 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Router from 'next/router';
 import { getCookie } from '../../actions/auth';
-import { create, getTags, removeTag } from '../../actions/tag';
- 
-const Tag = () => {
+import { create, getCategories, removeCategory } from '../../actions/category';
+
+const Category = () => {
     const [values, setValues] = useState({
         name: '',
         error: false,
         success: false,
-        tags: [],
+        categories: [],
         removed: false,
         reload: false
     });
- 
-    const { name, error, success, tags, removed, reload } = values;
+
+    const { name, error, success, categories, removed, reload } = values;
     const token = getCookie('token');
- 
+
     useEffect(() => {
-        loadTags();
+        loadCategories();
     }, [reload]);
- 
-    const loadTags = () => {
-        getTags().then(data => {
+
+    const loadCategories = () => {
+        getCategories().then(data => {
             if (data.error) {
                 console.log(data.error);
             } else {
-                setValues({ ...values, tags: data });
+                setValues({ ...values, categories: data });
             }
         });
     };
- 
-    const showTags = () => {
-        return tags.map((t, i) => {
+
+    const showCategories = () => {
+        return categories.map((c, i) => {
             return (
                 <button
-                    onDoubleClick={() => deleteConfirm(t.slug)}
+                    onDoubleClick={() => deleteConfirm(c.slug)}
                     title="Double click to delete"
                     key={i}
                     className="btn btn-outline-primary mr-1 ml-1 mt-3"
                 >
-                    {t.name}
+                    {c.name}
                 </button>
             );
         });
     };
- 
+
     const deleteConfirm = slug => {
-        let answer = window.confirm('Are you sure you want to delete this tag?');
+        let answer = window.confirm('Are you sure you want to delete this category?');
         if (answer) {
-            deleteTag(slug);
+            deleteCategory(slug);
         }
     };
- 
-    const deleteTag = slug => {
+
+    const deleteCategory = slug => {
         // console.log('delete', slug);
-        removeTag(slug, token).then(data => {
+        removeCategory(slug, token).then(data => {
             if (data.error) {
                 console.log(data.error);
             } else {
@@ -63,7 +63,7 @@ const Tag = () => {
             }
         });
     };
- 
+
     const clickSubmit = e => {
         e.preventDefault();
         // console.log('create category', name);
@@ -75,34 +75,34 @@ const Tag = () => {
             }
         });
     };
- 
+
     const handleChange = e => {
         setValues({ ...values, name: e.target.value, error: false, success: false, removed: '' });
     };
- 
+
     const showSuccess = () => {
         if (success) {
-            return <p className="text-success">Tag is created</p>;
+            return <p className="text-success">Category is created</p>;
         }
     };
- 
+
     const showError = () => {
         if (error) {
-            return <p className="text-danger">Tag already exist</p>;
+            return <p className="text-danger">Category already exist</p>;
         }
     };
- 
+
     const showRemoved = () => {
         if (removed) {
-            return <p className="text-danger">Tag is removed</p>;
+            return <p className="text-danger">Category is removed</p>;
         }
     };
- 
+
     const mouseMoveHandler = e => {
         setValues({ ...values, error: false, success: false, removed: '' });
     };
- 
-    const newTagFom = () => (
+
+    const newCategoryFom = () => (
         <form onSubmit={clickSubmit}>
             <div className="form-group">
                 <label className="text-muted">Name</label>
@@ -115,26 +115,18 @@ const Tag = () => {
             </div>
         </form>
     );
- 
+
     return (
         <React.Fragment>
             {showSuccess()}
             {showError()}
             {showRemoved()}
             <div onMouseMove={mouseMoveHandler}>
-      
-          {newTagFom()}
-
-                {showTags()}
-
+                {newCategoryFom()}
+                {showCategories()}
             </div>
-
         </React.Fragment>
-
     );
-
 };
 
-
-
-export default Tag;
+export default Category;
