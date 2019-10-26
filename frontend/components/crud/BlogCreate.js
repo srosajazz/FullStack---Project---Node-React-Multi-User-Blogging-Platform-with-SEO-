@@ -75,7 +75,9 @@ const CreateBlog = ({ router }) => {
             if (data.error) {
                 setValues({ ...values, error: data.error });
             } else {
-                setValues({ ...values, title: '', error: '', success: `A new blog titled "${data.title}" is created` });
+                setValues({ 
+                    ...values, title: '', 
+                    error: '', success: `A new blog titled "${data.title}" is created` });
                 setBody('');
                 setCategories([]);
                 setTags([]);

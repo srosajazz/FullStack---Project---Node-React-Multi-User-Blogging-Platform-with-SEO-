@@ -101,7 +101,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -857,7 +857,7 @@ const CreateBlog = ({
       className: "list-unstyled",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 138
+        lineNumber: 140
       },
       __self: undefined
     }, __jsx("input", {
@@ -866,14 +866,14 @@ const CreateBlog = ({
       className: "mr-2",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 139
+        lineNumber: 141
       },
       __self: undefined
     }), __jsx("label", {
       className: "form-check-label",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 140
+        lineNumber: 142
       },
       __self: undefined
     }, c.name)));
@@ -885,7 +885,7 @@ const CreateBlog = ({
       className: "list-unstyled",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 150
+        lineNumber: 152
       },
       __self: undefined
     }, __jsx("input", {
@@ -894,14 +894,14 @@ const CreateBlog = ({
       className: "mr-2",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 151
+        lineNumber: 153
       },
       __self: undefined
     }), __jsx("label", {
       className: "form-check-label",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 152
+        lineNumber: 154
       },
       __self: undefined
     }, t.name)));
@@ -912,21 +912,21 @@ const CreateBlog = ({
       onSubmit: publishBlog,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 160
+        lineNumber: 162
       },
       __self: undefined
     }, __jsx("div", {
       className: "form-group",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 161
+        lineNumber: 163
       },
       __self: undefined
     }, __jsx("label", {
       className: "text-muted",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 162
+        lineNumber: 164
       },
       __self: undefined
     }, "Title"), __jsx("input", {
@@ -936,14 +936,14 @@ const CreateBlog = ({
       onChange: handleChange('title'),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 163
+        lineNumber: 165
       },
       __self: undefined
     })), __jsx("div", {
       className: "form-group",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 166
+        lineNumber: 168
       },
       __self: undefined
     }, __jsx(ReactQuill, {
@@ -954,13 +954,13 @@ const CreateBlog = ({
       onChange: handleBody,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 167
+        lineNumber: 169
       },
       __self: undefined
     })), __jsx("div", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 176
+        lineNumber: 178
       },
       __self: undefined
     }, __jsx("button", {
@@ -968,7 +968,7 @@ const CreateBlog = ({
       className: "btn btn-primary",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 177
+        lineNumber: 179
       },
       __self: undefined
     }, "Publish")));
@@ -978,91 +978,91 @@ const CreateBlog = ({
     className: "container-fluid",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 186
+      lineNumber: 188
     },
     __self: undefined
   }, __jsx("div", {
     className: "row",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 187
+      lineNumber: 189
     },
     __self: undefined
   }, __jsx("div", {
     className: "col-md-8",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 188
+      lineNumber: 190
     },
     __self: undefined
   }, createBlogForm(), __jsx("hr", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 190
+      lineNumber: 192
     },
     __self: undefined
   }), _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(title), __jsx("hr", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 192
+      lineNumber: 194
     },
     __self: undefined
   }), _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(body), __jsx("hr", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 194
+      lineNumber: 196
     },
     __self: undefined
   }), _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(categories), __jsx("hr", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 196
+      lineNumber: 198
     },
     __self: undefined
   }), _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(tags)), __jsx("div", {
     className: "col-md-4",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 200
+      lineNumber: 202
     },
     __self: undefined
   }, __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 201
+      lineNumber: 203
     },
     __self: undefined
   }, __jsx("div", {
     className: "form-group pb-2",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 202
+      lineNumber: 204
     },
     __self: undefined
   }, __jsx("h5", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 203
+      lineNumber: 205
     },
     __self: undefined
   }, "Featured image"), __jsx("hr", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 204
+      lineNumber: 206
     },
     __self: undefined
   }), __jsx("small", {
     className: "text-muted",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 206
+      lineNumber: 208
     },
     __self: undefined
   }, "Max size: 1mb"), __jsx("label", {
     className: "btn btn-outline-info",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 207
+      lineNumber: 209
     },
     __self: undefined
   }, "Upload featured image", __jsx("input", {
@@ -1072,25 +1072,25 @@ const CreateBlog = ({
     hidden: true,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 209
+      lineNumber: 211
     },
     __self: undefined
   })))), __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 213
+      lineNumber: 215
     },
     __self: undefined
   }, __jsx("h5", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 214
+      lineNumber: 216
     },
     __self: undefined
   }, "Categories"), __jsx("hr", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 215
+      lineNumber: 217
     },
     __self: undefined
   }), __jsx("ul", {
@@ -1098,27 +1098,27 @@ const CreateBlog = ({
       maxHeight: '200px',
       overflowY: 'scroll'
     },
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 217
-    },
-    __self: undefined
-  }, showCategories())), __jsx("div", {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 219
     },
     __self: undefined
+  }, showCategories())), __jsx("div", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 221
+    },
+    __self: undefined
   }, __jsx("h5", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 220
+      lineNumber: 222
     },
     __self: undefined
   }, "Tags"), __jsx("hr", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 221
+      lineNumber: 223
     },
     __self: undefined
   }), __jsx("ul", {
@@ -1128,7 +1128,7 @@ const CreateBlog = ({
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 222
+      lineNumber: 224
     },
     __self: undefined
   }, showTags())))));
@@ -1173,7 +1173,7 @@ __webpack_require__.r(__webpack_exports__);
 const {
   publicRuntimeConfig
 } = next_config__WEBPACK_IMPORTED_MODULE_0___default()();
-const API = publicRuntimeConfig.PRODUCTION ? 'https://sergiorosablog.com' : 'http://localhost:8000/api';
+const API = publicRuntimeConfig.PRODUCTION ? 'https://ensdashboard.com' : 'http://localhost:8000/api';
 const APP_NAME = publicRuntimeConfig.APP_NAME;
 
 /***/ }),
@@ -3067,7 +3067,7 @@ const Blog = () => {
 
 /***/ }),
 
-/***/ 3:
+/***/ 7:
 /*!****************************************!*\
   !*** multi ./pages/admin/crud/blog.js ***!
   \****************************************/

@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 7);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -483,7 +483,7 @@ __webpack_require__.r(__webpack_exports__);
 const {
   publicRuntimeConfig
 } = next_config__WEBPACK_IMPORTED_MODULE_0___default()();
-const API = publicRuntimeConfig.PRODUCTION ? 'https://sergiorosablog.com' : 'http://localhost:8000/api';
+const API = publicRuntimeConfig.PRODUCTION ? 'https://ensdashboard.com' : 'http://localhost:8000/api';
 const APP_NAME = publicRuntimeConfig.APP_NAME;
 
 /***/ }),
@@ -2321,7 +2321,7 @@ const AdminIndex = () => {
 
 /***/ }),
 
-/***/ 7:
+/***/ 3:
 /*!************************************!*\
   !*** multi ./pages/admin/index.js ***!
   \************************************/
