@@ -86,8 +86,6 @@ exports.authMiddleware = (req, res, next) => {
   });
 };
 
-//adminMiddleware
-
 exports.adminMiddleware = (req, res, next) => {
   const adminUserId = req.user._id;
   User.findById({ _id: adminUserId }).exec((err, user) => {
