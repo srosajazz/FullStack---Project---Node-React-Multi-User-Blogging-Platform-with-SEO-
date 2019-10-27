@@ -661,6 +661,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_blog__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../actions/blog */ "./actions/blog.js");
 /* harmony import */ var _node_modules_react_quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../node_modules/react-quill/dist/quill.snow.css */ "./node_modules/react-quill/dist/quill.snow.css");
 /* harmony import */ var _node_modules_react_quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_node_modules_react_quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _helpers_quil__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../helpers/quil */ "./helpers/quil.js");
 
 
 var _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/components/crud/BlogCreate.js";
@@ -682,6 +683,7 @@ const ReactQuill = next_dynamic__WEBPACK_IMPORTED_MODULE_5___default()(() => Pro
     modules: ['react-quill']
   }
 });
+
 
 
 const CreateBlog = ({
@@ -857,7 +859,7 @@ const CreateBlog = ({
       className: "list-unstyled",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 140
+        lineNumber: 139
       },
       __self: undefined
     }, __jsx("input", {
@@ -866,14 +868,14 @@ const CreateBlog = ({
       className: "mr-2",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 141
+        lineNumber: 140
       },
       __self: undefined
     }), __jsx("label", {
       className: "form-check-label",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 142
+        lineNumber: 141
       },
       __self: undefined
     }, c.name)));
@@ -885,7 +887,7 @@ const CreateBlog = ({
       className: "list-unstyled",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 152
+        lineNumber: 151
       },
       __self: undefined
     }, __jsx("input", {
@@ -894,39 +896,63 @@ const CreateBlog = ({
       className: "mr-2",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 153
+        lineNumber: 152
       },
       __self: undefined
     }), __jsx("label", {
       className: "form-check-label",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 154
+        lineNumber: 153
       },
       __self: undefined
     }, t.name)));
   };
+
+  const showError = () => __jsx("div", {
+    className: "alert alert-danger",
+    style: {
+      display: error ? '' : 'none'
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 160
+    },
+    __self: undefined
+  }, error);
+
+  const showSuccess = () => __jsx("div", {
+    className: "alert alert-success",
+    style: {
+      display: success ? '' : 'none'
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 166
+    },
+    __self: undefined
+  }, success);
 
   const createBlogForm = () => {
     return __jsx("form", {
       onSubmit: publishBlog,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 162
+        lineNumber: 173
       },
       __self: undefined
     }, __jsx("div", {
       className: "form-group",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 163
+        lineNumber: 174
       },
       __self: undefined
     }, __jsx("label", {
       className: "text-muted",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 164
+        lineNumber: 175
       },
       __self: undefined
     }, "Title"), __jsx("input", {
@@ -936,31 +962,31 @@ const CreateBlog = ({
       onChange: handleChange('title'),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 165
+        lineNumber: 176
       },
       __self: undefined
     })), __jsx("div", {
       className: "form-group",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 168
+        lineNumber: 179
       },
       __self: undefined
     }, __jsx(ReactQuill, {
-      modules: CreateBlog.modules,
-      formats: CreateBlog.formats,
+      modules: _helpers_quil__WEBPACK_IMPORTED_MODULE_11__["QuillModules"],
+      formats: _helpers_quil__WEBPACK_IMPORTED_MODULE_11__["QuillFormats"],
       value: body,
       placeholder: "Write something amazing...",
       onChange: handleBody,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 169
+        lineNumber: 180
       },
       __self: undefined
     })), __jsx("div", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 178
+        lineNumber: 189
       },
       __self: undefined
     }, __jsx("button", {
@@ -968,101 +994,84 @@ const CreateBlog = ({
       className: "btn btn-primary",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 179
+        lineNumber: 190
       },
       __self: undefined
     }, "Publish")));
   };
 
   return __jsx("div", {
-    className: "container-fluid",
+    className: "container-fluid pb-5",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 188
+      lineNumber: 199
     },
     __self: undefined
   }, __jsx("div", {
     className: "row",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 189
+      lineNumber: 200
     },
     __self: undefined
   }, __jsx("div", {
     className: "col-md-8",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 190
+      lineNumber: 201
     },
     __self: undefined
-  }, createBlogForm(), __jsx("hr", {
+  }, createBlogForm(), __jsx("div", {
+    className: "pt-3",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 192
+      lineNumber: 203
     },
     __self: undefined
-  }), _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(title), __jsx("hr", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 194
-    },
-    __self: undefined
-  }), _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(body), __jsx("hr", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 196
-    },
-    __self: undefined
-  }), _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(categories), __jsx("hr", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 198
-    },
-    __self: undefined
-  }), _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(tags)), __jsx("div", {
+  }, showError(), showSuccess())), __jsx("div", {
     className: "col-md-4",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 202
+      lineNumber: 209
     },
     __self: undefined
   }, __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 203
+      lineNumber: 210
     },
     __self: undefined
   }, __jsx("div", {
     className: "form-group pb-2",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 204
+      lineNumber: 211
     },
     __self: undefined
   }, __jsx("h5", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 205
+      lineNumber: 212
     },
     __self: undefined
   }, "Featured image"), __jsx("hr", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 206
+      lineNumber: 213
     },
     __self: undefined
   }), __jsx("small", {
     className: "text-muted",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 208
+      lineNumber: 215
     },
     __self: undefined
   }, "Max size: 1mb"), __jsx("label", {
     className: "btn btn-outline-info",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 209
+      lineNumber: 216
     },
     __self: undefined
   }, "Upload featured image", __jsx("input", {
@@ -1072,55 +1081,27 @@ const CreateBlog = ({
     hidden: true,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 211
+      lineNumber: 218
     },
     __self: undefined
   })))), __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 215
-    },
-    __self: undefined
-  }, __jsx("h5", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 216
-    },
-    __self: undefined
-  }, "Categories"), __jsx("hr", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 217
-    },
-    __self: undefined
-  }), __jsx("ul", {
-    style: {
-      maxHeight: '200px',
-      overflowY: 'scroll'
-    },
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 219
-    },
-    __self: undefined
-  }, showCategories())), __jsx("div", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 221
-    },
-    __self: undefined
-  }, __jsx("h5", {
-    __source: {
-      fileName: _jsxFileName,
       lineNumber: 222
     },
     __self: undefined
-  }, "Tags"), __jsx("hr", {
+  }, __jsx("h5", {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 223
     },
     __self: undefined
+  }, "Categories"), __jsx("hr", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 224
+    },
+    __self: undefined
   }), __jsx("ul", {
     style: {
       maxHeight: '200px',
@@ -1128,30 +1109,40 @@ const CreateBlog = ({
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 224
+      lineNumber: 226
+    },
+    __self: undefined
+  }, showCategories())), __jsx("div", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 228
+    },
+    __self: undefined
+  }, __jsx("h5", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 229
+    },
+    __self: undefined
+  }, "Tags"), __jsx("hr", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 230
+    },
+    __self: undefined
+  }), __jsx("ul", {
+    style: {
+      maxHeight: '200px',
+      overflowY: 'scroll'
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 231
     },
     __self: undefined
   }, showTags())))));
 };
 
-CreateBlog.modules = {
-  toolbar: [[{
-    header: '1'
-  }, {
-    header: '2'
-  }, {
-    header: [3, 4, 5, 6]
-  }, {
-    font: []
-  }], [{
-    size: []
-  }], ['bold', 'italic', 'underline', 'strike', 'blockquote'], [{
-    list: 'ordered'
-  }, {
-    list: 'bullet'
-  }], ['link', 'image', 'video'], ['clean'], ['code-block']]
-};
-CreateBlog.formats = ['header', 'font', 'size', 'bold', 'italic', 'underline', 'strike', 'blockquote', 'list', 'bullet', 'link', 'image', 'video', 'code-block'];
 /* harmony default export */ __webpack_exports__["default"] = (Object(next_router__WEBPACK_IMPORTED_MODULE_4__["withRouter"])(CreateBlog));
 
 /***/ }),
@@ -1175,6 +1166,38 @@ const {
 } = next_config__WEBPACK_IMPORTED_MODULE_0___default()();
 const API = publicRuntimeConfig.PRODUCTION ? 'https://ensdashboard.com' : 'http://localhost:8000/api';
 const APP_NAME = publicRuntimeConfig.APP_NAME;
+
+/***/ }),
+
+/***/ "./helpers/quil.js":
+/*!*************************!*\
+  !*** ./helpers/quil.js ***!
+  \*************************/
+/*! exports provided: QuillModules, QuillFormats */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "QuillModules", function() { return QuillModules; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "QuillFormats", function() { return QuillFormats; });
+const QuillModules = {
+  toolbar: [[{
+    header: '1'
+  }, {
+    header: '2'
+  }, {
+    header: [3, 4, 5, 6]
+  }, {
+    font: []
+  }], [{
+    size: []
+  }], ['bold', 'italic', 'underline', 'strike', 'blockquote'], [{
+    list: 'ordered'
+  }, {
+    list: 'bullet'
+  }], ['link', 'image', 'video'], ['clean'], ['code-block']]
+};
+const QuillFormats = ['header', 'font', 'size', 'bold', 'italic', 'underline', 'strike', 'blockquote', 'list', 'bullet', 'link', 'image', 'video', 'code-block'];
 
 /***/ }),
 

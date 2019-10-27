@@ -1,3 +1,7 @@
 #nprogress .bar {
   height: 4px !important;
 }
+/* creating large space in editor area */
+.ql-editor {
+  min-height: 300px;
+}
