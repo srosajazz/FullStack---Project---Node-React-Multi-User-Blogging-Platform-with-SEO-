@@ -59,11 +59,7 @@ const Category = () => {
             if (data.error) {
                 console.log(data.error);
             } else {
-                setValues({ 
-                    ...values, 
-                    error: false, 
-                    success: false, 
-                    name: '', removed: !removed, reload: !reload });
+                setValues({ ...values, error: false, success: false, name: '', removed: !removed, reload: !reload });
             }
         });
     };
