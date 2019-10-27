@@ -60740,7 +60740,7 @@ var Blog = function Blog() {
 
 /***/ }),
 
-/***/ 6:
+/***/ 0:
 /*!*******************************************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fadmin%2Fcrud%2Fblog&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fadmin%2Fcrud%2Fblog.js ***!
   \*******************************************************************************************************************************************************************************/
@@ -60763,5 +60763,5 @@ module.exports = dll_b35e09dc2ca94ac6d9c1;
 
 /***/ })
 
-},[[6,"static/runtime/webpack.js","styles"]]]);
+},[[0,"static/runtime/webpack.js","styles"]]]);
 //# sourceMappingURL=blog.js.map
