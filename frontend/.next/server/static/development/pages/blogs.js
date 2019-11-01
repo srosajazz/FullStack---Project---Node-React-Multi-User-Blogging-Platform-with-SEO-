@@ -624,38 +624,57 @@ const Card = ({
       lineNumber: 43
     },
     __self: undefined
-  }, "image"), __jsx("div", {
-    className: "col-md-8",
+  }, __jsx("section", {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 44
     },
     __self: undefined
-  }, __jsx("section", {
+  }, __jsx("img", {
+    className: "img img-fluid",
+    style: {
+      maxHeight: '150px',
+      width: 'auto'
+    },
+    src: `${_config__WEBPACK_IMPORTED_MODULE_4__["API"]}/blog/photo/${blog.slug}`,
+    alt: blog.title,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 45
+    },
+    __self: undefined
+  }))), __jsx("div", {
+    className: "col-md-8",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 52
+    },
+    __self: undefined
+  }, __jsx("section", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 53
     },
     __self: undefined
   }, __jsx("div", {
     className: "pb-3",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 46
+      lineNumber: 54
     },
     __self: undefined
   }, react_render_html__WEBPACK_IMPORTED_MODULE_2___default()(blog.excerpt)), __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
     href: `/blogs/${blog.slug}`,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 47
+      lineNumber: 55
     },
     __self: undefined
   }, __jsx("a", {
     className: "btn btn-primary pt-2",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 48
+      lineNumber: 56
     },
     __self: undefined
   }, "Read more"))))));
