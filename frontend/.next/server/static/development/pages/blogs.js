@@ -2233,6 +2233,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Layout */ "./components/Layout.js");
 /* harmony import */ var _actions_blog__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/blog */ "./actions/blog.js");
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../config */ "./config.js");
+/* harmony import */ var react_render_html__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-render-html */ "react-render-html");
+/* harmony import */ var react_render_html__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_render_html__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! moment */ "moment");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_7__);
 var _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/pages/blogs/index.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
@@ -2243,80 +2247,227 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
-const Blogs = () => {
-  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_3__["default"], {
+
+
+const Blogs = ({
+  blogs,
+  categories,
+  tags,
+  size
+}) => {
+  const showAllBlogs = () => {
+    return blogs.map((blog, i) => {
+      return __jsx("article", {
+        key: i,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 14
+        },
+        __self: undefined
+      }, __jsx("div", {
+        className: "lead pb-4",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 15
+        },
+        __self: undefined
+      }, __jsx("header", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 16
+        },
+        __self: undefined
+      }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
+        href: `/blogs/${blog.slug}`,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 17
+        },
+        __self: undefined
+      }, __jsx("a", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 18
+        },
+        __self: undefined
+      }, __jsx("h2", {
+        className: "pt-3 pb-3 font-weight-bold",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 18
+        },
+        __self: undefined
+      }, blog.title)))), __jsx("section", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 21
+        },
+        __self: undefined
+      }, __jsx("p", {
+        className: "mark ml-1 pt-2 pb-2",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 22
+        },
+        __self: undefined
+      }, "Written by ", blog.postedBy.name, " | Published ", moment__WEBPACK_IMPORTED_MODULE_7___default()(blog.updatedAt).fromNow())), __jsx("section", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 26
+        },
+        __self: undefined
+      }, __jsx("p", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 27
+        },
+        __self: undefined
+      }, "blog categories and tags")), __jsx("div", {
+        className: "row",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 29
+        },
+        __self: undefined
+      }, __jsx("div", {
+        className: "col-md-4",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 30
+        },
+        __self: undefined
+      }, "image"), __jsx("div", {
+        className: "col-md-8",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 31
+        },
+        __self: undefined
+      }, __jsx("section", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 32
+        },
+        __self: undefined
+      }, __jsx("div", {
+        className: "pb-3",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 33
+        },
+        __self: undefined
+      }, react_render_html__WEBPACK_IMPORTED_MODULE_6___default()(blog.excerpt)), __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
+        href: '/blogs/${blog.slug',
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 34
+        },
+        __self: undefined
+      }, __jsx("a", {
+        className: "btn btn-primary pt-2",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 35
+        },
+        __self: undefined
+      }, "Read more")))))), __jsx("hr", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 41
+        },
+        __self: undefined
+      }));
+    });
+  };
+
+  return __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_3__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 12
+      lineNumber: 47
     },
     __self: undefined
   }, __jsx("main", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 13
+      lineNumber: 48
     },
     __self: undefined
   }, __jsx("div", {
     className: "container-fluid",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 14
+      lineNumber: 49
     },
     __self: undefined
   }, __jsx("header", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 15
+      lineNumber: 50
     },
     __self: undefined
   }, __jsx("div", {
     className: "col-md-12 pt-3",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 16
+      lineNumber: 51
     },
     __self: undefined
   }, __jsx("h1", {
     className: "display-4 font-weight-bold text-center",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 17
+      lineNumber: 52
     },
     __self: undefined
-  }, "Rating Auditions Schedule")), __jsx("section", {
+  }, "Programming blogs and tutorials")), __jsx("section", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 21
+      lineNumber: 54
     },
     __self: undefined
   }, __jsx("p", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 22
+      lineNumber: 55
     },
     __self: undefined
   }, "show categories and tags")))), __jsx("div", {
     className: "container-fluid",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 26
+      lineNumber: 59
     },
     __self: undefined
   }, __jsx("div", {
     className: "row",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 27
+      lineNumber: 60
     },
     __self: undefined
   }, __jsx("div", {
     className: "col-md-12",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 28
+      lineNumber: 61
     },
     __self: undefined
-  }, "show all blogs"))))));
+  }, showAllBlogs())))));
+};
+
+Blogs.getInitialProps = () => {
+  return Object(_actions_blog__WEBPACK_IMPORTED_MODULE_4__["listBlogsWithCategoriesAndTags"])().then(data => {
+    if (data.error) {
+      console.log(data.error);
+    } else {
+      return {
+        blogs: data.blogs,
+        categories: data.categories,
+        tags: data.tags,
+        size: data.size
+      };
+    }
+  });
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Blogs); //getInitialProps
@@ -2445,6 +2596,17 @@ module.exports = require("js-cookie");
 
 /***/ }),
 
+/***/ "moment":
+/*!*************************!*\
+  !*** external "moment" ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("moment");
+
+/***/ }),
+
 /***/ "next/config":
 /*!******************************!*\
   !*** external "next/config" ***!
@@ -2530,6 +2692,17 @@ module.exports = require("react");
 /***/ (function(module, exports) {
 
 module.exports = require("react-is");
+
+/***/ }),
+
+/***/ "react-render-html":
+/*!************************************!*\
+  !*** external "react-render-html" ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("react-render-html");
 
 /***/ }),
 
