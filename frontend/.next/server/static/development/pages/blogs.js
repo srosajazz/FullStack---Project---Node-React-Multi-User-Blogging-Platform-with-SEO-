@@ -2474,78 +2474,137 @@ const Blogs = ({
         __self: undefined
       }));
     });
+  }; // showcategories
+
+
+  const showAllCategories = () => {
+    return categories.map((c, i) => __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
+      href: `/categories/${c.slug}`,
+      key: i,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 23
+      },
+      __self: undefined
+    }, __jsx("a", {
+      className: "btn btn-primary mr-1 ml-1 mt-3",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 24
+      },
+      __self: undefined
+    }, c.name)));
+  }; // show Tags
+
+
+  const showAllTags = () => {
+    return tags.map((t, i) => __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
+      href: `/tags/${t.slug}`,
+      key: i,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 32
+      },
+      __self: undefined
+    }, __jsx("a", {
+      className: "btn btn-outline-primary mr-1 ml-1 mt-3",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 33
+      },
+      __self: undefined
+    }, t.name)));
   };
 
   return __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_3__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 20
+      lineNumber: 40
     },
     __self: undefined
   }, __jsx("main", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 21
+      lineNumber: 41
     },
     __self: undefined
   }, __jsx("div", {
     className: "container-fluid",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 22
+      lineNumber: 42
     },
     __self: undefined
   }, __jsx("header", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 23
+      lineNumber: 43
     },
     __self: undefined
   }, __jsx("div", {
     className: "col-md-12 pt-3",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 24
+      lineNumber: 44
     },
     __self: undefined
   }, __jsx("h1", {
     className: "display-4 font-weight-bold text-center",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 25
+      lineNumber: 45
     },
     __self: undefined
   }, "Ensemble Hub")), __jsx("section", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 27
+      lineNumber: 47
     },
     __self: undefined
-  }, __jsx("p", {
+  }, __jsx("div", {
+    className: "pb-5",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 28
+      lineNumber: 48
     },
     __self: undefined
-  }, "show categories and tags")))), __jsx("div", {
+  }, showAllCategories(), __jsx("hr", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 50
+    },
+    __self: undefined
+  }), __jsx("br", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 51
+    },
+    __self: undefined
+  }), showAllTags(), __jsx("hr", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 53
+    },
+    __self: undefined
+  }))))), __jsx("div", {
     className: "container-fluid",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 32
+      lineNumber: 58
     },
     __self: undefined
   }, __jsx("div", {
     className: "row",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 33
+      lineNumber: 59
     },
     __self: undefined
   }, __jsx("div", {
     className: "col-md-12",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 34
+      lineNumber: 60
     },
     __self: undefined
   }, showAllBlogs())))));

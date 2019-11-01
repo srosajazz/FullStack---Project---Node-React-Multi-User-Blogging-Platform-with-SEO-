@@ -9,13 +9,33 @@ import Card from '../../components/blog/Card';
 const Blogs = ({blogs, categories, tags, size}) => {
     const showAllBlogs = () => {
         return blogs.map((blog, i) => {
-           return  <article key={i}>
+           return ( <article key={i}>
                 <Card blog={blog}/>
                 <hr/>
             </article>
+           );
+        });
+    };
 
-        })
-    }
+     // showcategories
+    const showAllCategories = () => {
+        return categories.map((c, i) => (
+            <Link href={`/categories/${c.slug}`} key={i}>
+                <a className="btn btn-primary mr-1 ml-1 mt-3">{c.name}</a>
+            </Link>
+        ));
+    };
+
+    // show Tags
+    const showAllTags = () => {
+        return tags.map((t, i) => (
+            <Link href={`/tags/${t.slug}`} key={i}>
+                <a className="btn btn-outline-primary mr-1 ml-1 mt-3">{t.name}</a>
+            </Link>
+        ));
+    };
+
+
     return (
         <Layout>
             <main>
@@ -25,7 +45,13 @@ const Blogs = ({blogs, categories, tags, size}) => {
                             <h1 className="display-4 font-weight-bold text-center">Ensemble Hub</h1>
                         </div>
                         <section>
-                            <p>show categories and tags</p>
+                            <div className="pb-5">
+                                {showAllCategories()}
+                                <hr />
+                                <br/>
+                                {showAllTags()}
+                                 <hr />
+                            </div>
                         </section>
                     </header>
                 </div>
