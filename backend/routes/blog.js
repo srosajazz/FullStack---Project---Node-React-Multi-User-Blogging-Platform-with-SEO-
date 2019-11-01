@@ -3,7 +3,7 @@ const router = express.Router();
 const {
   create,
   list,
-  listAllBlogsCategoriesTag,
+  listAllBlogsCategoriesTags,
   read,
   remove,
   update,
@@ -14,7 +14,7 @@ const { requireSignin, adminMiddleware } = require('../controllers/auth');
 
 router.post('/blog', requireSignin, adminMiddleware, create);
 router.get('/blogs', list);
-router.post('/blogs-categories-tags', listAllBlogsCategoriesTag);
+router.post('/blogs-categories-tags', listAllBlogsCategoriesTags);
 router.get('/blog/:slug', read);
 router.delete('/blog/:slug', requireSignin, adminMiddleware, remove);
 router.put('/blog/:slug', requireSignin, adminMiddleware, update);

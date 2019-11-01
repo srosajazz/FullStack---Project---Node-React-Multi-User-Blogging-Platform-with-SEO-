@@ -28,20 +28,21 @@ exports.create = (req, res) => {
     }
 
     if (!body || body.length < 200) {
-      //   return res.status(400).json({
-      //     error: 'Content is too short',
-      //   });
-      // }
+      return res.status(400).json({
+        error: 'Content is too short',
+      });
+    }
 
+    if (!categories || categories.length === 0) {
       return res.status(400).json({
         error: 'At least one category is required',
       });
     }
 
     if (!tags || tags.length === 0) {
-      // return res.status(400).json({
-      //   error: 'At least one tag is required',
-      // });
+      return res.status(400).json({
+        error: 'At least one tag is required',
+      });
     }
 
     let blog = new Blog();
@@ -66,10 +67,7 @@ exports.create = (req, res) => {
       blog.photo.contentType = files.photo.type;
     }
 
-    //Add console.log( ) in blog.
-    //save and try to see if any error in node server console/terminal
     blog.save((err, result) => {
-      console.log('BLOG CREATE ERROR', err);
       if (err) {
         return res.status(400).json({
           error: errorHandler(err),
@@ -105,7 +103,8 @@ exports.create = (req, res) => {
   });
 };
 
-//  list,listAllBlogsCategoriesTag,read,remove,update
+// list, listAllBlogsCategoriesTags, read, remove, update
+
 exports.list = (req, res) => {
   Blog.find({})
     .populate('categories', '_id name slug')
@@ -124,8 +123,7 @@ exports.list = (req, res) => {
     });
 };
 
-exports.listAllBlogsCategoriesTag = (req, res) => {
-  //pagination
+exports.listAllBlogsCategoriesTags = (req, res) => {
   let limit = req.body.limit ? parseInt(req.body.limit) : 10;
   let skip = req.body.skip ? parseInt(req.body.skip) : 0;
 
@@ -173,7 +171,6 @@ exports.listAllBlogsCategoriesTag = (req, res) => {
     });
 };
 
-//single blog
 exports.read = (req, res) => {
   const slug = req.params.slug.toLowerCase();
   Blog.findOne({ slug })
@@ -274,7 +271,7 @@ exports.photo = (req, res) => {
   const slug = req.params.slug.toLowerCase();
   Blog.findOne({ slug })
     .select('photo')
-    .select((err, blog) => {
+    .exec((err, blog) => {
       if (err || !blog) {
         return res.status(400).json({
           error: errorHandler(err),
