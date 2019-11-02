@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -688,21 +688,25 @@ const Card = ({
 /*!*******************!*\
   !*** ./config.js ***!
   \*******************/
-/*! exports provided: API, APP_NAME */
+/*! exports provided: API, APP_NAME, DOMAIN, FB_APP_ID */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "API", function() { return API; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "APP_NAME", function() { return APP_NAME; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DOMAIN", function() { return DOMAIN; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FB_APP_ID", function() { return FB_APP_ID; });
 /* harmony import */ var next_config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! next/config */ "next/config");
 /* harmony import */ var next_config__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(next_config__WEBPACK_IMPORTED_MODULE_0__);
 
 const {
   publicRuntimeConfig
 } = next_config__WEBPACK_IMPORTED_MODULE_0___default()();
-const API = publicRuntimeConfig.PRODUCTION ? 'https://ensdashboard.com' : 'http://localhost:8000/api';
+const API = publicRuntimeConfig.PRODUCTION ? publicRuntimeConfig.API_PRODUCTION : publicRuntimeConfig.API_DEVELOPMENT;
 const APP_NAME = publicRuntimeConfig.APP_NAME;
+const DOMAIN = publicRuntimeConfig.PRODUCTION ? publicRuntimeConfig.DOMAIN_PRODUCTION : publicRuntimeConfig.DOMAIN_DEVELOPMENT;
+const FB_APP_ID = publicRuntimeConfig.FB_APP_ID;
 
 /***/ }),
 
@@ -2431,12 +2435,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Layout */ "./components/Layout.js");
-/* harmony import */ var _actions_blog__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/blog */ "./actions/blog.js");
-/* harmony import */ var _components_blog_Card__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/blog/Card */ "./components/blog/Card.js");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/router */ "next/router");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/Layout */ "./components/Layout.js");
+/* harmony import */ var _actions_blog__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/blog */ "./actions/blog.js");
+/* harmony import */ var _components_blog_Card__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/blog/Card */ "./components/blog/Card.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../config */ "./config.js");
 var _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/pages/blogs/index.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
 
 
 
@@ -2448,34 +2457,181 @@ const Blogs = ({
   blogs,
   categories,
   tags,
-  size
+  totalBlogs,
+  blogsLimit,
+  blogSkip,
+  router
 }) => {
+  const head = () => __jsx(next_head__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 12
+    },
+    __self: undefined
+  }, __jsx("title", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 13
+    },
+    __self: undefined
+  }, "Programming blogs | ", _config__WEBPACK_IMPORTED_MODULE_7__["APP_NAME"]), __jsx("meta", {
+    name: "description",
+    content: "Programming blogs and tutorials on react node next vue php laravel and web developoment",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 14
+    },
+    __self: undefined
+  }), __jsx("link", {
+    rel: "canonical",
+    href: `${_config__WEBPACK_IMPORTED_MODULE_7__["DOMAIN"]}${router.pathname}`,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 18
+    },
+    __self: undefined
+  }), __jsx("meta", {
+    property: "og:title",
+    content: `Latest web developoment tutorials | ${_config__WEBPACK_IMPORTED_MODULE_7__["APP_NAME"]}`,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 19
+    },
+    __self: undefined
+  }), __jsx("meta", {
+    property: "og:description",
+    content: "Programming blogs and tutorials on react node next vue php laravel and web developoment",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 20
+    },
+    __self: undefined
+  }), __jsx("meta", {
+    property: "og:type",
+    content: "webiste",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 24
+    },
+    __self: undefined
+  }), __jsx("meta", {
+    property: "og:url",
+    content: `${_config__WEBPACK_IMPORTED_MODULE_7__["DOMAIN"]}${router.pathname}`,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 25
+    },
+    __self: undefined
+  }), __jsx("meta", {
+    property: "og:site_name",
+    content: `${_config__WEBPACK_IMPORTED_MODULE_7__["APP_NAME"]}`,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 26
+    },
+    __self: undefined
+  }), __jsx("meta", {
+    property: "og:image",
+    content: `${_config__WEBPACK_IMPORTED_MODULE_7__["DOMAIN"]}/static/images/seoblog.jpg`,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 28
+    },
+    __self: undefined
+  }), __jsx("meta", {
+    property: "og:image:secure_url",
+    ccontent: `${_config__WEBPACK_IMPORTED_MODULE_7__["DOMAIN"]}/static/images/seoblog.jpg`,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 29
+    },
+    __self: undefined
+  }), __jsx("meta", {
+    property: "og:image:type",
+    content: "image/jpg",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 30
+    },
+    __self: undefined
+  }), __jsx("meta", {
+    property: "fb:app_id",
+    content: `${_config__WEBPACK_IMPORTED_MODULE_7__["FB_APP_ID"]}`,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 31
+    },
+    __self: undefined
+  }));
+
+  const {
+    0: limit,
+    1: setLimit
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(blogsLimit);
+  const {
+    0: skip,
+    1: setSkip
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0);
+  const {
+    0: size,
+    1: setSize
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(totalBlogs);
+  const {
+    0: loadedBlogs,
+    1: setLoadedBlogs
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
+
+  const loadMore = () => {
+    let toSkip = skip + limit;
+    Object(_actions_blog__WEBPACK_IMPORTED_MODULE_5__["listBlogsWithCategoriesAndTags"])(toSkip, limit).then(data => {
+      if (data.error) {
+        console.log(data.error);
+      } else {
+        setLoadedBlogs([...loadedBlogs, ...data.blogs]);
+        setSize(data.size);
+        setSkip(toSkip);
+      }
+    });
+  };
+
+  const loadMoreButton = () => {
+    return size > 0 && size >= limit && __jsx("button", {
+      onClick: loadMore,
+      className: "btn btn-outline-primary btn-lg",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 57
+      },
+      __self: undefined
+    }, "Load mmore");
+  };
+
   const showAllBlogs = () => {
     return blogs.map((blog, i) => {
+      // ()
       return __jsx("article", {
         key: i,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 12
+          lineNumber: 68
         },
         __self: undefined
-      }, __jsx(_components_blog_Card__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      }, __jsx(_components_blog_Card__WEBPACK_IMPORTED_MODULE_6__["default"], {
         blog: blog,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 13
+          lineNumber: 69
         },
         __self: undefined
       }), __jsx("hr", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 14
+          lineNumber: 70
         },
         __self: undefined
       }));
     });
-  }; // showcategories
-
+  };
 
   const showAllCategories = () => {
     return categories.map((c, i) => __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
@@ -2483,19 +2639,18 @@ const Blogs = ({
       key: i,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 23
+        lineNumber: 78
       },
       __self: undefined
     }, __jsx("a", {
       className: "btn btn-primary mr-1 ml-1 mt-3",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 24
+        lineNumber: 79
       },
       __self: undefined
     }, c.name)));
-  }; // show Tags
-
+  };
 
   const showAllTags = () => {
     return tags.map((t, i) => __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
@@ -2503,115 +2658,129 @@ const Blogs = ({
       key: i,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 32
+        lineNumber: 86
       },
       __self: undefined
     }, __jsx("a", {
       className: "btn btn-outline-primary mr-1 ml-1 mt-3",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 33
+        lineNumber: 87
       },
       __self: undefined
     }, t.name)));
   };
 
-  return __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  const showLoadedBlogs = () => {
+    return loadedBlogs.map((blog, i) => __jsx("article", {
+      key: i,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 94
+      },
+      __self: undefined
+    }, __jsx(_components_blog_Card__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      blog: blog,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 95
+      },
+      __self: undefined
+    })));
+  };
+
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 40
+      lineNumber: 101
+    },
+    __self: undefined
+  }, head(), __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 103
     },
     __self: undefined
   }, __jsx("main", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 41
+      lineNumber: 104
     },
     __self: undefined
   }, __jsx("div", {
     className: "container-fluid",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 42
+      lineNumber: 105
     },
     __self: undefined
   }, __jsx("header", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 43
+      lineNumber: 106
     },
     __self: undefined
   }, __jsx("div", {
     className: "col-md-12 pt-3",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 44
+      lineNumber: 107
     },
     __self: undefined
   }, __jsx("h1", {
     className: "display-4 font-weight-bold text-center",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 45
+      lineNumber: 108
     },
     __self: undefined
-  }, "Ensemble Hub")), __jsx("section", {
+  }, "Programming blogs and tutorials")), __jsx("section", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 47
+      lineNumber: 112
     },
     __self: undefined
   }, __jsx("div", {
-    className: "pb-5",
+    className: "pb-5 text-center",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 48
+      lineNumber: 113
     },
     __self: undefined
-  }, showAllCategories(), __jsx("hr", {
+  }, showAllCategories(), __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 50
+      lineNumber: 115
     },
     __self: undefined
-  }), __jsx("br", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 51
-    },
-    __self: undefined
-  }), showAllTags(), __jsx("hr", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 53
-    },
-    __self: undefined
-  }))))), __jsx("div", {
+  }), showAllTags())))), __jsx("div", {
     className: "container-fluid",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 58
+      lineNumber: 121
     },
     __self: undefined
-  }, __jsx("div", {
-    className: "row",
+  }, showAllBlogs()), __jsx("div", {
+    className: "container-fluid",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 59
+      lineNumber: 122
     },
     __self: undefined
-  }, __jsx("div", {
-    className: "col-md-12",
+  }, showLoadedBlogs()), __jsx("div", {
+    className: "text-center pt-5 pb-5",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 60
+      lineNumber: 123
     },
     __self: undefined
-  }, showAllBlogs())))));
+  }, loadMoreButton()))));
 };
 
 Blogs.getInitialProps = () => {
-  return Object(_actions_blog__WEBPACK_IMPORTED_MODULE_4__["listBlogsWithCategoriesAndTags"])().then(data => {
+  let skip = 0;
+  let limit = 2;
+  return Object(_actions_blog__WEBPACK_IMPORTED_MODULE_5__["listBlogsWithCategoriesAndTags"])(skip, limit).then(data => {
     if (data.error) {
       console.log(data.error);
     } else {
@@ -2619,17 +2788,19 @@ Blogs.getInitialProps = () => {
         blogs: data.blogs,
         categories: data.categories,
         tags: data.tags,
-        size: data.size
+        totalBlogs: data.size,
+        blogsLimit: limit,
+        blogSkip: skip
       };
     }
   });
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Blogs); //getInitialProps
+/* harmony default export */ __webpack_exports__["default"] = (Object(next_router__WEBPACK_IMPORTED_MODULE_3__["withRouter"])(Blogs));
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!************************************!*\
   !*** multi ./pages/blogs/index.js ***!
   \************************************/
