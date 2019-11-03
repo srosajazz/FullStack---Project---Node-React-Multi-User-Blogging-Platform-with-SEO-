@@ -47,3 +47,22 @@ export const singleBlog = slug => {
 })
         .catch(err => console.log(err));
 };
+
+
+//Related blogs
+export const listRelated = (blog) => {
+
+    return fetch(`${API}/blogs/related`, {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-TYpe': 'application/json'
+        },
+        body: JSON.stringify(blog),
+    
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));      
+};

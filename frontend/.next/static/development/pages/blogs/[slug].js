@@ -47485,7 +47485,7 @@ var isAuth = function isAuth() {
 /*!*************************!*\
   !*** ./actions/blog.js ***!
   \*************************/
-/*! exports provided: createBlog, listBlogsWithCategoriesAndTags, singleBlog */
+/*! exports provided: createBlog, listBlogsWithCategoriesAndTags, singleBlog, listRelated */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47493,6 +47493,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createBlog", function() { return createBlog; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "listBlogsWithCategoriesAndTags", function() { return listBlogsWithCategoriesAndTags; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "singleBlog", function() { return singleBlog; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "listRelated", function() { return listRelated; });
 /* harmony import */ var _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/json/stringify */ "./node_modules/@babel/runtime-corejs2/core-js/json/stringify.js");
 /* harmony import */ var _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! isomorphic-fetch */ "./node_modules/isomorphic-fetch/fetch-npm-browserify.js");
@@ -47538,6 +47539,21 @@ var listBlogsWithCategoriesAndTags = function listBlogsWithCategoriesAndTags(ski
 var singleBlog = function singleBlog(slug) {
   return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1___default()("".concat(_config__WEBPACK_IMPORTED_MODULE_2__["API"], "/blog/").concat(slug), {
     method: 'GET'
+  }).then(function (response) {
+    return response.json();
+  })["catch"](function (err) {
+    return console.log(err);
+  });
+}; //Related blogs
+
+var listRelated = function listRelated(blog) {
+  return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1___default()("".concat(_config__WEBPACK_IMPORTED_MODULE_2__["API"], "/blogs/related"), {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-TYpe': 'application/json'
+    },
+    body: _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(blog)
   }).then(function (response) {
     return response.json();
   })["catch"](function (err) {
@@ -47805,6 +47821,141 @@ var Layout = function Layout(_ref) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Layout);
+
+/***/ }),
+
+/***/ "./components/blog/SmallCard.js":
+/*!**************************************!*\
+  !*** ./components/blog/SmallCard.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_render_html__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-render-html */ "./node_modules/react-render-html/index.js");
+/* harmony import */ var react_render_html__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_render_html__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../config */ "./config.js");
+var _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/components/blog/SmallCard.js";
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+
+
+var SmallCard = function SmallCard(_ref) {
+  var blog = _ref.blog;
+  return __jsx("div", {
+    className: "card",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 8
+    },
+    __self: this
+  }, __jsx("section", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 9
+    },
+    __self: this
+  }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    href: "/blogs/".concat(blog.slug),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 10
+    },
+    __self: this
+  }, __jsx("a", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 11
+    },
+    __self: this
+  }, __jsx("img", {
+    className: "img img-fluid",
+    style: {
+      maxHeight: 'auto',
+      width: '100%'
+    },
+    src: "".concat(_config__WEBPACK_IMPORTED_MODULE_4__["API"], "/blog/photo/").concat(blog.slug),
+    alt: blog.title,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 12
+    },
+    __self: this
+  })))), __jsx("div", {
+    className: "card-body",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 22
+    },
+    __self: this
+  }, __jsx("section", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 23
+    },
+    __self: this
+  }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    href: "/blogs/".concat(blog.slug),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 24
+    },
+    __self: this
+  }, __jsx("a", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 25
+    },
+    __self: this
+  }, __jsx("h5", {
+    className: "card-title",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 26
+    },
+    __self: this
+  }, blog.title))), __jsx("p", {
+    className: "card-text",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 29
+    },
+    __self: this
+  }, react_render_html__WEBPACK_IMPORTED_MODULE_2___default()(blog.excerpt)))), __jsx("div", {
+    className: "card-body",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 33
+    },
+    __self: this
+  }, "Posted ", moment__WEBPACK_IMPORTED_MODULE_3___default()(blog.updatedAt).fromNow(), " by", ' ', __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    href: "/",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 35
+    },
+    __self: this
+  }, __jsx("a", {
+    className: "float-right",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 36
+    },
+    __self: this
+  }, blog.postedBy.name))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (SmallCard);
 
 /***/ }),
 
@@ -93069,9 +93220,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_render_html__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_render_html__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _components_blog_SmallCard__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../components/blog/SmallCard */ "./components/blog/SmallCard.js");
 var _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/pages/blogs/[slug].js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
 
 
 
@@ -93085,17 +93238,37 @@ var SingleBlog = function SingleBlog(_ref) {
   var blog = _ref.blog,
       query = _ref.query;
 
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      related = _useState[0],
+      setRelated = _useState[1];
+
+  var loadRelated = function loadRelated() {
+    Object(_actions_blog__WEBPACK_IMPORTED_MODULE_4__["listRelated"])({
+      blog: blog
+    }).then(function (data) {
+      if (data.error) {
+        console.log(data.error);
+      } else {
+        setRelated(data);
+      }
+    });
+  };
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    loadRelated();
+  }, []);
+
   var head = function head() {
     return __jsx(next_head__WEBPACK_IMPORTED_MODULE_1___default.a, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 12
+        lineNumber: 29
       },
       __self: this
     }, __jsx("title", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 13
+        lineNumber: 30
       },
       __self: this
     }, blog.title, " | ", _config__WEBPACK_IMPORTED_MODULE_5__["APP_NAME"]), __jsx("meta", {
@@ -93103,7 +93276,7 @@ var SingleBlog = function SingleBlog(_ref) {
       content: blog.mdesc,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 16
+        lineNumber: 33
       },
       __self: this
     }), __jsx("link", {
@@ -93111,7 +93284,7 @@ var SingleBlog = function SingleBlog(_ref) {
       href: "".concat(_config__WEBPACK_IMPORTED_MODULE_5__["DOMAIN"], "/blogs/").concat(query.slug),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 17
+        lineNumber: 34
       },
       __self: this
     }), __jsx("meta", {
@@ -93119,7 +93292,7 @@ var SingleBlog = function SingleBlog(_ref) {
       content: "".concat(blog.title, "| ").concat(_config__WEBPACK_IMPORTED_MODULE_5__["APP_NAME"]),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 18
+        lineNumber: 35
       },
       __self: this
     }), __jsx("meta", {
@@ -93127,7 +93300,7 @@ var SingleBlog = function SingleBlog(_ref) {
       content: blog.mdesc,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 19
+        lineNumber: 36
       },
       __self: this
     }), __jsx("meta", {
@@ -93135,7 +93308,7 @@ var SingleBlog = function SingleBlog(_ref) {
       content: "webiste",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 20
+        lineNumber: 37
       },
       __self: this
     }), __jsx("meta", {
@@ -93143,7 +93316,7 @@ var SingleBlog = function SingleBlog(_ref) {
       content: "".concat(_config__WEBPACK_IMPORTED_MODULE_5__["DOMAIN"], "/blogs/").concat(query.slug),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 21
+        lineNumber: 38
       },
       __self: this
     }), __jsx("meta", {
@@ -93151,7 +93324,7 @@ var SingleBlog = function SingleBlog(_ref) {
       content: "".concat(_config__WEBPACK_IMPORTED_MODULE_5__["APP_NAME"]),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 22
+        lineNumber: 39
       },
       __self: this
     }), __jsx("meta", {
@@ -93159,7 +93332,7 @@ var SingleBlog = function SingleBlog(_ref) {
       content: "".concat(_config__WEBPACK_IMPORTED_MODULE_5__["API"], "/blog/photo/").concat(blog.slug),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 24
+        lineNumber: 41
       },
       __self: this
     }), __jsx("meta", {
@@ -93167,7 +93340,7 @@ var SingleBlog = function SingleBlog(_ref) {
       ccontent: "".concat(_config__WEBPACK_IMPORTED_MODULE_5__["API"], "/blog/photo/").concat(blog.slug),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 25
+        lineNumber: 42
       },
       __self: this
     }), __jsx("meta", {
@@ -93175,7 +93348,7 @@ var SingleBlog = function SingleBlog(_ref) {
       content: "image/jpg",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 26
+        lineNumber: 43
       },
       __self: this
     }), __jsx("meta", {
@@ -93183,7 +93356,7 @@ var SingleBlog = function SingleBlog(_ref) {
       content: "".concat(_config__WEBPACK_IMPORTED_MODULE_5__["FB_APP_ID"]),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 27
+        lineNumber: 44
       },
       __self: this
     }));
@@ -93196,14 +93369,14 @@ var SingleBlog = function SingleBlog(_ref) {
         href: "/categories/".concat(c.slug),
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 33
+          lineNumber: 50
         },
         __self: this
       }, __jsx("a", {
         className: "btn btn-primary mr-1 ml-1 mt-3",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 34
+          lineNumber: 51
         },
         __self: this
       }, c.name));
@@ -93217,55 +93390,82 @@ var SingleBlog = function SingleBlog(_ref) {
         href: "/tags/".concat(t.slug),
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 40
+          lineNumber: 57
         },
         __self: this
       }, __jsx("a", {
         className: "btn btn-outline-primary mr-1 ml-1 mt-3",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 41
+          lineNumber: 58
         },
         __self: this
       }, t.name));
     });
   };
 
+  var showRelatedBlog = function showRelatedBlog() {
+    return related.map(function (blog, i) {
+      return __jsx("div", {
+        className: "col-md-4",
+        key: i,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 64
+        },
+        __self: this
+      }, __jsx("article", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 65
+        },
+        __self: this
+      }, __jsx(_components_blog_SmallCard__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        blog: blog,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 66
+        },
+        __self: this
+      })));
+    });
+  };
+
   return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 46
+      lineNumber: 73
     },
     __self: this
   }, head(), __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_3__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 48
+      lineNumber: 75
     },
     __self: this
   }, __jsx("main", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 49
+      lineNumber: 76
     },
     __self: this
   }, __jsx("article", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 50
+      lineNumber: 77
     },
     __self: this
   }, __jsx("div", {
     className: "container-fluid",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 51
+      lineNumber: 78
     },
     __self: this
   }, __jsx("section", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 52
+      lineNumber: 79
     },
     __self: this
   }, __jsx("div", {
@@ -93275,7 +93475,7 @@ var SingleBlog = function SingleBlog(_ref) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 53
+      lineNumber: 80
     },
     __self: this
   }, __jsx("img", {
@@ -93284,112 +93484,107 @@ var SingleBlog = function SingleBlog(_ref) {
     className: "img img-fluid featured-image",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 54
+      lineNumber: 81
     },
     __self: this
   }))), __jsx("section", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 62
+      lineNumber: 89
     },
     __self: this
   }, __jsx("div", {
     className: "container",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 63
+      lineNumber: 90
     },
     __self: this
   }, __jsx("h1", {
     className: "display-2 pb-3 pt-3 text-center font-weight-bold",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 64
+      lineNumber: 91
     },
     __self: this
   }, blog.title), __jsx("p", {
     className: "lead mt-3 mark",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 65
+      lineNumber: 92
     },
     __self: this
   }, "Written by ", blog.postedBy.name, " | Published ", moment__WEBPACK_IMPORTED_MODULE_7___default()(blog.updatedAt).fromNow()), __jsx("div", {
     className: "pb-3",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 69
+      lineNumber: 96
     },
     __self: this
   }, showBlogCategories(blog), showBlogTags(blog), __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 72
+      lineNumber: 99
     },
     __self: this
   }), __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 73
+      lineNumber: 100
     },
     __self: this
   }))))), __jsx("div", {
     className: "container",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 79
+      lineNumber: 106
     },
     __self: this
   }, __jsx("section", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 80
+      lineNumber: 107
     },
     __self: this
   }, __jsx("div", {
     className: "col-md-12 lead",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 81
+      lineNumber: 108
     },
     __self: this
   }, react_render_html__WEBPACK_IMPORTED_MODULE_6___default()(blog.body)))), __jsx("div", {
     className: "container",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 85
+      lineNumber: 112
     },
     __self: this
   }, __jsx("h4", {
     className: "text-center pt-5 pb-5 h2",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 86
+      lineNumber: 113
     },
     __self: this
-  }, "Related blogs"), __jsx("hr", {
+  }, "Related blogs"), __jsx("div", {
+    className: "row",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 87
+      lineNumber: 114
     },
     __self: this
-  }), __jsx("p", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 88
-    },
-    __self: this
-  }, "show related blogs")), __jsx("div", {
+  }, showRelatedBlog())), __jsx("div", {
     className: "container pb-5",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 91
+      lineNumber: 117
     },
     __self: this
   }, __jsx("p", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 92
+      lineNumber: 118
     },
     __self: this
   }, "show comments"))))));
