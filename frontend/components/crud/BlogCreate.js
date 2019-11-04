@@ -9,7 +9,7 @@ import { getTags } from '../../actions/tag';
 import { createBlog } from '../../actions/blog';
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 import '../../node_modules/react-quill/dist/quill.snow.css';
-import { QuillModules, QuillFormats } from '../../helpers/quil';
+import { QuillModules, QuillFormats } from '../../helpers/quill';
 
 const CreateBlog = ({ router }) => {
     const blogFromLS = () => {
@@ -213,6 +213,7 @@ const CreateBlog = ({ router }) => {
                             <hr />
 
                             <small className="text-muted">Max size: 1mb</small>
+                            <br />
                             <label className="btn btn-outline-info">
                                 Upload featured image
                                 <input onChange={handleChange('photo')} type="file" accept="image/*" hidden />
