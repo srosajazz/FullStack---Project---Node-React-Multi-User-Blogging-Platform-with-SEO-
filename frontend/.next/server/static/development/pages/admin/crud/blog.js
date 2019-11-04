@@ -6,7 +6,7 @@ module.exports =
 /******/ 	// object to store loaded chunks
 /******/ 	// "0" means "already loaded"
 /******/ 	var installedChunks = {
-/******/ 		"static/development/pages/admin/crud/[slug].js": 0
+/******/ 		"static/development/pages/admin/crud/blog.js": 0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -101,7 +101,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 8);
+/******/ 	return __webpack_require__(__webpack_require__.s = 10);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -735,46 +735,48 @@ const Admin = ({
 
 /***/ }),
 
-/***/ "./components/crud/BlogUpdate.js":
+/***/ "./components/crud/BlogCreate.js":
 /*!***************************************!*\
-  !*** ./components/crud/BlogUpdate.js ***!
+  !*** ./components/crud/BlogCreate.js ***!
   \***************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/objectSpread */ "./node_modules/@babel/runtime-corejs2/helpers/esm/objectSpread.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/router */ "next/router");
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var next_dynamic__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! next/dynamic */ "next/dynamic");
-/* harmony import */ var next_dynamic__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_dynamic__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _actions_auth__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/auth */ "./actions/auth.js");
-/* harmony import */ var _actions_category__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../actions/category */ "./actions/category.js");
-/* harmony import */ var _actions_tag__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../actions/tag */ "./actions/tag.js");
-/* harmony import */ var _actions_blog__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../actions/blog */ "./actions/blog.js");
-/* harmony import */ var _node_modules_react_quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../node_modules/react-quill/dist/quill.snow.css */ "./node_modules/react-quill/dist/quill.snow.css");
-/* harmony import */ var _node_modules_react_quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_node_modules_react_quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _helpers_quil__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../helpers/quil */ "./helpers/quil.js");
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../config */ "./config.js");
-
-var _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/components/crud/BlogUpdate.js";
-
-var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
+/* harmony import */ var _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/json/stringify */ "./node_modules/@babel/runtime-corejs2/core-js/json/stringify.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/objectSpread */ "./node_modules/@babel/runtime-corejs2/helpers/esm/objectSpread.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! next/router */ "next/router");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var next_dynamic__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! next/dynamic */ "next/dynamic");
+/* harmony import */ var next_dynamic__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(next_dynamic__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _actions_auth__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../actions/auth */ "./actions/auth.js");
+/* harmony import */ var _actions_category__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../actions/category */ "./actions/category.js");
+/* harmony import */ var _actions_tag__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../actions/tag */ "./actions/tag.js");
+/* harmony import */ var _actions_blog__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../actions/blog */ "./actions/blog.js");
+/* harmony import */ var _node_modules_react_quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../node_modules/react-quill/dist/quill.snow.css */ "./node_modules/react-quill/dist/quill.snow.css");
+/* harmony import */ var _node_modules_react_quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_node_modules_react_quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _helpers_quil__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../helpers/quil */ "./helpers/quil.js");
 
 
+var _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/components/crud/BlogCreate.js";
 
-
+var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
 
 
 
 
 
-const ReactQuill = next_dynamic__WEBPACK_IMPORTED_MODULE_4___default()(() => Promise.resolve(/*! import() */).then(__webpack_require__.t.bind(null, /*! react-quill */ "react-quill", 7)), {
+
+
+
+
+const ReactQuill = next_dynamic__WEBPACK_IMPORTED_MODULE_5___default()(() => Promise.resolve(/*! import() */).then(__webpack_require__.t.bind(null, /*! react-quill */ "react-quill", 7)), {
   ssr: false,
   loadableGenerated: {
     webpack: () => [/*require.resolve*/(/*! react-quill */ "react-quill")],
@@ -784,96 +786,75 @@ const ReactQuill = next_dynamic__WEBPACK_IMPORTED_MODULE_4___default()(() => Pro
 
 
 
-
-const BlogUpdate = ({
+const CreateBlog = ({
   router
 }) => {
-  const {
-    0: body,
-    1: setBody
-  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])('');
+  const blogFromLS = () => {
+    if (true) {
+      return false;
+    }
+
+    if (localStorage.getItem('blog')) {
+      return JSON.parse(localStorage.getItem('blog'));
+    } else {
+      return false;
+    }
+  };
+
   const {
     0: categories,
     1: setCategories
-  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]);
+  } = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])([]);
   const {
     0: tags,
     1: setTags
-  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]);
+  } = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])([]);
   const {
     0: checked,
     1: setChecked
-  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]); // categories
+  } = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])([]); // categories
 
   const {
     0: checkedTag,
     1: setCheckedTag
-  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]); // tags
+  } = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])([]); // tags
 
+  const {
+    0: body,
+    1: setBody
+  } = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(blogFromLS());
   const {
     0: values,
     1: setValues
-  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
-    title: '',
+  } = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])({
     error: '',
+    sizeError: '',
     success: '',
     formData: '',
     title: '',
-    body: ''
+    hidePublishButton: false
   });
   const {
     error,
+    sizeError,
     success,
     formData,
-    title
+    title,
+    hidePublishButton
   } = values;
-  const token = Object(_actions_auth__WEBPACK_IMPORTED_MODULE_5__["getCookie"])('token');
-  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(() => {
-    setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, values, {
+  const token = Object(_actions_auth__WEBPACK_IMPORTED_MODULE_6__["getCookie"])('token');
+  Object(react__WEBPACK_IMPORTED_MODULE_2__["useEffect"])(() => {
+    setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__["default"])({}, values, {
       formData: new FormData()
     }));
-    initBlog();
     initCategories();
     initTags();
   }, [router]);
 
-  const initBlog = () => {
-    if (router.query.slug) {
-      Object(_actions_blog__WEBPACK_IMPORTED_MODULE_8__["singleBlog"])(router.query.slug).then(data => {
-        if (data.error) {
-          console.log(data.error);
-        } else {
-          setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, values, {
-            title: data.title
-          }));
-          setBody(data.body);
-          setCategoriesArray(data.categories);
-          setTagsArray(data.tags);
-        }
-      });
-    }
-  };
-
-  const setCategoriesArray = blogCategories => {
-    let ca = [];
-    blogCategories.map((c, i) => {
-      ca.push(c._id);
-    });
-    setChecked(ca);
-  };
-
-  const setTagsArray = blogTags => {
-    let ta = [];
-    blogTags.map((t, i) => {
-      ta.push(t._id);
-    });
-    setCheckedTag(ta);
-  };
-
   const initCategories = () => {
-    Object(_actions_category__WEBPACK_IMPORTED_MODULE_6__["getCategories"])().then(data => {
+    Object(_actions_category__WEBPACK_IMPORTED_MODULE_7__["getCategories"])().then(data => {
       if (data.error) {
-        setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, values, {
+        setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__["default"])({}, values, {
           error: data.error
         }));
       } else {
@@ -883,9 +864,9 @@ const BlogUpdate = ({
   };
 
   const initTags = () => {
-    Object(_actions_tag__WEBPACK_IMPORTED_MODULE_7__["getTags"])().then(data => {
+    Object(_actions_tag__WEBPACK_IMPORTED_MODULE_8__["getTags"])().then(data => {
       if (data.error) {
-        setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, values, {
+        setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__["default"])({}, values, {
           error: data.error
         }));
       } else {
@@ -894,8 +875,48 @@ const BlogUpdate = ({
     });
   };
 
+  const publishBlog = e => {
+    e.preventDefault(); // console.log('ready to publishBlog');
+
+    Object(_actions_blog__WEBPACK_IMPORTED_MODULE_9__["createBlog"])(formData, token).then(data => {
+      if (data.error) {
+        setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__["default"])({}, values, {
+          error: data.error
+        }));
+      } else {
+        setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__["default"])({}, values, {
+          title: '',
+          error: '',
+          success: `A new blog titled "${data.title}" is created`
+        }));
+        setBody('');
+        setCategories([]);
+        setTags([]);
+      }
+    });
+  };
+
+  const handleChange = name => e => {
+    // console.log(e.target.value);
+    const value = name === 'photo' ? e.target.files[0] : e.target.value;
+    formData.set(name, value);
+    setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__["default"])({}, values, {
+      [name]: value,
+      formData,
+      error: ''
+    }));
+  };
+
+  const handleBody = e => {
+    // console.log(e);
+    setBody(e);
+    formData.set('body', e);
+
+    if (false) {}
+  };
+
   const handleToggle = c => () => {
-    setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, values, {
+    setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__["default"])({}, values, {
       error: ''
     })); // return the first index or -1
 
@@ -914,11 +935,11 @@ const BlogUpdate = ({
   };
 
   const handleTagsToggle = t => () => {
-    setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, values, {
+    setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__["default"])({}, values, {
       error: ''
     })); // return the first index or -1
 
-    const clickedTag = checkedTag.indexOf(t);
+    const clickedTag = checked.indexOf(t);
     const all = [...checkedTag];
 
     if (clickedTag === -1) {
@@ -932,50 +953,29 @@ const BlogUpdate = ({
     formData.set('tags', all);
   };
 
-  const findOutCategory = c => {
-    const result = checked.indexOf(c);
-
-    if (result !== -1) {
-      return true;
-    } else {
-      return false;
-    }
-  };
-
-  const findOutTag = t => {
-    const result = checkedTag.indexOf(t);
-
-    if (result !== -1) {
-      return true;
-    } else {
-      return false;
-    }
-  };
-
   const showCategories = () => {
     return categories && categories.map((c, i) => __jsx("li", {
       key: i,
       className: "list-unstyled",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 148
+        lineNumber: 139
       },
       __self: undefined
     }, __jsx("input", {
       onChange: handleToggle(c._id),
-      checked: findOutCategory(c._id),
       type: "checkbox",
       className: "mr-2",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 149
+        lineNumber: 140
       },
       __self: undefined
     }), __jsx("label", {
       className: "form-check-label",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 155
+        lineNumber: 141
       },
       __self: undefined
     }, c.name)));
@@ -987,67 +987,26 @@ const BlogUpdate = ({
       className: "list-unstyled",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 165
+        lineNumber: 151
       },
       __self: undefined
     }, __jsx("input", {
       onChange: handleTagsToggle(t._id),
-      checked: findOutTag(t._id),
       type: "checkbox",
       className: "mr-2",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 166
+        lineNumber: 152
       },
       __self: undefined
     }), __jsx("label", {
       className: "form-check-label",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 172
+        lineNumber: 153
       },
       __self: undefined
     }, t.name)));
-  };
-
-  const handleChange = name => e => {
-    // console.log(e.target.value);
-    const value = name === 'photo' ? e.target.files[0] : e.target.value;
-    formData.set(name, value);
-    setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, values, {
-      [name]: value,
-      formData,
-      error: ''
-    }));
-  };
-
-  const handleBody = e => {
-    setBody(e);
-    formData.set('body', e);
-  };
-
-  const editBlog = e => {
-    e.preventDefault();
-    Object(_actions_blog__WEBPACK_IMPORTED_MODULE_8__["updateBlog"])(formData, token, router.query.slug).then(data => {
-      if (data.error) {
-        setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, values, {
-          error: data.error
-        }));
-      } else {
-        setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, values, {
-          title: '',
-          success: `Blog titled "${data.title}" is successfully updated`
-        }));
-
-        if (Object(_actions_auth__WEBPACK_IMPORTED_MODULE_5__["isAuth"])() && Object(_actions_auth__WEBPACK_IMPORTED_MODULE_5__["isAuth"])().role === 1) {
-          // Router.replace(`/admin/crud/${router.query.slug}`);
-          next_router__WEBPACK_IMPORTED_MODULE_3___default.a.replace(`/admin`);
-        } else if (Object(_actions_auth__WEBPACK_IMPORTED_MODULE_5__["isAuth"])() && Object(_actions_auth__WEBPACK_IMPORTED_MODULE_5__["isAuth"])().role === 0) {
-          // Router.replace(`/user/crud/${router.query.slug}`);
-          next_router__WEBPACK_IMPORTED_MODULE_3___default.a.replace(`/user`);
-        }
-      }
-    });
   };
 
   const showError = () => __jsx("div", {
@@ -1057,7 +1016,7 @@ const BlogUpdate = ({
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 209
+      lineNumber: 160
     },
     __self: undefined
   }, error);
@@ -1069,31 +1028,31 @@ const BlogUpdate = ({
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 215
+      lineNumber: 166
     },
     __self: undefined
   }, success);
 
-  const updateBlogForm = () => {
+  const createBlogForm = () => {
     return __jsx("form", {
-      onSubmit: editBlog,
+      onSubmit: publishBlog,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 222
+        lineNumber: 173
       },
       __self: undefined
     }, __jsx("div", {
       className: "form-group",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 223
+        lineNumber: 174
       },
       __self: undefined
     }, __jsx("label", {
       className: "text-muted",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 224
+        lineNumber: 175
       },
       __self: undefined
     }, "Title"), __jsx("input", {
@@ -1103,31 +1062,31 @@ const BlogUpdate = ({
       onChange: handleChange('title'),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 225
+        lineNumber: 176
       },
       __self: undefined
     })), __jsx("div", {
       className: "form-group",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 228
+        lineNumber: 179
       },
       __self: undefined
     }, __jsx(ReactQuill, {
-      modules: _helpers_quil__WEBPACK_IMPORTED_MODULE_10__["QuillModules"],
-      formats: _helpers_quil__WEBPACK_IMPORTED_MODULE_10__["QuillFormats"],
+      modules: _helpers_quil__WEBPACK_IMPORTED_MODULE_11__["QuillModules"],
+      formats: _helpers_quil__WEBPACK_IMPORTED_MODULE_11__["QuillFormats"],
       value: body,
       placeholder: "Write something amazing...",
       onChange: handleBody,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 229
+        lineNumber: 180
       },
       __self: undefined
     })), __jsx("div", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 238
+        lineNumber: 189
       },
       __self: undefined
     }, __jsx("button", {
@@ -1135,101 +1094,90 @@ const BlogUpdate = ({
       className: "btn btn-primary",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 239
+        lineNumber: 190
       },
       __self: undefined
-    }, "Update")));
+    }, "Publish")));
   };
 
   return __jsx("div", {
     className: "container-fluid pb-5",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 248
+      lineNumber: 199
     },
     __self: undefined
   }, __jsx("div", {
     className: "row",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 249
+      lineNumber: 200
     },
     __self: undefined
   }, __jsx("div", {
     className: "col-md-8",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 250
+      lineNumber: 201
     },
     __self: undefined
-  }, updateBlogForm(), __jsx("div", {
+  }, createBlogForm(), __jsx("div", {
     className: "pt-3",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 253
+      lineNumber: 203
     },
     __self: undefined
-  }, showSuccess(), showError()), body && __jsx("img", {
-    src: `${_config__WEBPACK_IMPORTED_MODULE_11__["API"]}/blog/photo/${router.query.slug}`,
-    alt: title,
-    style: {
-      width: '100%'
-    },
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 259
-    },
-    __self: undefined
-  })), __jsx("div", {
+  }, showError(), showSuccess())), __jsx("div", {
     className: "col-md-4",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 263
+      lineNumber: 209
     },
     __self: undefined
   }, __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 264
+      lineNumber: 210
     },
     __self: undefined
   }, __jsx("div", {
     className: "form-group pb-2",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 265
+      lineNumber: 211
     },
     __self: undefined
   }, __jsx("h5", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 266
+      lineNumber: 212
     },
     __self: undefined
   }, "Featured image"), __jsx("hr", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 267
+      lineNumber: 213
     },
     __self: undefined
   }), __jsx("small", {
     className: "text-muted",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 269
+      lineNumber: 215
     },
     __self: undefined
   }, "Max size: 1mb"), __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 270
+      lineNumber: 216
     },
     __self: undefined
   }), __jsx("label", {
     className: "btn btn-outline-info",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 271
+      lineNumber: 217
     },
     __self: undefined
   }, "Upload featured image", __jsx("input", {
@@ -1239,25 +1187,25 @@ const BlogUpdate = ({
     hidden: true,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 273
+      lineNumber: 219
     },
     __self: undefined
   })))), __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 277
+      lineNumber: 223
     },
     __self: undefined
   }, __jsx("h5", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 278
+      lineNumber: 224
     },
     __self: undefined
   }, "Categories"), __jsx("hr", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 279
+      lineNumber: 225
     },
     __self: undefined
   }), __jsx("ul", {
@@ -1267,25 +1215,25 @@ const BlogUpdate = ({
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 281
+      lineNumber: 227
     },
     __self: undefined
   }, showCategories())), __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 283
+      lineNumber: 229
     },
     __self: undefined
   }, __jsx("h5", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 284
+      lineNumber: 230
     },
     __self: undefined
   }, "Tags"), __jsx("hr", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 285
+      lineNumber: 231
     },
     __self: undefined
   }), __jsx("ul", {
@@ -1295,13 +1243,13 @@ const BlogUpdate = ({
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 286
+      lineNumber: 232
     },
     __self: undefined
   }, showTags())))));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(next_router__WEBPACK_IMPORTED_MODULE_3__["withRouter"])(BlogUpdate));
+/* harmony default export */ __webpack_exports__["default"] = (Object(next_router__WEBPACK_IMPORTED_MODULE_4__["withRouter"])(CreateBlog));
 
 /***/ }),
 
@@ -3168,10 +3116,10 @@ module.exports = __webpack_require__(/*! ./dist/client/link */ "./node_modules/n
 
 /***/ }),
 
-/***/ "./pages/admin/crud/[slug].js":
-/*!************************************!*\
-  !*** ./pages/admin/crud/[slug].js ***!
-  \************************************/
+/***/ "./pages/admin/crud/blog.js":
+/*!**********************************!*\
+  !*** ./pages/admin/crud/blog.js ***!
+  \**********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3181,10 +3129,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../components/Layout */ "./components/Layout.js");
 /* harmony import */ var _components_auth_Admin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../components/auth/Admin */ "./components/auth/Admin.js");
-/* harmony import */ var _components_crud_BlogUpdate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../components/crud/BlogUpdate */ "./components/crud/BlogUpdate.js");
+/* harmony import */ var _components_crud_BlogCreate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../components/crud/BlogCreate */ "./components/crud/BlogCreate.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_4__);
-var _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/pages/admin/crud/[slug].js";
+var _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/pages/admin/crud/blog.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -3232,14 +3180,14 @@ const Blog = () => {
       lineNumber: 13
     },
     __self: undefined
-  }, "Update blog")), __jsx("div", {
+  }, "Create a new blog")), __jsx("div", {
     className: "col-md-12",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 15
     },
     __self: undefined
-  }, __jsx(_components_crud_BlogUpdate__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, __jsx(_components_crud_BlogCreate__WEBPACK_IMPORTED_MODULE_3__["default"], {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 16
@@ -3252,14 +3200,14 @@ const Blog = () => {
 
 /***/ }),
 
-/***/ 8:
-/*!******************************************!*\
-  !*** multi ./pages/admin/crud/[slug].js ***!
-  \******************************************/
+/***/ 10:
+/*!****************************************!*\
+  !*** multi ./pages/admin/crud/blog.js ***!
+  \****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/sergiorosa_local/Desktop/BlogSEO/frontend/pages/admin/crud/[slug].js */"./pages/admin/crud/[slug].js");
+module.exports = __webpack_require__(/*! /Users/sergiorosa_local/Desktop/BlogSEO/frontend/pages/admin/crud/blog.js */"./pages/admin/crud/blog.js");
 
 
 /***/ }),
@@ -3507,4 +3455,4 @@ module.exports = require("url");
 /***/ })
 
 /******/ });
-//# sourceMappingURL=[slug].js.map
+//# sourceMappingURL=blog.js.map
