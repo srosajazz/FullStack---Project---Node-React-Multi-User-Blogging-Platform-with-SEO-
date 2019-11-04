@@ -791,6 +791,24 @@ const BlogUpdate = ({
     1: setBody
   } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])('');
   const {
+    0: categories,
+    1: setCategories
+  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]);
+  const {
+    0: tags,
+    1: setTags
+  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]);
+  const {
+    0: checked,
+    1: setChecked
+  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]); // categories
+
+  const {
+    0: checkedTag,
+    1: setCheckedTag
+  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]); // tags
+
+  const {
     0: values,
     1: setValues
   } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
@@ -812,6 +830,8 @@ const BlogUpdate = ({
       formData: new FormData()
     }));
     initBlog();
+    initCategories();
+    initTags();
   }, [router]);
 
   const initBlog = () => {
@@ -824,9 +844,167 @@ const BlogUpdate = ({
             title: data.title
           }));
           setBody(data.body);
+          setCategoriesArray(data.categories);
+          setTagsArray(data.tags);
         }
       });
     }
+  };
+
+  const setCategoriesArray = blogCategories => {
+    let ca = [];
+    blogCategories.map((c, i) => {
+      ca.push(c._id);
+    });
+    setChecked(ca);
+  };
+
+  const setTagsArray = blogTags => {
+    let ta = [];
+    blogTags.map((t, i) => {
+      ta.push(t._id);
+    });
+    setCheckedTag(ta);
+  };
+
+  const initCategories = () => {
+    Object(_actions_category__WEBPACK_IMPORTED_MODULE_6__["getCategories"])().then(data => {
+      if (data.error) {
+        setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, values, {
+          error: data.error
+        }));
+      } else {
+        setCategories(data);
+      }
+    });
+  };
+
+  const initTags = () => {
+    Object(_actions_tag__WEBPACK_IMPORTED_MODULE_7__["getTags"])().then(data => {
+      if (data.error) {
+        setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, values, {
+          error: data.error
+        }));
+      } else {
+        setTags(data);
+      }
+    });
+  };
+
+  const handleToggle = c => () => {
+    setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, values, {
+      error: ''
+    })); // return the first index or -1
+
+    const clickedCategory = checked.indexOf(c);
+    const all = [...checked];
+
+    if (clickedCategory === -1) {
+      all.push(c);
+    } else {
+      all.splice(clickedCategory, 1);
+    }
+
+    console.log(all);
+    setChecked(all);
+    formData.set('categories', all);
+  };
+
+  const handleTagsToggle = t => () => {
+    setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, values, {
+      error: ''
+    })); // return the first index or -1
+
+    const clickedTag = checkedTag.indexOf(t);
+    const all = [...checkedTag];
+
+    if (clickedTag === -1) {
+      all.push(t);
+    } else {
+      all.splice(clickedTag, 1);
+    }
+
+    console.log(all);
+    setCheckedTag(all);
+    formData.set('tags', all);
+  };
+
+  const findOutCategory = c => {
+    const result = checked.indexOf(c);
+
+    if (result !== -1) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const findOutTag = t => {
+    const result = checkedTag.indexOf(t);
+
+    if (result !== -1) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const showCategories = () => {
+    return categories && categories.map((c, i) => __jsx("li", {
+      key: i,
+      className: "list-unstyled",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 146
+      },
+      __self: undefined
+    }, __jsx("input", {
+      onChange: handleToggle(c._id),
+      checked: findOutCategory(c._id),
+      type: "checkbox",
+      className: "mr-2",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 147
+      },
+      __self: undefined
+    }), __jsx("label", {
+      className: "form-check-label",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 153
+      },
+      __self: undefined
+    }, c.name)));
+  };
+
+  const showTags = () => {
+    return tags && tags.map((t, i) => __jsx("li", {
+      key: i,
+      className: "list-unstyled",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 163
+      },
+      __self: undefined
+    }, __jsx("input", {
+      onChange: handleTagsToggle(t._id),
+      checked: findOutTag(t._id),
+      type: "checkbox",
+      className: "mr-2",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 164
+      },
+      __self: undefined
+    }), __jsx("label", {
+      className: "form-check-label",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 170
+      },
+      __self: undefined
+    }, t.name)));
   };
 
   const handleChange = name => e => {
@@ -854,21 +1032,21 @@ const BlogUpdate = ({
       onSubmit: editBlog,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 63
+        lineNumber: 194
       },
       __self: undefined
     }, __jsx("div", {
       className: "form-group",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 64
+        lineNumber: 195
       },
       __self: undefined
     }, __jsx("label", {
       className: "text-muted",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 65
+        lineNumber: 196
       },
       __self: undefined
     }, "Title"), __jsx("input", {
@@ -878,14 +1056,14 @@ const BlogUpdate = ({
       onChange: handleChange('title'),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 66
+        lineNumber: 197
       },
       __self: undefined
     })), __jsx("div", {
       className: "form-group",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 69
+        lineNumber: 200
       },
       __self: undefined
     }, __jsx(ReactQuill, {
@@ -896,13 +1074,13 @@ const BlogUpdate = ({
       onChange: handleBody,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 70
+        lineNumber: 201
       },
       __self: undefined
     })), __jsx("div", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 79
+        lineNumber: 210
       },
       __self: undefined
     }, __jsx("button", {
@@ -910,7 +1088,7 @@ const BlogUpdate = ({
       className: "btn btn-primary",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 80
+        lineNumber: 211
       },
       __self: undefined
     }, "Update")));
@@ -920,63 +1098,155 @@ const BlogUpdate = ({
     className: "container-fluid pb-5",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 89
+      lineNumber: 220
     },
     __self: undefined
   }, __jsx("div", {
     className: "row",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 90
+      lineNumber: 221
     },
     __self: undefined
   }, __jsx("div", {
     className: "col-md-8",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 91
+      lineNumber: 222
     },
     __self: undefined
   }, updateBlogForm(), __jsx("div", {
     className: "pt-3",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 93
+      lineNumber: 224
     },
     __self: undefined
   }, __jsx("p", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 94
+      lineNumber: 225
     },
     __self: undefined
   }, "show success and error msg"))), __jsx("div", {
     className: "col-md-4",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 98
+      lineNumber: 229
     },
     __self: undefined
   }, __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 99
+      lineNumber: 230
     },
     __self: undefined
   }, __jsx("div", {
     className: "form-group pb-2",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 100
+      lineNumber: 231
     },
     __self: undefined
   }, __jsx("h5", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 101
+      lineNumber: 232
     },
     __self: undefined
-  }, "Featured image"))))));
+  }, "Featured image"), __jsx("hr", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 233
+    },
+    __self: undefined
+  }), __jsx("small", {
+    className: "text-muted",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 235
+    },
+    __self: undefined
+  }, "Max size: 1mb"), __jsx("br", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 236
+    },
+    __self: undefined
+  }), __jsx("label", {
+    className: "btn btn-outline-info",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 237
+    },
+    __self: undefined
+  }, "Upload featured image", __jsx("input", {
+    onChange: handleChange('photo'),
+    type: "file",
+    accept: "image/*",
+    hidden: true,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 239
+    },
+    __self: undefined
+  })))), __jsx("div", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 243
+    },
+    __self: undefined
+  }, __jsx("h5", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 244
+    },
+    __self: undefined
+  }, "Categories"), __jsx("hr", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 245
+    },
+    __self: undefined
+  }), __jsx("ul", {
+    style: {
+      maxHeight: '200px',
+      overflowY: 'scroll'
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 247
+    },
+    __self: undefined
+  }, showCategories())), __jsx("div", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 249
+    },
+    __self: undefined
+  }, __jsx("h5", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 250
+    },
+    __self: undefined
+  }, "Tags"), __jsx("hr", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 251
+    },
+    __self: undefined
+  }), __jsx("ul", {
+    style: {
+      maxHeight: '200px',
+      overflowY: 'scroll'
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 252
+    },
+    __self: undefined
+  }, showTags())))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(next_router__WEBPACK_IMPORTED_MODULE_3__["withRouter"])(BlogUpdate));
