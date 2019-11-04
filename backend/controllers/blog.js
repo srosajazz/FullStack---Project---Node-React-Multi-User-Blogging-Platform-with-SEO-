@@ -296,7 +296,7 @@ exports.listRelated = (req, res) => {
         return res.status(400).json({
           error: 'Blogs not found',
         });
-        res.json(blogs);
       }
+      res.json(blogs);
     });
 };
