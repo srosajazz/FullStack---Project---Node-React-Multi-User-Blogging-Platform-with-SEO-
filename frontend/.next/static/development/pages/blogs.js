@@ -87814,7 +87814,7 @@ util.inherits = __webpack_require__(/*! inherits */ "./node_modules/inherits/inh
 /*</replacement>*/
 
 /*<replacement>*/
-var debugUtil = __webpack_require__(/*! util */ 6);
+var debugUtil = __webpack_require__(/*! util */ 3);
 var debug = void 0;
 if (debugUtil && debugUtil.debuglog) {
   debug = debugUtil.debuglog('stream');
@@ -89703,7 +89703,7 @@ Writable.prototype._destroy = function (err, cb) {
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Buffer = __webpack_require__(/*! safe-buffer */ "./node_modules/safe-buffer/index.js").Buffer;
-var util = __webpack_require__(/*! util */ 7);
+var util = __webpack_require__(/*! util */ 4);
 
 function copyBuffer(src, target, offset) {
   src.copy(target, offset);
@@ -93523,7 +93523,7 @@ var Blogs = function Blogs(_ref) {
       __self: this
     }), __jsx("meta", {
       property: "og:image:secure_url",
-      ccontent: "".concat(_config__WEBPACK_IMPORTED_MODULE_8__["DOMAIN"], "/static/images/seoblog.jpg"),
+      content: "".concat(_config__WEBPACK_IMPORTED_MODULE_8__["DOMAIN"], "/static/images/seoblog.jpg"),
       __source: {
         fileName: _jsxFileName,
         lineNumber: 29
@@ -93723,7 +93723,7 @@ var Blogs = function Blogs(_ref) {
       lineNumber: 108
     },
     __self: this
-  }, "Ensemble Department Blog")), __jsx("section", {
+  }, "Ensemble Department Hub")), __jsx("section", {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 112
@@ -93789,7 +93789,7 @@ Blogs.getInitialProps = function () {
 
 /***/ }),
 
-/***/ 5:
+/***/ 1:
 /*!***********************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fblogs&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fblogs%2Findex.js ***!
   \***********************************************************************************************************************************************************/
@@ -93801,7 +93801,7 @@ module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2Fblogs&
 
 /***/ }),
 
-/***/ 6:
+/***/ 3:
 /*!**********************!*\
   !*** util (ignored) ***!
   \**********************/
@@ -93812,7 +93812,7 @@ module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2Fblogs&
 
 /***/ }),
 
-/***/ 7:
+/***/ 4:
 /*!**********************!*\
   !*** util (ignored) ***!
   \**********************/
@@ -93834,5 +93834,5 @@ module.exports = dll_b35e09dc2ca94ac6d9c1;
 
 /***/ })
 
-},[[5,"static/runtime/webpack.js","styles"]]]);
+},[[1,"static/runtime/webpack.js","styles"]]]);
 //# sourceMappingURL=blogs.js.map

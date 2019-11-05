@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 7);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -2609,7 +2609,7 @@ const Blogs = ({
     __self: undefined
   }), __jsx("meta", {
     property: "og:image:secure_url",
-    ccontent: `${_config__WEBPACK_IMPORTED_MODULE_7__["DOMAIN"]}/static/images/seoblog.jpg`,
+    content: `${_config__WEBPACK_IMPORTED_MODULE_7__["DOMAIN"]}/static/images/seoblog.jpg`,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 29
@@ -2803,7 +2803,7 @@ const Blogs = ({
       lineNumber: 108
     },
     __self: undefined
-  }, "Ensemble Department Blog")), __jsx("section", {
+  }, "Ensemble Department Hub")), __jsx("section", {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 112
@@ -2869,7 +2869,7 @@ Blogs.getInitialProps = () => {
 
 /***/ }),
 
-/***/ 7:
+/***/ 4:
 /*!************************************!*\
   !*** multi ./pages/blogs/index.js ***!
   \************************************/

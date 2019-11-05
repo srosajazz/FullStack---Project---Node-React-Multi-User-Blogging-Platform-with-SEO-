@@ -26,7 +26,7 @@ const Blogs = ({ blogs, categories, tags, totalBlogs, blogsLimit, blogSkip, rout
             <meta property="og:site_name" content={`${APP_NAME}`} />
 
             <meta property="og:image" content={`${DOMAIN}/static/images/seoblog.jpg`} />
-            <meta property="og:image:secure_url" ccontent={`${DOMAIN}/static/images/seoblog.jpg`} />
+            <meta property="og:image:secure_url" content={`${DOMAIN}/static/images/seoblog.jpg`} />
             <meta property="og:image:type" content="image/jpg" />
             <meta property="fb:app_id" content={`${FB_APP_ID}`} />
         </Head>
@@ -106,7 +106,7 @@ const Blogs = ({ blogs, categories, tags, totalBlogs, blogsLimit, blogSkip, rout
                         <header>
                             <div className="col-md-12 pt-3">
                                 <h1 className="display-4 font-weight-bold text-center">
-                                    Ensemble Department Blog
+                                    Ensemble Department Hub
                                 </h1>
                             </div>
                             <section>
