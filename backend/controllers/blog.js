@@ -282,8 +282,8 @@ exports.photo = (req, res) => {
     });
 };
 
-//created related blogs
 exports.listRelated = (req, res) => {
+  // console.log(req.body.blog);
   let limit = req.body.limit ? parseInt(req.body.limit) : 3;
   const { _id, categories } = req.body.blog;
 
@@ -299,4 +299,27 @@ exports.listRelated = (req, res) => {
       }
       res.json(blogs);
     });
+};
+
+//Blogs search
+exports.listSearch = (req, res) => {
+  const { search } = req.query;
+  if (search) {
+    Blog.find(
+      {
+        $or: [
+          { title: { $regex: search, $options: 'i' } },
+          { body: { $regex: search, $options: 'i' } },
+        ],
+      },
+      (err, blogs) => {
+        if (err) {
+          return res.status(400).json({
+            error: errorHandler(err),
+          });
+        }
+        res.json(blogs);
+      }
+    ).select('-photo -body');
+  }
 };
