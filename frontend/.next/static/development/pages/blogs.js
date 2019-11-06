@@ -87814,7 +87814,7 @@ util.inherits = __webpack_require__(/*! inherits */ "./node_modules/inherits/inh
 /*</replacement>*/
 
 /*<replacement>*/
-var debugUtil = __webpack_require__(/*! util */ 3);
+var debugUtil = __webpack_require__(/*! util */ 2);
 var debug = void 0;
 if (debugUtil && debugUtil.debuglog) {
   debug = debugUtil.debuglog('stream');
@@ -89703,7 +89703,7 @@ Writable.prototype._destroy = function (err, cb) {
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Buffer = __webpack_require__(/*! safe-buffer */ "./node_modules/safe-buffer/index.js").Buffer;
-var util = __webpack_require__(/*! util */ 4);
+var util = __webpack_require__(/*! util */ 3);
 
 function copyBuffer(src, target, offset) {
   src.copy(target, offset);
@@ -93457,7 +93457,7 @@ var Blogs = function Blogs(_ref) {
         lineNumber: 13
       },
       __self: this
-    }, "Programming blogs | ", _config__WEBPACK_IMPORTED_MODULE_8__["APP_NAME"]), __jsx("meta", {
+    }, "Ensemble Department Hub | ", _config__WEBPACK_IMPORTED_MODULE_8__["APP_NAME"]), __jsx("meta", {
       name: "description",
       content: "Programming blogs and tutorials on react node next vue php laravel and web developoment",
       __source: {
@@ -93723,7 +93723,7 @@ var Blogs = function Blogs(_ref) {
       lineNumber: 108
     },
     __self: this
-  }, "Ensemble Department Hub")), __jsx("section", {
+  }, "Ensemble Dashboard")), __jsx("section", {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 112
@@ -93789,15 +93789,14 @@ Blogs.getInitialProps = function () {
 
 /***/ }),
 
-/***/ 1:
-/*!***********************************************************************************************************************************************************!*\
-  !*** multi next-client-pages-loader?page=%2Fblogs&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fblogs%2Findex.js ***!
-  \***********************************************************************************************************************************************************/
+/***/ 2:
+/*!**********************!*\
+  !*** util (ignored) ***!
+  \**********************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2Fblogs&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fblogs%2Findex.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fblogs&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fblogs%2Findex.js!./");
-
+/* (ignored) */
 
 /***/ }),
 
@@ -93812,14 +93811,15 @@ module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2Fblogs&
 
 /***/ }),
 
-/***/ 4:
-/*!**********************!*\
-  !*** util (ignored) ***!
-  \**********************/
+/***/ 5:
+/*!***********************************************************************************************************************************************************!*\
+  !*** multi next-client-pages-loader?page=%2Fblogs&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fblogs%2Findex.js ***!
+  \***********************************************************************************************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-/* (ignored) */
+module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2Fblogs&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fblogs%2Findex.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fblogs&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fblogs%2Findex.js!./");
+
 
 /***/ }),
 
@@ -93834,5 +93834,5 @@ module.exports = dll_b35e09dc2ca94ac6d9c1;
 
 /***/ })
 
-},[[1,"static/runtime/webpack.js","styles"]]]);
+},[[5,"static/runtime/webpack.js","styles"]]]);
 //# sourceMappingURL=blogs.js.map

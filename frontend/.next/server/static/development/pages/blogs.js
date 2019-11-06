@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -2543,7 +2543,7 @@ const Blogs = ({
       lineNumber: 13
     },
     __self: undefined
-  }, "Programming blogs | ", _config__WEBPACK_IMPORTED_MODULE_7__["APP_NAME"]), __jsx("meta", {
+  }, "Ensemble Department Hub | ", _config__WEBPACK_IMPORTED_MODULE_7__["APP_NAME"]), __jsx("meta", {
     name: "description",
     content: "Programming blogs and tutorials on react node next vue php laravel and web developoment",
     __source: {
@@ -2803,7 +2803,7 @@ const Blogs = ({
       lineNumber: 108
     },
     __self: undefined
-  }, "Ensemble Department Hub")), __jsx("section", {
+  }, "Ensemble Dashboard")), __jsx("section", {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 112
@@ -2869,7 +2869,7 @@ Blogs.getInitialProps = () => {
 
 /***/ }),
 
-/***/ 4:
+/***/ 3:
 /*!************************************!*\
   !*** multi ./pages/blogs/index.js ***!
   \************************************/

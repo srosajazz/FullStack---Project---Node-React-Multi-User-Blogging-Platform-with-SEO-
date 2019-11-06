@@ -1255,7 +1255,7 @@ class MyDocument extends next_document__WEBPACK_IMPORTED_MODULE_1___default.a {
       href: "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 13
+        lineNumber: 10
       },
       __self: this
     }), __jsx("link", {
@@ -1263,25 +1263,25 @@ class MyDocument extends next_document__WEBPACK_IMPORTED_MODULE_1___default.a {
       href: "/static/css/styles.css",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 18
+        lineNumber: 14
       },
       __self: this
     })), __jsx("body", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 20
+        lineNumber: 16
       },
       __self: this
     }, __jsx(next_document__WEBPACK_IMPORTED_MODULE_1__["Main"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 21
+        lineNumber: 17
       },
       __self: this
     }), __jsx(next_document__WEBPACK_IMPORTED_MODULE_1__["NextScript"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 22
+        lineNumber: 18
       },
       __self: this
     })));
