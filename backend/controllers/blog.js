@@ -301,8 +301,9 @@ exports.listRelated = (req, res) => {
     });
 };
 
-//Blogs search
+//
 exports.listSearch = (req, res) => {
+  console.log(req.query);
   const { search } = req.query;
   if (search) {
     Blog.find(
