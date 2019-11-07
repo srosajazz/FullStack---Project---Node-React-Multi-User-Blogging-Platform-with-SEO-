@@ -18,7 +18,7 @@
       "static/chunks/styles.js",
       "static/runtime/main.js"
     ],
-    "/categories/[slug]": [
+    "/blogs/[slug]": [
       "static/runtime/webpack.js",
       "static/css/styles.chunk.css",
       "static/chunks/styles.js",

@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static/development/pages/categories/[slug].js"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static/development/pages/blogs/[slug].js"],{
 
 /***/ "../../../node_modules/@babel/runtime/helpers/assertThisInitialized.js":
 /*!********************************************************************************************!*\
@@ -47481,44 +47481,68 @@ var isAuth = function isAuth() {
 
 /***/ }),
 
-/***/ "./actions/category.js":
-/*!*****************************!*\
-  !*** ./actions/category.js ***!
-  \*****************************/
-/*! exports provided: create, getCategories, singleCategory, removeCategory */
+/***/ "./actions/blog.js":
+/*!*************************!*\
+  !*** ./actions/blog.js ***!
+  \*************************/
+/*! exports provided: createBlog, listBlogsWithCategoriesAndTags, singleBlog, listRelated, list, removeBlog, updateBlog, listSearch */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "create", function() { return create; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCategories", function() { return getCategories; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "singleCategory", function() { return singleCategory; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeCategory", function() { return removeCategory; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createBlog", function() { return createBlog; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "listBlogsWithCategoriesAndTags", function() { return listBlogsWithCategoriesAndTags; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "singleBlog", function() { return singleBlog; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "listRelated", function() { return listRelated; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "list", function() { return list; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeBlog", function() { return removeBlog; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateBlog", function() { return updateBlog; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "listSearch", function() { return listSearch; });
 /* harmony import */ var _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/json/stringify */ "./node_modules/@babel/runtime-corejs2/core-js/json/stringify.js");
 /* harmony import */ var _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! isomorphic-fetch */ "./node_modules/isomorphic-fetch/fetch-npm-browserify.js");
 /* harmony import */ var isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../config */ "./config.js");
+/* harmony import */ var query_string__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! query-string */ "./node_modules/query-string/index.js");
+/* harmony import */ var query_string__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(query_string__WEBPACK_IMPORTED_MODULE_3__);
 
 
 
-var create = function create(category, token) {
-  return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1___default()("".concat(_config__WEBPACK_IMPORTED_MODULE_2__["API"], "/category"), {
+
+var createBlog = function createBlog(blog, token) {
+  return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1___default()("".concat(_config__WEBPACK_IMPORTED_MODULE_2__["API"], "/blog"), {
     method: 'POST',
     headers: {
       Accept: 'application/json',
-      'Content-Type': 'application/json',
       Authorization: "Bearer ".concat(token)
     },
-    body: _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(category)
+    body: blog
   }).then(function (response) {
     return response.json();
   })["catch"](function (err) {
     return console.log(err);
   });
 };
-var getCategories = function getCategories() {
-  return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1___default()("".concat(_config__WEBPACK_IMPORTED_MODULE_2__["API"], "/categories"), {
+var listBlogsWithCategoriesAndTags = function listBlogsWithCategoriesAndTags(skip, limit) {
+  var data = {
+    limit: limit,
+    skip: skip
+  };
+  return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1___default()("".concat(_config__WEBPACK_IMPORTED_MODULE_2__["API"], "/blogs-categories-tags"), {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(data)
+  }).then(function (response) {
+    return response.json();
+  })["catch"](function (err) {
+    return console.log(err);
+  });
+};
+var singleBlog = function singleBlog(slug) {
+  return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1___default()("".concat(_config__WEBPACK_IMPORTED_MODULE_2__["API"], "/blog/").concat(slug), {
     method: 'GET'
   }).then(function (response) {
     return response.json();
@@ -47526,8 +47550,22 @@ var getCategories = function getCategories() {
     return console.log(err);
   });
 };
-var singleCategory = function singleCategory(slug) {
-  return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1___default()("".concat(_config__WEBPACK_IMPORTED_MODULE_2__["API"], "/category/").concat(slug), {
+var listRelated = function listRelated(blog) {
+  return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1___default()("".concat(_config__WEBPACK_IMPORTED_MODULE_2__["API"], "/blogs/related"), {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(blog)
+  }).then(function (response) {
+    return response.json();
+  })["catch"](function (err) {
+    return console.log(err);
+  });
+};
+var list = function list() {
+  return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1___default()("".concat(_config__WEBPACK_IMPORTED_MODULE_2__["API"], "/blogs"), {
     method: 'GET'
   }).then(function (response) {
     return response.json();
@@ -47535,14 +47573,40 @@ var singleCategory = function singleCategory(slug) {
     return console.log(err);
   });
 };
-var removeCategory = function removeCategory(slug, token) {
-  return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1___default()("".concat(_config__WEBPACK_IMPORTED_MODULE_2__["API"], "/category/").concat(slug), {
+var removeBlog = function removeBlog(slug, token) {
+  return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1___default()("".concat(_config__WEBPACK_IMPORTED_MODULE_2__["API"], "/blog/").concat(slug), {
     method: 'DELETE',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
       Authorization: "Bearer ".concat(token)
     }
+  }).then(function (response) {
+    return response.json();
+  })["catch"](function (err) {
+    return console.log(err);
+  });
+};
+var updateBlog = function updateBlog(blog, token, slug) {
+  return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1___default()("".concat(_config__WEBPACK_IMPORTED_MODULE_2__["API"], "/blog/").concat(slug), {
+    method: 'PUT',
+    headers: {
+      Accept: 'application/json',
+      Authorization: "Bearer ".concat(token)
+    },
+    body: blog
+  }).then(function (response) {
+    return response.json();
+  })["catch"](function (err) {
+    return console.log(err);
+  });
+};
+var listSearch = function listSearch(params) {
+  console.log('search params', params);
+  var query = query_string__WEBPACK_IMPORTED_MODULE_3___default.a.stringify(params);
+  console.log('query params', query);
+  return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1___default()("".concat(_config__WEBPACK_IMPORTED_MODULE_2__["API"], "/blogs/search?").concat(query), {
+    method: 'GET'
   }).then(function (response) {
     return response.json();
   })["catch"](function (err) {
@@ -47574,6 +47638,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! reactstrap */ "../../../node_modules/reactstrap/es/index.js");
 /* harmony import */ var _node_modules_nprogress_nprogress_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! .././node_modules/nprogress/nprogress.css */ "./node_modules/nprogress/nprogress.css");
 /* harmony import */ var _node_modules_nprogress_nprogress_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_node_modules_nprogress_nprogress_css__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _blog_Search__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./blog/Search */ "./components/blog/Search.js");
 var _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/components/Header.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
@@ -47584,7 +47649,8 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
- //nprogress 
+
+
 
 next_router__WEBPACK_IMPORTED_MODULE_2___default.a.onRouteChangeStart = function (url) {
   return nprogress__WEBPACK_IMPORTED_MODULE_3___default.a.start();
@@ -47607,10 +47673,10 @@ var Header = function Header() {
     setIsOpen(!isOpen);
   };
 
-  return __jsx("div", {
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 37
+      lineNumber: 35
     },
     __self: this
   }, __jsx(reactstrap__WEBPACK_IMPORTED_MODULE_6__["Navbar"], {
@@ -47619,28 +47685,28 @@ var Header = function Header() {
     expand: "md",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 38
+      lineNumber: 36
     },
     __self: this
   }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
     href: "/",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 39
+      lineNumber: 37
     },
     __self: this
   }, __jsx(reactstrap__WEBPACK_IMPORTED_MODULE_6__["NavLink"], {
     className: "font-weight-bold",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 40
+      lineNumber: 38
     },
     __self: this
   }, _config__WEBPACK_IMPORTED_MODULE_4__["APP_NAME"])), __jsx(reactstrap__WEBPACK_IMPORTED_MODULE_6__["NavbarToggler"], {
     onClick: toggle,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 42
+      lineNumber: 40
     },
     __self: this
   }), __jsx(reactstrap__WEBPACK_IMPORTED_MODULE_6__["Collapse"], {
@@ -47648,7 +47714,7 @@ var Header = function Header() {
     navbar: true,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 43
+      lineNumber: 41
     },
     __self: this
   }, __jsx(reactstrap__WEBPACK_IMPORTED_MODULE_6__["Nav"], {
@@ -47656,108 +47722,120 @@ var Header = function Header() {
     navbar: true,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 44
+      lineNumber: 42
     },
     __self: this
-  }, __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(reactstrap__WEBPACK_IMPORTED_MODULE_6__["NavItem"], {
+  }, __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 47
+      lineNumber: 43
+    },
+    __self: this
+  }, __jsx(reactstrap__WEBPACK_IMPORTED_MODULE_6__["NavItem"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 44
     },
     __self: this
   }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
     href: "/blogs",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 48
+      lineNumber: 45
     },
     __self: this
   }, __jsx(reactstrap__WEBPACK_IMPORTED_MODULE_6__["NavLink"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 49
+      lineNumber: 46
     },
     __self: this
-  }, "Blogs")))), !Object(_actions_auth__WEBPACK_IMPORTED_MODULE_5__["isAuth"])() && __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(reactstrap__WEBPACK_IMPORTED_MODULE_6__["NavItem"], {
+  }, "Blogs")))), !Object(_actions_auth__WEBPACK_IMPORTED_MODULE_5__["isAuth"])() && __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 57
+      lineNumber: 52
+    },
+    __self: this
+  }, __jsx(reactstrap__WEBPACK_IMPORTED_MODULE_6__["NavItem"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 53
     },
     __self: this
   }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
     href: "/signin",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 58
+      lineNumber: 54
     },
     __self: this
   }, __jsx(reactstrap__WEBPACK_IMPORTED_MODULE_6__["NavLink"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 59
+      lineNumber: 55
     },
     __self: this
   }, "Signin"))), __jsx(reactstrap__WEBPACK_IMPORTED_MODULE_6__["NavItem"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 62
+      lineNumber: 58
     },
     __self: this
   }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
     href: "/signup",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 63
+      lineNumber: 59
     },
     __self: this
   }, __jsx(reactstrap__WEBPACK_IMPORTED_MODULE_6__["NavLink"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 64
+      lineNumber: 60
     },
     __self: this
   }, "Signup")))), Object(_actions_auth__WEBPACK_IMPORTED_MODULE_5__["isAuth"])() && Object(_actions_auth__WEBPACK_IMPORTED_MODULE_5__["isAuth"])().role === 0 && __jsx(reactstrap__WEBPACK_IMPORTED_MODULE_6__["NavItem"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 79
+      lineNumber: 67
     },
     __self: this
   }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
     href: "/user",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 80
+      lineNumber: 68
     },
     __self: this
   }, __jsx(reactstrap__WEBPACK_IMPORTED_MODULE_6__["NavLink"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 81
+      lineNumber: 69
     },
     __self: this
   }, "".concat(Object(_actions_auth__WEBPACK_IMPORTED_MODULE_5__["isAuth"])().name, "'s Dashboard")))), Object(_actions_auth__WEBPACK_IMPORTED_MODULE_5__["isAuth"])() && Object(_actions_auth__WEBPACK_IMPORTED_MODULE_5__["isAuth"])().role === 1 && __jsx(reactstrap__WEBPACK_IMPORTED_MODULE_6__["NavItem"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 87
+      lineNumber: 75
     },
     __self: this
   }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
     href: "/admin",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 88
+      lineNumber: 76
     },
     __self: this
   }, __jsx(reactstrap__WEBPACK_IMPORTED_MODULE_6__["NavLink"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 89
+      lineNumber: 77
     },
     __self: this
   }, "".concat(Object(_actions_auth__WEBPACK_IMPORTED_MODULE_5__["isAuth"])().name, "'s Dashboard")))), Object(_actions_auth__WEBPACK_IMPORTED_MODULE_5__["isAuth"])() && __jsx(reactstrap__WEBPACK_IMPORTED_MODULE_6__["NavItem"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 95
+      lineNumber: 83
     },
     __self: this
   }, __jsx(reactstrap__WEBPACK_IMPORTED_MODULE_6__["NavLink"], {
@@ -47771,10 +47849,16 @@ var Header = function Header() {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 96
+      lineNumber: 84
     },
     __self: this
-  }, "Signout"))))));
+  }, "Signout"))))), __jsx(_blog_Search__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 92
+    },
+    __self: this
+  }));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Header);
@@ -47813,10 +47897,196 @@ var Layout = function Layout(_ref) {
 
 /***/ }),
 
-/***/ "./components/blog/Card.js":
-/*!*********************************!*\
-  !*** ./components/blog/Card.js ***!
-  \*********************************/
+/***/ "./components/blog/Search.js":
+/*!***********************************!*\
+  !*** ./components/blog/Search.js ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/objectSpread */ "./node_modules/@babel/runtime-corejs2/helpers/esm/objectSpread.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_render_html__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-render-html */ "./node_modules/react-render-html/index.js");
+/* harmony import */ var react_render_html__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_render_html__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _actions_blog__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/blog */ "./actions/blog.js");
+
+var _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/components/blog/Search.js";
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
+
+
+
+
+
+var Search = function Search() {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
+    search: undefined,
+    results: [],
+    searched: false,
+    message: ''
+  }),
+      values = _useState[0],
+      setValues = _useState[1];
+
+  var search = values.search,
+      results = values.results,
+      searched = values.searched,
+      message = values.message;
+
+  var searchSubmit = function searchSubmit(e) {
+    e.preventDefault();
+    Object(_actions_blog__WEBPACK_IMPORTED_MODULE_4__["listSearch"])({
+      search: search
+    }).then(function (data) {
+      setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, values, {
+        results: data,
+        searched: true,
+        message: "".concat(data.length, " blogs found")
+      }));
+    });
+  };
+
+  var handleChange = function handleChange(e) {
+    // console.log(e.target.value);
+    setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, values, {
+      search: e.target.value,
+      searched: false,
+      results: []
+    }));
+  };
+
+  var searchedBlogs = function searchedBlogs() {
+    var results = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+    return __jsx("div", {
+      className: "jumbotron bg-white",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 35
+      },
+      __self: this
+    }, message && __jsx("p", {
+      className: "pt-4 text-muted font-italic",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 36
+      },
+      __self: this
+    }, message), results.map(function (blog, i) {
+      return __jsx("div", {
+        key: i,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 40
+        },
+        __self: this
+      }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
+        href: "/blogs/".concat(blog.slug),
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 41
+        },
+        __self: this
+      }, __jsx("a", {
+        className: "text-primary",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 42
+        },
+        __self: this
+      }, blog.title)));
+    }));
+  };
+
+  var searchForm = function searchForm() {
+    return __jsx("form", {
+      onSubmit: searchSubmit,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 52
+      },
+      __self: this
+    }, __jsx("div", {
+      className: "row",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 53
+      },
+      __self: this
+    }, __jsx("div", {
+      className: "col-md-8",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 54
+      },
+      __self: this
+    }, __jsx("input", {
+      type: "search",
+      className: "form-control",
+      placeholder: "Search blogs",
+      onChange: handleChange,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 55
+      },
+      __self: this
+    })), __jsx("div", {
+      className: "col-md-4",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 61
+      },
+      __self: this
+    }, __jsx("button", {
+      className: "btn btn-block btn-outline-primary",
+      type: "submit",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 62
+      },
+      __self: this
+    }, "Search"))));
+  };
+
+  return __jsx("div", {
+    className: "container-fluid",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 72
+    },
+    __self: this
+  }, __jsx("div", {
+    className: "pt-3 pb-5",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 73
+    },
+    __self: this
+  }, searchForm()), searched && __jsx("div", {
+    style: {
+      marginTop: '-120px',
+      marginBottom: '-80px'
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 74
+    },
+    __self: this
+  }, searchedBlogs(results)));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Search);
+
+/***/ }),
+
+/***/ "./components/blog/SmallCard.js":
+/*!**************************************!*\
+  !*** ./components/blog/SmallCard.js ***!
+  \**************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -47831,7 +48101,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../config */ "./config.js");
-var _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/components/blog/Card.js";
+var _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/components/blog/SmallCard.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -47839,59 +48109,55 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
-var Card = function Card(_ref) {
+var SmallCard = function SmallCard(_ref) {
   var blog = _ref.blog;
-
-  var showBlogCategories = function showBlogCategories(blog) {
-    return blog.categories.map(function (c, i) {
-      return __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-        key: i,
-        href: "/categories/".concat(c.slug),
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 9
-        },
-        __self: this
-      }, __jsx("a", {
-        className: "btn btn-primary mr-1 ml-1 mt-3",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 10
-        },
-        __self: this
-      }, c.name));
-    });
-  };
-
-  var showBlogTags = function showBlogTags(blog) {
-    return blog.tags.map(function (t, i) {
-      return __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-        key: i,
-        href: "/tags/".concat(t.slug),
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 16
-        },
-        __self: this
-      }, __jsx("a", {
-        className: "btn btn-outline-primary mr-1 ml-1 mt-3",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 17
-        },
-        __self: this
-      }, t.name));
-    });
-  };
-
   return __jsx("div", {
-    className: "lead pb-4",
+    className: "card",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 8
+    },
+    __self: this
+  }, __jsx("section", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 9
+    },
+    __self: this
+  }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    href: "/blogs/".concat(blog.slug),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 10
+    },
+    __self: this
+  }, __jsx("a", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 11
+    },
+    __self: this
+  }, __jsx("img", {
+    className: "img img-fluid",
+    style: {
+      maxHeight: 'auto',
+      width: '100%'
+    },
+    src: "".concat(_config__WEBPACK_IMPORTED_MODULE_4__["API"], "/blog/photo/").concat(blog.slug),
+    alt: blog.title,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 12
+    },
+    __self: this
+  })))), __jsx("div", {
+    className: "card-body",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 22
     },
     __self: this
-  }, __jsx("header", {
+  }, __jsx("section", {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 23
@@ -47910,115 +48176,45 @@ var Card = function Card(_ref) {
       lineNumber: 25
     },
     __self: this
-  }, __jsx("h2", {
-    className: "pt-3 pb-3 font-weight-bold",
+  }, __jsx("h5", {
+    className: "card-title",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 26
     },
     __self: this
-  }, blog.title)))), __jsx("section", {
+  }, blog.title))), __jsx("p", {
+    className: "card-text",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 30
+      lineNumber: 29
     },
     __self: this
-  }, __jsx("p", {
-    className: "mark ml-1 pt-2 pb-2",
+  }, react_render_html__WEBPACK_IMPORTED_MODULE_2___default()(blog.excerpt)))), __jsx("div", {
+    className: "card-body",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 31
+      lineNumber: 33
     },
     __self: this
-  }, "Written by ", blog.postedBy.name, " | Published ", moment__WEBPACK_IMPORTED_MODULE_3___default()(blog.updatedAt).fromNow())), __jsx("section", {
+  }, "Posted ", moment__WEBPACK_IMPORTED_MODULE_3___default()(blog.updatedAt).fromNow(), " by", ' ', __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    href: "/",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 35
     },
     __self: this
-  }, showBlogCategories(blog), showBlogTags(blog), __jsx("br", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 38
-    },
-    __self: this
-  }), __jsx("br", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 39
-    },
-    __self: this
-  })), __jsx("div", {
-    className: "row",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 42
-    },
-    __self: this
-  }, __jsx("div", {
-    className: "col-md-4",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 43
-    },
-    __self: this
-  }, __jsx("section", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 44
-    },
-    __self: this
-  }, __jsx("img", {
-    className: "img img-fluid",
-    style: {
-      maxHeight: 'auto',
-      width: '100%'
-    },
-    src: "".concat(_config__WEBPACK_IMPORTED_MODULE_4__["API"], "/blog/photo/").concat(blog.slug),
-    alt: blog.title,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 45
-    },
-    __self: this
-  }))), __jsx("div", {
-    className: "col-md-8",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 53
-    },
-    __self: this
-  }, __jsx("section", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 54
-    },
-    __self: this
-  }, __jsx("div", {
-    className: "pb-3",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 55
-    },
-    __self: this
-  }, react_render_html__WEBPACK_IMPORTED_MODULE_2___default()(blog.excerpt)), __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-    href: "/blogs/".concat(blog.slug),
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 56
-    },
-    __self: this
   }, __jsx("a", {
-    className: "btn btn-primary pt-2",
+    className: "float-right",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 57
+      lineNumber: 36
     },
     __self: this
-  }, "Read more"))))));
+  }, blog.postedBy.name))));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Card);
+/* harmony default export */ __webpack_exports__["default"] = (SmallCard);
 
 /***/ }),
 
@@ -48156,6 +48352,17 @@ module.exports = __webpack_require__(/*! core-js/library/fn/object/define-proper
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(/*! core-js/library/fn/object/get-own-property-descriptor */ "./node_modules/core-js/library/fn/object/get-own-property-descriptor.js");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-symbols.js":
+/*!****************************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-symbols.js ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js/library/fn/object/get-own-property-symbols */ "./node_modules/core-js/library/fn/object/get-own-property-symbols.js");
 
 /***/ }),
 
@@ -48444,6 +48651,79 @@ function _createClass(Constructor, protoProps, staticProps) {
 }
 
 module.exports = _createClass;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _defineProperty; });
+/* harmony import */ var _core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../core-js/object/define-property */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js");
+/* harmony import */ var _core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__);
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    _core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default()(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs2/helpers/esm/objectSpread.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/helpers/esm/objectSpread.js ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _objectSpread; });
+/* harmony import */ var _core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../core-js/object/get-own-property-descriptor */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptor.js");
+/* harmony import */ var _core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../core-js/object/get-own-property-symbols */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-symbols.js");
+/* harmony import */ var _core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _core_js_object_keys__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../core-js/object/keys */ "./node_modules/@babel/runtime-corejs2/core-js/object/keys.js");
+/* harmony import */ var _core_js_object_keys__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_core_js_object_keys__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _defineProperty__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
+
+
+
+
+function _objectSpread(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+
+    var ownKeys = _core_js_object_keys__WEBPACK_IMPORTED_MODULE_2___default()(source);
+
+    if (typeof _core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_1___default.a === 'function') {
+      ownKeys = ownKeys.concat(_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_1___default()(source).filter(function (sym) {
+        return _core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_0___default()(source, sym).enumerable;
+      }));
+    }
+
+    ownKeys.forEach(function (key) {
+      Object(_defineProperty__WEBPACK_IMPORTED_MODULE_3__["default"])(target, key, source[key]);
+    });
+  }
+
+  return target;
+}
 
 /***/ }),
 
@@ -50918,6 +51198,19 @@ var $Object = __webpack_require__(/*! ../../modules/_core */ "./node_modules/cor
 module.exports = function getOwnPropertyDescriptor(it, key) {
   return $Object.getOwnPropertyDescriptor(it, key);
 };
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/library/fn/object/get-own-property-symbols.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/core-js/library/fn/object/get-own-property-symbols.js ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(/*! ../../modules/es6.symbol */ "./node_modules/core-js/library/modules/es6.symbol.js");
+module.exports = __webpack_require__(/*! ../../modules/_core */ "./node_modules/core-js/library/modules/_core.js").Object.getOwnPropertySymbols;
 
 
 /***/ }),
@@ -54683,6 +54976,112 @@ function objectToString(o) {
 }
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../buffer/index.js */ "./node_modules/buffer/index.js").Buffer))
+
+/***/ }),
+
+/***/ "./node_modules/decode-uri-component/index.js":
+/*!****************************************************!*\
+  !*** ./node_modules/decode-uri-component/index.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var token = '%[a-f0-9]{2}';
+var singleMatcher = new RegExp(token, 'gi');
+var multiMatcher = new RegExp('(' + token + ')+', 'gi');
+
+function decodeComponents(components, split) {
+	try {
+		// Try to decode the entire string first
+		return decodeURIComponent(components.join(''));
+	} catch (err) {
+		// Do nothing
+	}
+
+	if (components.length === 1) {
+		return components;
+	}
+
+	split = split || 1;
+
+	// Split the array in 2 parts
+	var left = components.slice(0, split);
+	var right = components.slice(split);
+
+	return Array.prototype.concat.call([], decodeComponents(left), decodeComponents(right));
+}
+
+function decode(input) {
+	try {
+		return decodeURIComponent(input);
+	} catch (err) {
+		var tokens = input.match(singleMatcher);
+
+		for (var i = 1; i < tokens.length; i++) {
+			input = decodeComponents(tokens, i).join('');
+
+			tokens = input.match(singleMatcher);
+		}
+
+		return input;
+	}
+}
+
+function customDecodeURIComponent(input) {
+	// Keep track of all the replacements and prefill the map with the `BOM`
+	var replaceMap = {
+		'%FE%FF': '\uFFFD\uFFFD',
+		'%FF%FE': '\uFFFD\uFFFD'
+	};
+
+	var match = multiMatcher.exec(input);
+	while (match) {
+		try {
+			// Decode as big chunks as possible
+			replaceMap[match[0]] = decodeURIComponent(match[0]);
+		} catch (err) {
+			var result = decode(match[0]);
+
+			if (result !== match[0]) {
+				replaceMap[match[0]] = result;
+			}
+		}
+
+		match = multiMatcher.exec(input);
+	}
+
+	// Add `%C2` at the end of the map to make sure it does not replace the combinator before everything else
+	replaceMap['%C2'] = '\uFFFD';
+
+	var entries = Object.keys(replaceMap);
+
+	for (var i = 0; i < entries.length; i++) {
+		// Replace all decoded components
+		var key = entries[i];
+		input = input.replace(new RegExp(key, 'g'), replaceMap[key]);
+	}
+
+	return input;
+}
+
+module.exports = function (encodedURI) {
+	if (typeof encodedURI !== 'string') {
+		throw new TypeError('Expected `encodedURI` to be of type `string`, got `' + typeof encodedURI + '`');
+	}
+
+	try {
+		encodedURI = encodedURI.replace(/\+/g, ' ');
+
+		// Try the built in decoder first
+		return decodeURIComponent(encodedURI);
+	} catch (err) {
+		// Fallback to a more advanced decoder
+		return customDecodeURIComponent(encodedURI);
+	}
+};
+
 
 /***/ }),
 
@@ -73317,21 +73716,21 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
 
 /***/ }),
 
-/***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fcategories%2F%5Bslug%5D&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fcategories%2F%5Bslug%5D.js!./":
-/*!***********************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fcategories%2F%5Bslug%5D&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fcategories%2F%5Bslug%5D.js ***!
-  \***********************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fblogs%2F%5Bslug%5D&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fblogs%2F%5Bslug%5D.js!./":
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fblogs%2F%5Bslug%5D&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fblogs%2F%5Bslug%5D.js ***!
+  \*************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-    (window.__NEXT_P=window.__NEXT_P||[]).push(["/categories/[slug]", function() {
-      var mod = __webpack_require__(/*! ./pages/categories/[slug].js */ "./pages/categories/[slug].js")
+    (window.__NEXT_P=window.__NEXT_P||[]).push(["/blogs/[slug]", function() {
+      var mod = __webpack_require__(/*! ./pages/blogs/[slug].js */ "./pages/blogs/[slug].js")
       if(true) {
-        module.hot.accept(/*! ./pages/categories/[slug].js */ "./pages/categories/[slug].js", function() {
-          if(!next.router.components["/categories/[slug]"]) return
-          var updatedPage = __webpack_require__(/*! ./pages/categories/[slug].js */ "./pages/categories/[slug].js")
-          next.router.update("/categories/[slug]", updatedPage)
+        module.hot.accept(/*! ./pages/blogs/[slug].js */ "./pages/blogs/[slug].js", function() {
+          if(!next.router.components["/blogs/[slug]"]) return
+          var updatedPage = __webpack_require__(/*! ./pages/blogs/[slug].js */ "./pages/blogs/[slug].js")
+          next.router.update("/blogs/[slug]", updatedPage)
         })
       }
       return mod
@@ -77960,6 +78359,310 @@ if (true) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(/*! dll-reference dll_b35e09dc2ca94ac6d9c1 */ "dll-reference dll_b35e09dc2ca94ac6d9c1"))("./node_modules/prop-types/lib/ReactPropTypesSecret.js");
+
+/***/ }),
+
+/***/ "./node_modules/query-string/index.js":
+/*!********************************************!*\
+  !*** ./node_modules/query-string/index.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+const strictUriEncode = __webpack_require__(/*! strict-uri-encode */ "./node_modules/strict-uri-encode/index.js");
+const decodeComponent = __webpack_require__(/*! decode-uri-component */ "./node_modules/decode-uri-component/index.js");
+const splitOnFirst = __webpack_require__(/*! split-on-first */ "./node_modules/split-on-first/index.js");
+
+function encoderForArrayFormat(options) {
+	switch (options.arrayFormat) {
+		case 'index':
+			return key => (result, value) => {
+				const index = result.length;
+				if (value === undefined) {
+					return result;
+				}
+
+				if (value === null) {
+					return [...result, [encode(key, options), '[', index, ']'].join('')];
+				}
+
+				return [
+					...result,
+					[encode(key, options), '[', encode(index, options), ']=', encode(value, options)].join('')
+				];
+			};
+
+		case 'bracket':
+			return key => (result, value) => {
+				if (value === undefined) {
+					return result;
+				}
+
+				if (value === null) {
+					return [...result, [encode(key, options), '[]'].join('')];
+				}
+
+				return [...result, [encode(key, options), '[]=', encode(value, options)].join('')];
+			};
+
+		case 'comma':
+			return key => (result, value, index) => {
+				if (value === null || value === undefined || value.length === 0) {
+					return result;
+				}
+
+				if (index === 0) {
+					return [[encode(key, options), '=', encode(value, options)].join('')];
+				}
+
+				return [[result, encode(value, options)].join(',')];
+			};
+
+		default:
+			return key => (result, value) => {
+				if (value === undefined) {
+					return result;
+				}
+
+				if (value === null) {
+					return [...result, encode(key, options)];
+				}
+
+				return [...result, [encode(key, options), '=', encode(value, options)].join('')];
+			};
+	}
+}
+
+function parserForArrayFormat(options) {
+	let result;
+
+	switch (options.arrayFormat) {
+		case 'index':
+			return (key, value, accumulator) => {
+				result = /\[(\d*)\]$/.exec(key);
+
+				key = key.replace(/\[\d*\]$/, '');
+
+				if (!result) {
+					accumulator[key] = value;
+					return;
+				}
+
+				if (accumulator[key] === undefined) {
+					accumulator[key] = {};
+				}
+
+				accumulator[key][result[1]] = value;
+			};
+
+		case 'bracket':
+			return (key, value, accumulator) => {
+				result = /(\[\])$/.exec(key);
+				key = key.replace(/\[\]$/, '');
+
+				if (!result) {
+					accumulator[key] = value;
+					return;
+				}
+
+				if (accumulator[key] === undefined) {
+					accumulator[key] = [value];
+					return;
+				}
+
+				accumulator[key] = [].concat(accumulator[key], value);
+			};
+
+		case 'comma':
+			return (key, value, accumulator) => {
+				const isArray = typeof value === 'string' && value.split('').indexOf(',') > -1;
+				const newValue = isArray ? value.split(',') : value;
+				accumulator[key] = newValue;
+			};
+
+		default:
+			return (key, value, accumulator) => {
+				if (accumulator[key] === undefined) {
+					accumulator[key] = value;
+					return;
+				}
+
+				accumulator[key] = [].concat(accumulator[key], value);
+			};
+	}
+}
+
+function encode(value, options) {
+	if (options.encode) {
+		return options.strict ? strictUriEncode(value) : encodeURIComponent(value);
+	}
+
+	return value;
+}
+
+function decode(value, options) {
+	if (options.decode) {
+		return decodeComponent(value);
+	}
+
+	return value;
+}
+
+function keysSorter(input) {
+	if (Array.isArray(input)) {
+		return input.sort();
+	}
+
+	if (typeof input === 'object') {
+		return keysSorter(Object.keys(input))
+			.sort((a, b) => Number(a) - Number(b))
+			.map(key => input[key]);
+	}
+
+	return input;
+}
+
+function removeHash(input) {
+	const hashStart = input.indexOf('#');
+	if (hashStart !== -1) {
+		input = input.slice(0, hashStart);
+	}
+
+	return input;
+}
+
+function extract(input) {
+	input = removeHash(input);
+	const queryStart = input.indexOf('?');
+	if (queryStart === -1) {
+		return '';
+	}
+
+	return input.slice(queryStart + 1);
+}
+
+function parseValue(value, options) {
+	if (options.parseNumbers && !Number.isNaN(Number(value)) && (typeof value === 'string' && value.trim() !== '')) {
+		value = Number(value);
+	} else if (options.parseBooleans && value !== null && (value.toLowerCase() === 'true' || value.toLowerCase() === 'false')) {
+		value = value.toLowerCase() === 'true';
+	}
+
+	return value;
+}
+
+function parse(input, options) {
+	options = Object.assign({
+		decode: true,
+		sort: true,
+		arrayFormat: 'none',
+		parseNumbers: false,
+		parseBooleans: false
+	}, options);
+
+	const formatter = parserForArrayFormat(options);
+
+	// Create an object with no prototype
+	const ret = Object.create(null);
+
+	if (typeof input !== 'string') {
+		return ret;
+	}
+
+	input = input.trim().replace(/^[?#&]/, '');
+
+	if (!input) {
+		return ret;
+	}
+
+	for (const param of input.split('&')) {
+		let [key, value] = splitOnFirst(param.replace(/\+/g, ' '), '=');
+
+		// Missing `=` should be `null`:
+		// http://w3.org/TR/2012/WD-url-20120524/#collect-url-parameters
+		value = value === undefined ? null : decode(value, options);
+		formatter(decode(key, options), value, ret);
+	}
+
+	for (const key of Object.keys(ret)) {
+		const value = ret[key];
+		if (typeof value === 'object' && value !== null) {
+			for (const k of Object.keys(value)) {
+				value[k] = parseValue(value[k], options);
+			}
+		} else {
+			ret[key] = parseValue(value, options);
+		}
+	}
+
+	if (options.sort === false) {
+		return ret;
+	}
+
+	return (options.sort === true ? Object.keys(ret).sort() : Object.keys(ret).sort(options.sort)).reduce((result, key) => {
+		const value = ret[key];
+		if (Boolean(value) && typeof value === 'object' && !Array.isArray(value)) {
+			// Sort object keys, not values
+			result[key] = keysSorter(value);
+		} else {
+			result[key] = value;
+		}
+
+		return result;
+	}, Object.create(null));
+}
+
+exports.extract = extract;
+exports.parse = parse;
+
+exports.stringify = (object, options) => {
+	if (!object) {
+		return '';
+	}
+
+	options = Object.assign({
+		encode: true,
+		strict: true,
+		arrayFormat: 'none'
+	}, options);
+
+	const formatter = encoderForArrayFormat(options);
+	const keys = Object.keys(object);
+
+	if (options.sort !== false) {
+		keys.sort(options.sort);
+	}
+
+	return keys.map(key => {
+		const value = object[key];
+
+		if (value === undefined) {
+			return '';
+		}
+
+		if (value === null) {
+			return encode(key, options);
+		}
+
+		if (Array.isArray(value)) {
+			return value
+				.reduce(formatter(key), [])
+				.join('&');
+		}
+
+		return encode(key, options) + '=' + encode(value, options);
+	}).filter(x => x.length > 0).join('&');
+};
+
+exports.parseUrl = (input, options) => {
+	return {
+		url: removeHash(input).split('?')[0] || '',
+		query: parse(extract(input), options)
+	};
+};
+
 
 /***/ }),
 
@@ -90602,6 +91305,40 @@ SafeBuffer.allocUnsafeSlow = function (size) {
 
 /***/ }),
 
+/***/ "./node_modules/split-on-first/index.js":
+/*!**********************************************!*\
+  !*** ./node_modules/split-on-first/index.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = (string, separator) => {
+	if (!(typeof string === 'string' && typeof separator === 'string')) {
+		throw new TypeError('Expected the arguments to be of type `string`');
+	}
+
+	if (separator === '') {
+		return [string];
+	}
+
+	const separatorIndex = string.indexOf(separator);
+
+	if (separatorIndex === -1) {
+		return [string];
+	}
+
+	return [
+		string.slice(0, separatorIndex),
+		string.slice(separatorIndex + separator.length)
+	];
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/stream-browserify/index.js":
 /*!*************************************************!*\
   !*** ./node_modules/stream-browserify/index.js ***!
@@ -90736,6 +91473,20 @@ Stream.prototype.pipe = function(dest, options) {
   // Allow for unix-like usage: A.pipe(B).pipe(C)
   return dest;
 };
+
+
+/***/ }),
+
+/***/ "./node_modules/strict-uri-encode/index.js":
+/*!*************************************************!*\
+  !*** ./node_modules/strict-uri-encode/index.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+module.exports = str => encodeURIComponent(str).replace(/[!'()*]/g, x => `%${x.charCodeAt(0).toString(16).toUpperCase()}`);
 
 
 /***/ }),
@@ -93261,10 +94012,10 @@ if (!self.fetch) {
 
 /***/ }),
 
-/***/ "./pages/categories/[slug].js":
-/*!************************************!*\
-  !*** ./pages/categories/[slug].js ***!
-  \************************************/
+/***/ "./pages/blogs/[slug].js":
+/*!*******************************!*\
+  !*** ./pages/blogs/[slug].js ***!
+  \*******************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -93277,14 +94028,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Layout */ "./components/Layout.js");
-/* harmony import */ var _actions_category__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/category */ "./actions/category.js");
+/* harmony import */ var _actions_blog__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/blog */ "./actions/blog.js");
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../config */ "./config.js");
 /* harmony import */ var react_render_html__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-render-html */ "./node_modules/react-render-html/index.js");
 /* harmony import */ var react_render_html__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_render_html__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _components_blog_Card__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../components/blog/Card */ "./components/blog/Card.js");
-var _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/pages/categories/[slug].js";
+/* harmony import */ var _components_blog_SmallCard__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../components/blog/SmallCard */ "./components/blog/SmallCard.js");
+var _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/pages/blogs/[slug].js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -93296,54 +94047,74 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
-var Category = function Category(_ref) {
-  var category = _ref.category,
-      blogs = _ref.blogs,
+
+var SingleBlog = function SingleBlog(_ref) {
+  var blog = _ref.blog,
       query = _ref.query;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      related = _useState[0],
+      setRelated = _useState[1];
+
+  var loadRelated = function loadRelated() {
+    Object(_actions_blog__WEBPACK_IMPORTED_MODULE_4__["listRelated"])({
+      blog: blog
+    }).then(function (data) {
+      if (data.error) {
+        console.log(data.error);
+      } else {
+        setRelated(data);
+      }
+    });
+  };
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    loadRelated();
+  }, []);
 
   var head = function head() {
     return __jsx(next_head__WEBPACK_IMPORTED_MODULE_1___default.a, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 12
+        lineNumber: 29
       },
       __self: this
     }, __jsx("title", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 13
+        lineNumber: 30
       },
       __self: this
-    }, category.name, " | ", _config__WEBPACK_IMPORTED_MODULE_5__["APP_NAME"]), __jsx("meta", {
+    }, blog.title, " | ", _config__WEBPACK_IMPORTED_MODULE_5__["APP_NAME"]), __jsx("meta", {
       name: "description",
-      content: "Best programming tutorials on ".concat(category.name),
+      content: blog.mdesc,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 16
+        lineNumber: 33
       },
       __self: this
     }), __jsx("link", {
       rel: "canonical",
-      href: "".concat(_config__WEBPACK_IMPORTED_MODULE_5__["DOMAIN"], "/categories/").concat(query.slug),
+      href: "".concat(_config__WEBPACK_IMPORTED_MODULE_5__["DOMAIN"], "/blogs/").concat(query.slug),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 17
+        lineNumber: 34
       },
       __self: this
     }), __jsx("meta", {
       property: "og:title",
-      content: "".concat(category.name, "| ").concat(_config__WEBPACK_IMPORTED_MODULE_5__["APP_NAME"]),
+      content: "".concat(blog.title, "| ").concat(_config__WEBPACK_IMPORTED_MODULE_5__["APP_NAME"]),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 18
+        lineNumber: 35
       },
       __self: this
     }), __jsx("meta", {
       property: "og:description",
-      content: "Best programming tutorials on ".concat(category.name),
+      content: blog.mdesc,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 19
+        lineNumber: 36
       },
       __self: this
     }), __jsx("meta", {
@@ -93351,15 +94122,15 @@ var Category = function Category(_ref) {
       content: "webiste",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 20
+        lineNumber: 37
       },
       __self: this
     }), __jsx("meta", {
       property: "og:url",
-      content: "".concat(_config__WEBPACK_IMPORTED_MODULE_5__["DOMAIN"], "/categories/").concat(query.slug),
+      content: "".concat(_config__WEBPACK_IMPORTED_MODULE_5__["DOMAIN"], "/blogs/").concat(query.slug),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 21
+        lineNumber: 38
       },
       __self: this
     }), __jsx("meta", {
@@ -93367,23 +94138,23 @@ var Category = function Category(_ref) {
       content: "".concat(_config__WEBPACK_IMPORTED_MODULE_5__["APP_NAME"]),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 22
+        lineNumber: 39
       },
       __self: this
     }), __jsx("meta", {
       property: "og:image",
-      content: "".concat(_config__WEBPACK_IMPORTED_MODULE_5__["DOMAIN"], "/static/images/seoblog.jpg"),
+      content: "".concat(_config__WEBPACK_IMPORTED_MODULE_5__["API"], "/blog/photo/").concat(blog.slug),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 24
+        lineNumber: 41
       },
       __self: this
     }), __jsx("meta", {
       property: "og:image:secure_url",
-      content: "".concat(_config__WEBPACK_IMPORTED_MODULE_5__["DOMAIN"], "/static/images/seoblog.jpg"),
+      ccontent: "".concat(_config__WEBPACK_IMPORTED_MODULE_5__["API"], "/blog/photo/").concat(blog.slug),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 25
+        lineNumber: 42
       },
       __self: this
     }), __jsx("meta", {
@@ -93391,7 +94162,7 @@ var Category = function Category(_ref) {
       content: "image/jpg",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 26
+        lineNumber: 43
       },
       __self: this
     }), __jsx("meta", {
@@ -93399,98 +94170,268 @@ var Category = function Category(_ref) {
       content: "".concat(_config__WEBPACK_IMPORTED_MODULE_5__["FB_APP_ID"]),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 27
+        lineNumber: 44
       },
       __self: this
     }));
   };
 
+  var showBlogCategories = function showBlogCategories(blog) {
+    return blog.categories.map(function (c, i) {
+      return __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
+        key: i,
+        href: "/categories/".concat(c.slug),
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 50
+        },
+        __self: this
+      }, __jsx("a", {
+        className: "btn btn-primary mr-1 ml-1 mt-3",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 51
+        },
+        __self: this
+      }, c.name));
+    });
+  };
+
+  var showBlogTags = function showBlogTags(blog) {
+    return blog.tags.map(function (t, i) {
+      return __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
+        key: i,
+        href: "/tags/".concat(t.slug),
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 57
+        },
+        __self: this
+      }, __jsx("a", {
+        className: "btn btn-outline-primary mr-1 ml-1 mt-3",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 58
+        },
+        __self: this
+      }, t.name));
+    });
+  };
+
+  var showRelatedBlog = function showRelatedBlog() {
+    return related.map(function (blog, i) {
+      return __jsx("div", {
+        className: "col-md-4",
+        key: i,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 64
+        },
+        __self: this
+      }, __jsx("article", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 65
+        },
+        __self: this
+      }, __jsx(_components_blog_SmallCard__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        blog: blog,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 66
+        },
+        __self: this
+      })));
+    });
+  };
+
   return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 32
+      lineNumber: 73
     },
     __self: this
   }, head(), __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_3__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 34
+      lineNumber: 75
     },
     __self: this
   }, __jsx("main", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 35
+      lineNumber: 76
+    },
+    __self: this
+  }, __jsx("article", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 77
     },
     __self: this
   }, __jsx("div", {
-    className: "container-fluid text-center",
+    className: "container-fluid",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 36
+      lineNumber: 78
     },
     __self: this
-  }, __jsx("header", {
+  }, __jsx("section", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 37
+      lineNumber: 79
     },
     __self: this
   }, __jsx("div", {
-    className: "col-md-12 pt-3",
+    className: "row",
+    style: {
+      marginTop: '-30px'
+    },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 38
+      lineNumber: 80
+    },
+    __self: this
+  }, __jsx("img", {
+    src: "".concat(_config__WEBPACK_IMPORTED_MODULE_5__["API"], "/blog/photo/").concat(blog.slug),
+    alt: blog.title,
+    className: "img img-fluid featured-image",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 81
+    },
+    __self: this
+  }))), __jsx("section", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 89
+    },
+    __self: this
+  }, __jsx("div", {
+    className: "container",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 90
     },
     __self: this
   }, __jsx("h1", {
-    className: "display-4 font-weight-bold",
+    className: "display-2 pb-3 pt-3 text-center font-weight-bold",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 39
+      lineNumber: 91
     },
     __self: this
-  }, category.name), blogs.map(function (b, i) {
-    return __jsx("div", {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 41
-      },
-      __self: this
-    }, __jsx(_components_blog_Card__WEBPACK_IMPORTED_MODULE_8__["default"], {
-      key: i,
-      blog: b,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 42
-      },
-      __self: this
-    }), __jsx("hr", {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 43
-      },
-      __self: this
-    }));
-  })))))));
+  }, blog.title), __jsx("p", {
+    className: "lead mt-3 mark",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 92
+    },
+    __self: this
+  }, "Written by ", blog.postedBy.name, " | Published ", moment__WEBPACK_IMPORTED_MODULE_7___default()(blog.updatedAt).fromNow()), __jsx("div", {
+    className: "pb-3",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 96
+    },
+    __self: this
+  }, showBlogCategories(blog), showBlogTags(blog), __jsx("br", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 99
+    },
+    __self: this
+  }), __jsx("br", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 100
+    },
+    __self: this
+  }))))), __jsx("div", {
+    className: "container",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 106
+    },
+    __self: this
+  }, __jsx("section", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 107
+    },
+    __self: this
+  }, __jsx("div", {
+    className: "col-md-12 lead",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 108
+    },
+    __self: this
+  }, react_render_html__WEBPACK_IMPORTED_MODULE_6___default()(blog.body)))), __jsx("div", {
+    className: "container",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 112
+    },
+    __self: this
+  }, __jsx("h4", {
+    className: "text-center pt-5 pb-5 h2",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 113
+    },
+    __self: this
+  }, "Related blogs"), __jsx("div", {
+    className: "row",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 114
+    },
+    __self: this
+  }, showRelatedBlog())), __jsx("div", {
+    className: "container pb-5",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 117
+    },
+    __self: this
+  }, __jsx("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 118
+    },
+    __self: this
+  }, "show comments"))))));
 };
 
-Category.getInitialProps = function (_ref2) {
+SingleBlog.getInitialProps = function (_ref2) {
   var query = _ref2.query;
-  return Object(_actions_category__WEBPACK_IMPORTED_MODULE_4__["singleCategory"])(query.slug).then(function (data) {
+  return Object(_actions_blog__WEBPACK_IMPORTED_MODULE_4__["singleBlog"])(query.slug).then(function (data) {
     if (data.error) {
       console.log(data.error);
     } else {
+      // console.log('GET INITIAL PROPS IN SINGLE BLOG', data);
       return {
-        category: data.category,
-        blogs: data.blogs,
+        blog: data,
         query: query
       };
     }
   });
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Category);
+/* harmony default export */ __webpack_exports__["default"] = (SingleBlog);
+
+/***/ }),
+
+/***/ 10:
+/*!*****************************************************************************************************************************************************************************!*\
+  !*** multi next-client-pages-loader?page=%2Fblogs%2F%5Bslug%5D&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fblogs%2F%5Bslug%5D.js ***!
+  \*****************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2Fblogs%2F%5Bslug%5D&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fblogs%2F%5Bslug%5D.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fblogs%2F%5Bslug%5D&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fblogs%2F%5Bslug%5D.js!./");
+
 
 /***/ }),
 
@@ -93516,18 +94457,6 @@ Category.getInitialProps = function (_ref2) {
 
 /***/ }),
 
-/***/ 9:
-/*!***************************************************************************************************************************************************************************************!*\
-  !*** multi next-client-pages-loader?page=%2Fcategories%2F%5Bslug%5D&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fcategories%2F%5Bslug%5D.js ***!
-  \***************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2Fcategories%2F%5Bslug%5D&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fcategories%2F%5Bslug%5D.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fcategories%2F%5Bslug%5D&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fcategories%2F%5Bslug%5D.js!./");
-
-
-/***/ }),
-
 /***/ "dll-reference dll_b35e09dc2ca94ac6d9c1":
 /*!*******************************************!*\
   !*** external "dll_b35e09dc2ca94ac6d9c1" ***!
@@ -93539,5 +94468,5 @@ module.exports = dll_b35e09dc2ca94ac6d9c1;
 
 /***/ })
 
-},[[9,"static/runtime/webpack.js","styles"]]]);
+},[[10,"static/runtime/webpack.js","styles"]]]);
 //# sourceMappingURL=[slug].js.map

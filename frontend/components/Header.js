@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Router from 'next/router';
 import NProgress from 'nprogress';
 import { APP_NAME } from '../config';
-import {sigout, isAuth, signout} from '../actions/auth';
+import { signout, isAuth } from '../actions/auth';
 import {
   Collapse,
   Navbar,
@@ -15,16 +15,14 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem,
+  DropdownItem
 } from 'reactstrap';
 import '.././node_modules/nprogress/nprogress.css';
+import Search from './blog/Search';
 
-
-//nprogress 
 Router.onRouteChangeStart = url => NProgress.start();
 Router.onRouteChangeComplete = url => NProgress.done();
 Router.onRouteChangeError = url => NProgress.done();
-
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,7 +32,7 @@ const Header = () => {
   };
 
   return (
-    <div>
+    <React.Fragment>
       <Navbar color="light" light expand="md">
         <Link href="/">
           <NavLink className="font-weight-bold">{APP_NAME}</NavLink>
@@ -42,64 +40,57 @@ const Header = () => {
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
-
-             <>
+            <React.Fragment>
               <NavItem>
-              <Link href="/blogs">
-                <NavLink>Blogs</NavLink>
-              </Link>
-            </NavItem>
-              </>
-            
-            
+                <Link href="/blogs">
+                  <NavLink>Blogs</NavLink>
+                </Link>
+              </NavItem>
+            </React.Fragment>
+
             {!isAuth() && (
-              <>
-              <NavItem>
-              <Link href="/signin">
-                <NavLink>Signin</NavLink>
-              </Link>
-            </NavItem>
-            <NavItem>
-              <Link href="/signup">
-                <NavLink>Signup</NavLink>
-              </Link>
-            </NavItem>
-              </>
+              <React.Fragment>
+                <NavItem>
+                  <Link href="/signin">
+                    <NavLink>Signin</NavLink>
+                  </Link>
+                </NavItem>
+                <NavItem>
+                  <Link href="/signup">
+                    <NavLink>Signup</NavLink>
+                  </Link>
+                </NavItem>
+              </React.Fragment>
             )}
-
-            {/* {JSON.stringify(isAuth())} */}
-
-            {/* {isAuth() && (
-              <NavItem>
-                <NavLink style={{ cursor: 'pointer' }} onClick={() => signout(() => Router.replace(`/signin`))}>Signout</NavLink>
-            </NavItem>
-            )} */}
 
             {isAuth() && isAuth().role === 0 && (
               <NavItem>
-                 <Link href="/user">
-                 <NavLink>{`${isAuth().name}'s Dashboard`}</NavLink>
-                 </Link>
-            </NavItem>
+                <Link href="/user">
+                  <NavLink>{`${isAuth().name}'s Dashboard`}</NavLink>
+                </Link>
+              </NavItem>
             )}
-              {/* 2 */}
+
             {isAuth() && isAuth().role === 1 && (
               <NavItem>
-                 <Link href="/admin">
-                 <NavLink>{`${isAuth().name}'s Dashboard`}</NavLink>
-                 </Link>
-            </NavItem>
+                <Link href="/admin">
+                  <NavLink>{`${isAuth().name}'s Dashboard`}</NavLink>
+                </Link>
+              </NavItem>
             )}
 
             {isAuth() && (
               <NavItem>
-                <NavLink style={{ cursor: 'pointer' }} onClick={() => signout(() => Router.replace(`/signin`))}>Signout</NavLink>
-            </NavItem>
+                <NavLink style={{ cursor: 'pointer' }} onClick={() => signout(() => Router.replace(`/signin`))}>
+                  Signout
+                </NavLink>
+              </NavItem>
             )}
           </Nav>
         </Collapse>
       </Navbar>
-    </div>
+      <Search />
+    </React.Fragment>
   );
 };
 
