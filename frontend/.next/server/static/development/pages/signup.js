@@ -1,7 +1,7 @@
 module.exports =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
-/******/ 	var installedModules = require('../../../../ssr-module-cache.js');
+/******/ 	var installedModules = require('../../../ssr-module-cache.js');
 /******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 9);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -299,34 +299,6 @@ const listSearch = params => {
   console.log('query params', query);
   return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1___default()(`${_config__WEBPACK_IMPORTED_MODULE_2__["API"]}/blogs/search?${query}`, {
     method: 'GET'
-  }).then(response => {
-    return response.json();
-  }).catch(err => console.log(err));
-};
-
-/***/ }),
-
-/***/ "./actions/user.js":
-/*!*************************!*\
-  !*** ./actions/user.js ***!
-  \*************************/
-/*! exports provided: userPublicProfile */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "userPublicProfile", function() { return userPublicProfile; });
-/* harmony import */ var isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! isomorphic-fetch */ "isomorphic-fetch");
-/* harmony import */ var isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../config */ "./config.js");
-
-
-const userPublicProfile = username => {
-  return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0___default()(`${_config__WEBPACK_IMPORTED_MODULE_1__["API"]}/user/${username}`, {
-    method: 'GET',
-    headers: {
-      Accept: 'application/json'
-    }
   }).then(response => {
     return response.json();
   }).catch(err => console.log(err));
@@ -605,6 +577,212 @@ const Layout = ({
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Layout);
+
+/***/ }),
+
+/***/ "./components/auth/SignupComponent.js":
+/*!********************************************!*\
+  !*** ./components/auth/SignupComponent.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/objectSpread */ "./node_modules/@babel/runtime-corejs2/helpers/esm/objectSpread.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _actions_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/auth */ "./actions/auth.js");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/router */ "next/router");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_3__);
+
+var _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/components/auth/SignupComponent.js";
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
+
+
+
+
+const SignupComponent = () => {
+  const {
+    0: values,
+    1: setValues
+  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
+    name: 'Sergio',
+    email: 'sergio@gmail.com',
+    password: 'rrrrrr',
+    error: '',
+    loading: false,
+    message: '',
+    showForm: true
+  });
+  const {
+    name,
+    email,
+    password,
+    error,
+    loading,
+    message,
+    showForm
+  } = values;
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(() => {
+    Object(_actions_auth__WEBPACK_IMPORTED_MODULE_2__["isAuth"])() && next_router__WEBPACK_IMPORTED_MODULE_3___default.a.push(`/`);
+  }, []);
+
+  const handleSubmit = e => {
+    e.preventDefault(); // console.table({ name, email, password, error, loading, message, showForm });
+
+    setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, values, {
+      loading: true,
+      error: false
+    }));
+    const user = {
+      name,
+      email,
+      password
+    };
+    Object(_actions_auth__WEBPACK_IMPORTED_MODULE_2__["signup"])(user).then(data => {
+      if (data.error) {
+        setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, values, {
+          error: data.error,
+          loading: false
+        }));
+      } else {
+        setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, values, {
+          name: '',
+          email: '',
+          password: '',
+          error: '',
+          loading: false,
+          message: data.message,
+          showForm: false
+        }));
+      }
+    });
+  };
+
+  const handleChange = name => e => {
+    setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, values, {
+      error: false,
+      [name]: e.target.value
+    }));
+  };
+
+  const showLoading = () => loading ? __jsx("div", {
+    className: "alert alert-info",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 50
+    },
+    __self: undefined
+  }, "Loading...") : '';
+
+  const showError = () => error ? __jsx("div", {
+    className: "alert alert-danger",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 51
+    },
+    __self: undefined
+  }, error) : '';
+
+  const showMessage = () => message ? __jsx("div", {
+    className: "alert alert-info",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 52
+    },
+    __self: undefined
+  }, message) : '';
+
+  const signupForm = () => {
+    return __jsx("form", {
+      onSubmit: handleSubmit,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 56
+      },
+      __self: undefined
+    }, __jsx("div", {
+      className: "form-group",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 57
+      },
+      __self: undefined
+    }, __jsx("input", {
+      value: name,
+      onChange: handleChange('name'),
+      type: "text",
+      className: "form-control",
+      placeholder: "Type your name",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 58
+      },
+      __self: undefined
+    })), __jsx("div", {
+      className: "form-group",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 67
+      },
+      __self: undefined
+    }, __jsx("input", {
+      value: email,
+      onChange: handleChange('email'),
+      type: "email",
+      className: "form-control",
+      placeholder: "Type your email",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 68
+      },
+      __self: undefined
+    })), __jsx("div", {
+      className: "form-group",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 77
+      },
+      __self: undefined
+    }, __jsx("input", {
+      value: password,
+      onChange: handleChange('password'),
+      type: "password",
+      className: "form-control",
+      placeholder: "Type your password",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 78
+      },
+      __self: undefined
+    })), __jsx("div", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 87
+      },
+      __self: undefined
+    }, __jsx("button", {
+      className: "btn btn-primary",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 88
+      },
+      __self: undefined
+    }, "Signup")));
+  };
+
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 95
+    },
+    __self: undefined
+  }, showError(), showLoading(), showMessage(), showForm && signupForm());
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (SignupComponent);
 
 /***/ }),
 
@@ -2613,10 +2791,10 @@ module.exports = __webpack_require__(/*! ./dist/client/link */ "./node_modules/n
 
 /***/ }),
 
-/***/ "./pages/profile/[username].js":
-/*!*************************************!*\
-  !*** ./pages/profile/[username].js ***!
-  \*************************************/
+/***/ "./pages/signup.js":
+/*!*************************!*\
+  !*** ./pages/signup.js ***!
+  \*************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2624,354 +2802,63 @@ module.exports = __webpack_require__(/*! ./dist/client/link */ "./node_modules/n
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/head */ "next/head");
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Layout */ "./components/Layout.js");
-/* harmony import */ var _actions_user__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/user */ "./actions/user.js");
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../config */ "./config.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! moment */ "moment");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_6__);
-var _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/pages/profile/[username].js";
+/* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Layout */ "./components/Layout.js");
+/* harmony import */ var _components_auth_SignupComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/auth/SignupComponent */ "./components/auth/SignupComponent.js");
+var _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/pages/signup.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
-
-
-
-
-const UserProfile = ({
-  user,
-  blogs,
-  query
-}) => {
-  const head = () => __jsx(next_head__WEBPACK_IMPORTED_MODULE_1___default.a, {
+const Signup = () => {
+  return __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 6
+    },
+    __self: undefined
+  }, __jsx("h2", {
+    className: "text-center pt-4 pb-4",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 7
+    },
+    __self: undefined
+  }, "SignUp"), __jsx("div", {
+    className: "row",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 8
+    },
+    __self: undefined
+  }, __jsx("div", {
+    className: "col-md-6 offset-md-3",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 9
+    },
+    __self: undefined
+  }, __jsx(_components_auth_SignupComponent__WEBPACK_IMPORTED_MODULE_2__["default"], {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 10
     },
     __self: undefined
-  }, __jsx("title", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 11
-    },
-    __self: undefined
-  }, user.username, " | ", _config__WEBPACK_IMPORTED_MODULE_5__["APP_NAME"]), __jsx("meta", {
-    name: "description",
-    content: `Blogs by ${user.username}`,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 14
-    },
-    __self: undefined
-  }), __jsx("link", {
-    rel: "canonical",
-    href: `${_config__WEBPACK_IMPORTED_MODULE_5__["DOMAIN"]}/profile/${query.username}`,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 15
-    },
-    __self: undefined
-  }), __jsx("meta", {
-    property: "og:title",
-    content: `${user.username}| ${_config__WEBPACK_IMPORTED_MODULE_5__["APP_NAME"]}`,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 16
-    },
-    __self: undefined
-  }), __jsx("meta", {
-    property: "og:description",
-    content: `Blogs by ${user.username}`,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 17
-    },
-    __self: undefined
-  }), __jsx("meta", {
-    property: "og:type",
-    content: "webiste",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 18
-    },
-    __self: undefined
-  }), __jsx("meta", {
-    property: "og:url",
-    content: `${_config__WEBPACK_IMPORTED_MODULE_5__["DOMAIN"]}/profile/${query.username}`,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 19
-    },
-    __self: undefined
-  }), __jsx("meta", {
-    property: "og:site_name",
-    content: `${_config__WEBPACK_IMPORTED_MODULE_5__["APP_NAME"]}`,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 20
-    },
-    __self: undefined
-  }), __jsx("meta", {
-    property: "og:image",
-    content: `${_config__WEBPACK_IMPORTED_MODULE_5__["DOMAIN"]}/static/images/seoblog.jpg`,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 22
-    },
-    __self: undefined
-  }), __jsx("meta", {
-    property: "og:image:secure_url",
-    content: `${_config__WEBPACK_IMPORTED_MODULE_5__["DOMAIN"]}/static/images/seoblog.jpg`,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 23
-    },
-    __self: undefined
-  }), __jsx("meta", {
-    property: "og:image:type",
-    content: "image/jpg",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 24
-    },
-    __self: undefined
-  }), __jsx("meta", {
-    property: "fb:app_id",
-    content: `${_config__WEBPACK_IMPORTED_MODULE_5__["FB_APP_ID"]}`,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 25
-    },
-    __self: undefined
-  }));
-
-  const showUserBlogs = () => {
-    return blogs.map((blog, i) => {
-      return __jsx("div", {
-        className: "mt-4 mb-4",
-        key: i,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 32
-        },
-        __self: undefined
-      }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-        href: `/blogs/${blog.slug}`,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 33
-        },
-        __self: undefined
-      }, __jsx("a", {
-        className: "lead",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 34
-        },
-        __self: undefined
-      }, blog.title)));
-    });
-  };
-
-  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 42
-    },
-    __self: undefined
-  }, head(), __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 44
-    },
-    __self: undefined
-  }, __jsx("div", {
-    className: "container",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 45
-    },
-    __self: undefined
-  }, __jsx("div", {
-    className: "row",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 46
-    },
-    __self: undefined
-  }, __jsx("div", {
-    className: "col-md-12",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 47
-    },
-    __self: undefined
-  }, __jsx("div", {
-    className: "card",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 48
-    },
-    __self: undefined
-  }, __jsx("div", {
-    className: "card-body",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 49
-    },
-    __self: undefined
-  }, __jsx("h5", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 50
-    },
-    __self: undefined
-  }, user.name), __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    href: `${user.profile}`,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 51
-    },
-    __self: undefined
-  }, __jsx("a", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 52
-    },
-    __self: undefined
-  }, "View Profile")), __jsx("p", {
-    className: "text-muted text-red",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 54
-    },
-    __self: undefined
-  }, "Joined ", moment__WEBPACK_IMPORTED_MODULE_6___default()(user.createdAt).fromNow())))))), __jsx("br", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 61
-    },
-    __self: undefined
-  }), __jsx("div", {
-    className: "container pb-5",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 63
-    },
-    __self: undefined
-  }, __jsx("div", {
-    className: "row",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 64
-    },
-    __self: undefined
-  }, __jsx("div", {
-    className: "col-md-6",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 65
-    },
-    __self: undefined
-  }, __jsx("div", {
-    className: "card",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 66
-    },
-    __self: undefined
-  }, __jsx("div", {
-    className: "card-body",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 67
-    },
-    __self: undefined
-  }, __jsx("h5", {
-    className: "card-title bg-primary pt-4 pb-4 pl-4 pr-4 text-white",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 68
-    },
-    __self: undefined
-  }, "Recent blogs by ", user.name), showUserBlogs()))), __jsx("div", {
-    className: "col-md-6",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 77
-    },
-    __self: undefined
-  }, __jsx("div", {
-    className: "card",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 78
-    },
-    __self: undefined
-  }, __jsx("div", {
-    className: "card-body",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 79
-    },
-    __self: undefined
-  }, __jsx("h5", {
-    className: "card-title bg-primary pt-4 pb-4 pl-4 pr-4 text-light",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 80
-    },
-    __self: undefined
-  }, "Message ", user.name), __jsx("br", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 83
-    },
-    __self: undefined
-  }), __jsx("p", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 84
-    },
-    __self: undefined
-  }, "contact form"))))))));
+  }))));
 };
 
-UserProfile.getInitialProps = ({
-  query
-}) => {
-  // console.log(query);
-  return Object(_actions_user__WEBPACK_IMPORTED_MODULE_4__["userPublicProfile"])(query.username).then(data => {
-    if (data.error) {
-      console.log(data.error);
-    } else {
-      console.log(data);
-      return {
-        user: data.user,
-        blogs: data.blogs,
-        query
-      };
-    }
-  });
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (UserProfile);
+/* harmony default export */ __webpack_exports__["default"] = (Signup);
 
 /***/ }),
 
-/***/ 3:
-/*!*******************************************!*\
-  !*** multi ./pages/profile/[username].js ***!
-  \*******************************************/
+/***/ 9:
+/*!*******************************!*\
+  !*** multi ./pages/signup.js ***!
+  \*******************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/sergiorosa_local/Desktop/BlogSEO/frontend/pages/profile/[username].js */"./pages/profile/[username].js");
+module.exports = __webpack_require__(/*! /Users/sergiorosa_local/Desktop/BlogSEO/frontend/pages/signup.js */"./pages/signup.js");
 
 
 /***/ }),
@@ -3097,17 +2984,6 @@ module.exports = require("js-cookie");
 
 /***/ }),
 
-/***/ "moment":
-/*!*************************!*\
-  !*** external "moment" ***!
-  \*************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("moment");
-
-/***/ }),
-
 /***/ "next/config":
 /*!******************************!*\
   !*** external "next/config" ***!
@@ -3116,17 +2992,6 @@ module.exports = require("moment");
 /***/ (function(module, exports) {
 
 module.exports = require("next/config");
-
-/***/ }),
-
-/***/ "next/head":
-/*!****************************!*\
-  !*** external "next/head" ***!
-  \****************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("next/head");
 
 /***/ }),
 
@@ -3241,4 +3106,4 @@ module.exports = require("url");
 /***/ })
 
 /******/ });
-//# sourceMappingURL=[username].js.map
+//# sourceMappingURL=signup.js.map

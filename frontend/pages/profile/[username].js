@@ -51,7 +51,7 @@ const UserProfile = ({ user, blogs, query }) => {
                                     <Link href={`${user.profile}`}>
                                         <a>View Profile</a>
                                     </Link>
-                                    <p className="text-muted text-red">Joined {moment(user.createdAt).fromNow()}</p>
+                                    <p className="text-muted">Joined {moment(user.createdAt).fromNow()}</p>
                                 </div>
                             </div>
                         </div>
@@ -98,7 +98,7 @@ UserProfile.getInitialProps = ({ query }) => {
         if (data.error) {
             console.log(data.error);
         } else {
-            console.log(data);
+            // console.log(data);
             return { user: data.user, blogs: data.blogs, query };
         }
     });
