@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static/development/pages/tags/[slug].js"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static/development/pages/profile/[username].js"],{
 
 /***/ "../../../node_modules/@babel/runtime/helpers/assertThisInitialized.js":
 /*!********************************************************************************************!*\
@@ -47616,67 +47616,26 @@ var listSearch = function listSearch(params) {
 
 /***/ }),
 
-/***/ "./actions/tag.js":
-/*!************************!*\
-  !*** ./actions/tag.js ***!
-  \************************/
-/*! exports provided: create, getTags, singleTag, removeTag */
+/***/ "./actions/user.js":
+/*!*************************!*\
+  !*** ./actions/user.js ***!
+  \*************************/
+/*! exports provided: userPublicProfile */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "create", function() { return create; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTags", function() { return getTags; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "singleTag", function() { return singleTag; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeTag", function() { return removeTag; });
-/* harmony import */ var _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/json/stringify */ "./node_modules/@babel/runtime-corejs2/core-js/json/stringify.js");
-/* harmony import */ var _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! isomorphic-fetch */ "./node_modules/isomorphic-fetch/fetch-npm-browserify.js");
-/* harmony import */ var isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../config */ "./config.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "userPublicProfile", function() { return userPublicProfile; });
+/* harmony import */ var isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! isomorphic-fetch */ "./node_modules/isomorphic-fetch/fetch-npm-browserify.js");
+/* harmony import */ var isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../config */ "./config.js");
 
 
-
-var create = function create(tag, token) {
-  return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1___default()("".concat(_config__WEBPACK_IMPORTED_MODULE_2__["API"], "/tag"), {
-    method: 'POST',
+var userPublicProfile = function userPublicProfile(username) {
+  return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0___default()("".concat(_config__WEBPACK_IMPORTED_MODULE_1__["API"], "/user/").concat(username), {
+    method: 'GET',
     headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      Authorization: "Bearer ".concat(token)
-    },
-    body: _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(tag)
-  }).then(function (response) {
-    return response.json();
-  })["catch"](function (err) {
-    return console.log(err);
-  });
-};
-var getTags = function getTags() {
-  return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1___default()("".concat(_config__WEBPACK_IMPORTED_MODULE_2__["API"], "/tags"), {
-    method: 'GET'
-  }).then(function (response) {
-    return response.json();
-  })["catch"](function (err) {
-    return console.log(err);
-  });
-};
-var singleTag = function singleTag(slug) {
-  return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1___default()("".concat(_config__WEBPACK_IMPORTED_MODULE_2__["API"], "/tag/").concat(slug), {
-    method: 'GET'
-  }).then(function (response) {
-    return response.json();
-  })["catch"](function (err) {
-    return console.log(err);
-  });
-};
-var removeTag = function removeTag(slug, token) {
-  return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1___default()("".concat(_config__WEBPACK_IMPORTED_MODULE_2__["API"], "/tag/").concat(slug), {
-    method: 'DELETE',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      Authorization: "Bearer ".concat(token)
+      Accept: 'application/json'
     }
   }).then(function (response) {
     return response.json();
@@ -47965,215 +47924,6 @@ var Layout = function Layout(_ref) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Layout);
-
-/***/ }),
-
-/***/ "./components/blog/Card.js":
-/*!*********************************!*\
-  !*** ./components/blog/Card.js ***!
-  \*********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_render_html__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-render-html */ "./node_modules/react-render-html/index.js");
-/* harmony import */ var react_render_html__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_render_html__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../config */ "./config.js");
-var _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/components/blog/Card.js";
-
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
-
-
-
-
-
-var Card = function Card(_ref) {
-  var blog = _ref.blog;
-
-  var showBlogCategories = function showBlogCategories(blog) {
-    return blog.categories.map(function (c, i) {
-      return __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-        key: i,
-        href: "/categories/".concat(c.slug),
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 9
-        },
-        __self: this
-      }, __jsx("a", {
-        className: "btn btn-primary mr-1 ml-1 mt-3",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 10
-        },
-        __self: this
-      }, c.name));
-    });
-  };
-
-  var showBlogTags = function showBlogTags(blog) {
-    return blog.tags.map(function (t, i) {
-      return __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-        key: i,
-        href: "/tags/".concat(t.slug),
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 16
-        },
-        __self: this
-      }, __jsx("a", {
-        className: "btn btn-outline-primary mr-1 ml-1 mt-3",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 17
-        },
-        __self: this
-      }, t.name));
-    });
-  };
-
-  return __jsx("div", {
-    className: "lead pb-4",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 22
-    },
-    __self: this
-  }, __jsx("header", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 23
-    },
-    __self: this
-  }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-    href: "/blogs/".concat(blog.slug),
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 24
-    },
-    __self: this
-  }, __jsx("a", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 25
-    },
-    __self: this
-  }, __jsx("h2", {
-    className: "pt-3 pb-3 font-weight-bold",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 26
-    },
-    __self: this
-  }, blog.title)))), __jsx("section", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 30
-    },
-    __self: this
-  }, __jsx("p", {
-    className: "mark ml-1 pt-2 pb-2",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 31
-    },
-    __self: this
-  }, "Written by ", blog.postedBy.name, " | Published ", moment__WEBPACK_IMPORTED_MODULE_3___default()(blog.updatedAt).fromNow())), __jsx("section", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 35
-    },
-    __self: this
-  }, showBlogCategories(blog), showBlogTags(blog), __jsx("br", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 38
-    },
-    __self: this
-  }), __jsx("br", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 39
-    },
-    __self: this
-  })), __jsx("div", {
-    className: "row",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 42
-    },
-    __self: this
-  }, __jsx("div", {
-    className: "col-md-4",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 43
-    },
-    __self: this
-  }, __jsx("section", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 44
-    },
-    __self: this
-  }, __jsx("img", {
-    className: "img img-fluid",
-    style: {
-      maxHeight: 'auto',
-      width: '100%'
-    },
-    src: "".concat(_config__WEBPACK_IMPORTED_MODULE_4__["API"], "/blog/photo/").concat(blog.slug),
-    alt: blog.title,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 45
-    },
-    __self: this
-  }))), __jsx("div", {
-    className: "col-md-8",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 53
-    },
-    __self: this
-  }, __jsx("section", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 54
-    },
-    __self: this
-  }, __jsx("div", {
-    className: "pb-3",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 55
-    },
-    __self: this
-  }, react_render_html__WEBPACK_IMPORTED_MODULE_2___default()(blog.excerpt)), __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-    href: "/blogs/".concat(blog.slug),
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 56
-    },
-    __self: this
-  }, __jsx("a", {
-    className: "btn btn-primary pt-2",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 57
-    },
-    __self: this
-  }, "Read more"))))));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Card);
 
 /***/ }),
 
@@ -73861,21 +73611,21 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
 
 /***/ }),
 
-/***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Ftags%2F%5Bslug%5D&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Ftags%2F%5Bslug%5D.js!./":
-/*!***********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Ftags%2F%5Bslug%5D&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Ftags%2F%5Bslug%5D.js ***!
-  \***********************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fprofile%2F%5Busername%5D&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fprofile%2F%5Busername%5D.js!./":
+/*!*************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fprofile%2F%5Busername%5D&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fprofile%2F%5Busername%5D.js ***!
+  \*************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-    (window.__NEXT_P=window.__NEXT_P||[]).push(["/tags/[slug]", function() {
-      var mod = __webpack_require__(/*! ./pages/tags/[slug].js */ "./pages/tags/[slug].js")
+    (window.__NEXT_P=window.__NEXT_P||[]).push(["/profile/[username]", function() {
+      var mod = __webpack_require__(/*! ./pages/profile/[username].js */ "./pages/profile/[username].js")
       if(true) {
-        module.hot.accept(/*! ./pages/tags/[slug].js */ "./pages/tags/[slug].js", function() {
-          if(!next.router.components["/tags/[slug]"]) return
-          var updatedPage = __webpack_require__(/*! ./pages/tags/[slug].js */ "./pages/tags/[slug].js")
-          next.router.update("/tags/[slug]", updatedPage)
+        module.hot.accept(/*! ./pages/profile/[username].js */ "./pages/profile/[username].js", function() {
+          if(!next.router.components["/profile/[username]"]) return
+          var updatedPage = __webpack_require__(/*! ./pages/profile/[username].js */ "./pages/profile/[username].js")
+          next.router.update("/profile/[username]", updatedPage)
         })
       }
       return mod
@@ -94157,10 +93907,10 @@ if (!self.fetch) {
 
 /***/ }),
 
-/***/ "./pages/tags/[slug].js":
-/*!******************************!*\
-  !*** ./pages/tags/[slug].js ***!
-  \******************************/
+/***/ "./pages/profile/[username].js":
+/*!*************************************!*\
+  !*** ./pages/profile/[username].js ***!
+  \*************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -94173,14 +93923,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Layout */ "./components/Layout.js");
-/* harmony import */ var _actions_tag__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/tag */ "./actions/tag.js");
+/* harmony import */ var _actions_user__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/user */ "./actions/user.js");
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../config */ "./config.js");
-/* harmony import */ var react_render_html__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-render-html */ "./node_modules/react-render-html/index.js");
-/* harmony import */ var react_render_html__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_render_html__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _components_blog_Card__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../components/blog/Card */ "./components/blog/Card.js");
-var _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/pages/tags/[slug].js";
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_6__);
+var _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/pages/profile/[username].js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -94190,10 +93937,8 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
-
-
-var Tag = function Tag(_ref) {
-  var tag = _ref.tag,
+var UserProfile = function UserProfile(_ref) {
+  var user = _ref.user,
       blogs = _ref.blogs,
       query = _ref.query;
 
@@ -94201,45 +93946,45 @@ var Tag = function Tag(_ref) {
     return __jsx(next_head__WEBPACK_IMPORTED_MODULE_1___default.a, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 12
+        lineNumber: 10
       },
       __self: this
     }, __jsx("title", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 13
+        lineNumber: 11
       },
       __self: this
-    }, tag.name, " | ", _config__WEBPACK_IMPORTED_MODULE_5__["APP_NAME"]), __jsx("meta", {
+    }, user.username, " | ", _config__WEBPACK_IMPORTED_MODULE_5__["APP_NAME"]), __jsx("meta", {
       name: "description",
-      content: "Best programming tutorials on ".concat(tag.name),
+      content: "Blogs by ".concat(user.username),
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 14
+      },
+      __self: this
+    }), __jsx("link", {
+      rel: "canonical",
+      href: "".concat(_config__WEBPACK_IMPORTED_MODULE_5__["DOMAIN"], "/profile/").concat(query.username),
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 15
+      },
+      __self: this
+    }), __jsx("meta", {
+      property: "og:title",
+      content: "".concat(user.username, "| ").concat(_config__WEBPACK_IMPORTED_MODULE_5__["APP_NAME"]),
       __source: {
         fileName: _jsxFileName,
         lineNumber: 16
       },
       __self: this
-    }), __jsx("link", {
-      rel: "canonical",
-      href: "".concat(_config__WEBPACK_IMPORTED_MODULE_5__["DOMAIN"], "/categories/").concat(query.slug),
+    }), __jsx("meta", {
+      property: "og:description",
+      content: "Blogs by ".concat(user.username),
       __source: {
         fileName: _jsxFileName,
         lineNumber: 17
-      },
-      __self: this
-    }), __jsx("meta", {
-      property: "og:title",
-      content: "".concat(tag.name, "| ").concat(_config__WEBPACK_IMPORTED_MODULE_5__["APP_NAME"]),
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 18
-      },
-      __self: this
-    }), __jsx("meta", {
-      property: "og:description",
-      content: "Best programming tutorials on ".concat(tag.name),
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 19
       },
       __self: this
     }), __jsx("meta", {
@@ -94247,15 +93992,15 @@ var Tag = function Tag(_ref) {
       content: "webiste",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 20
+        lineNumber: 18
       },
       __self: this
     }), __jsx("meta", {
       property: "og:url",
-      content: "".concat(_config__WEBPACK_IMPORTED_MODULE_5__["DOMAIN"], "/categories/").concat(query.slug),
+      content: "".concat(_config__WEBPACK_IMPORTED_MODULE_5__["DOMAIN"], "/profile/").concat(query.username),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 21
+        lineNumber: 19
       },
       __self: this
     }), __jsx("meta", {
@@ -94263,7 +94008,7 @@ var Tag = function Tag(_ref) {
       content: "".concat(_config__WEBPACK_IMPORTED_MODULE_5__["APP_NAME"]),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 22
+        lineNumber: 20
       },
       __self: this
     }), __jsx("meta", {
@@ -94271,7 +94016,7 @@ var Tag = function Tag(_ref) {
       content: "".concat(_config__WEBPACK_IMPORTED_MODULE_5__["DOMAIN"], "/static/images/seoblog.jpg"),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 24
+        lineNumber: 22
       },
       __self: this
     }), __jsx("meta", {
@@ -94279,7 +94024,7 @@ var Tag = function Tag(_ref) {
       content: "".concat(_config__WEBPACK_IMPORTED_MODULE_5__["DOMAIN"], "/static/images/seoblog.jpg"),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 25
+        lineNumber: 23
       },
       __self: this
     }), __jsx("meta", {
@@ -94287,7 +94032,7 @@ var Tag = function Tag(_ref) {
       content: "image/jpg",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 26
+        lineNumber: 24
       },
       __self: this
     }), __jsx("meta", {
@@ -94295,90 +94040,214 @@ var Tag = function Tag(_ref) {
       content: "".concat(_config__WEBPACK_IMPORTED_MODULE_5__["FB_APP_ID"]),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 27
+        lineNumber: 25
       },
       __self: this
     }));
   };
 
+  var showUserBlogs = function showUserBlogs() {
+    return blogs.map(function (blog, i) {
+      return __jsx("div", {
+        className: "mt-4 mb-4",
+        key: i,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 32
+        },
+        __self: this
+      }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
+        href: "/blogs/".concat(blog.slug),
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 33
+        },
+        __self: this
+      }, __jsx("a", {
+        className: "lead",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 34
+        },
+        __self: this
+      }, blog.title)));
+    });
+  };
+
   return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 32
+      lineNumber: 42
     },
     __self: this
   }, head(), __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_3__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 34
-    },
-    __self: this
-  }, __jsx("main", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 35
+      lineNumber: 44
     },
     __self: this
   }, __jsx("div", {
-    className: "container-fluid text-center",
+    className: "container",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 36
-    },
-    __self: this
-  }, __jsx("header", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 37
+      lineNumber: 45
     },
     __self: this
   }, __jsx("div", {
-    className: "col-md-12 pt-3",
+    className: "row",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 38
+      lineNumber: 46
     },
     __self: this
-  }, __jsx("h1", {
-    className: "display-4 font-weight-bold",
+  }, __jsx("div", {
+    className: "col-md-12",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 39
+      lineNumber: 47
     },
     __self: this
-  }, tag.name), blogs.map(function (b, i) {
-    return __jsx("div", {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 41
-      },
-      __self: this
-    }, __jsx(_components_blog_Card__WEBPACK_IMPORTED_MODULE_8__["default"], {
-      key: i,
-      blog: b,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 42
-      },
-      __self: this
-    }), __jsx("hr", {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 43
-      },
-      __self: this
-    }));
-  })))))));
+  }, __jsx("div", {
+    className: "card",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 48
+    },
+    __self: this
+  }, __jsx("div", {
+    className: "card-body",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 49
+    },
+    __self: this
+  }, __jsx("h5", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 50
+    },
+    __self: this
+  }, user.name), __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
+    href: "".concat(user.profile),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 51
+    },
+    __self: this
+  }, __jsx("a", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 52
+    },
+    __self: this
+  }, "View Profile")), __jsx("p", {
+    className: "text-muted text-red",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 54
+    },
+    __self: this
+  }, "Joined ", moment__WEBPACK_IMPORTED_MODULE_6___default()(user.createdAt).fromNow())))))), __jsx("br", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 61
+    },
+    __self: this
+  }), __jsx("div", {
+    className: "container pb-5",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 63
+    },
+    __self: this
+  }, __jsx("div", {
+    className: "row",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 64
+    },
+    __self: this
+  }, __jsx("div", {
+    className: "col-md-6",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 65
+    },
+    __self: this
+  }, __jsx("div", {
+    className: "card",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 66
+    },
+    __self: this
+  }, __jsx("div", {
+    className: "card-body",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 67
+    },
+    __self: this
+  }, __jsx("h5", {
+    className: "card-title bg-primary pt-4 pb-4 pl-4 pr-4 text-white",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 68
+    },
+    __self: this
+  }, "Recent blogs by ", user.name), showUserBlogs()))), __jsx("div", {
+    className: "col-md-6",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 77
+    },
+    __self: this
+  }, __jsx("div", {
+    className: "card",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 78
+    },
+    __self: this
+  }, __jsx("div", {
+    className: "card-body",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 79
+    },
+    __self: this
+  }, __jsx("h5", {
+    className: "card-title bg-primary pt-4 pb-4 pl-4 pr-4 text-light",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 80
+    },
+    __self: this
+  }, "Message ", user.name), __jsx("br", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 83
+    },
+    __self: this
+  }), __jsx("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 84
+    },
+    __self: this
+  }, "contact form"))))))));
 };
 
-Tag.getInitialProps = function (_ref2) {
+UserProfile.getInitialProps = function (_ref2) {
   var query = _ref2.query;
-  return Object(_actions_tag__WEBPACK_IMPORTED_MODULE_4__["singleTag"])(query.slug).then(function (data) {
+  // console.log(query);
+  return Object(_actions_user__WEBPACK_IMPORTED_MODULE_4__["userPublicProfile"])(query.username).then(function (data) {
     if (data.error) {
       console.log(data.error);
     } else {
+      console.log(data);
       return {
-        tag: data.tag,
+        user: data.user,
         blogs: data.blogs,
         query: query
       };
@@ -94386,7 +94255,7 @@ Tag.getInitialProps = function (_ref2) {
   });
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Tag);
+/* harmony default export */ __webpack_exports__["default"] = (UserProfile);
 
 /***/ }),
 
@@ -94413,13 +94282,13 @@ Tag.getInitialProps = function (_ref2) {
 /***/ }),
 
 /***/ 6:
-/*!***************************************************************************************************************************************************************************!*\
-  !*** multi next-client-pages-loader?page=%2Ftags%2F%5Bslug%5D&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Ftags%2F%5Bslug%5D.js ***!
-  \***************************************************************************************************************************************************************************/
+/*!*****************************************************************************************************************************************************************************************!*\
+  !*** multi next-client-pages-loader?page=%2Fprofile%2F%5Busername%5D&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fprofile%2F%5Busername%5D.js ***!
+  \*****************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2Ftags%2F%5Bslug%5D&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Ftags%2F%5Bslug%5D.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Ftags%2F%5Bslug%5D&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Ftags%2F%5Bslug%5D.js!./");
+module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2Fprofile%2F%5Busername%5D&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fprofile%2F%5Busername%5D.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fprofile%2F%5Busername%5D&absolutePagePath=%2FUsers%2Fsergiorosa_local%2FDesktop%2FBlogSEO%2Ffrontend%2Fpages%2Fprofile%2F%5Busername%5D.js!./");
 
 
 /***/ }),
@@ -94436,4 +94305,4 @@ module.exports = dll_b35e09dc2ca94ac6d9c1;
 /***/ })
 
 },[[6,"static/runtime/webpack.js","styles"]]]);
-//# sourceMappingURL=[slug].js.map
+//# sourceMappingURL=[username].js.map
