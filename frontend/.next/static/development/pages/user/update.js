@@ -47664,7 +47664,8 @@ var update = function update(token, user) {
     headers: {
       Accept: 'application/json',
       Authorization: "Bearer ".concat(token)
-    }
+    },
+    body: user
   }).then(function (response) {
     return response.json();
   })["catch"](function (err) {
@@ -48005,8 +48006,7 @@ var Private = function Private(_ref) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/json/stringify */ "./node_modules/@babel/runtime-corejs2/core-js/json/stringify.js");
-/* harmony import */ var _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
 /* harmony import */ var _babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/objectSpread */ "./node_modules/@babel/runtime-corejs2/helpers/esm/objectSpread.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
@@ -48032,6 +48032,7 @@ var ProfileUpdate = function ProfileUpdate() {
     username: '',
     name: '',
     email: '',
+    about: '',
     password: '',
     error: false,
     success: false,
@@ -48046,6 +48047,7 @@ var ProfileUpdate = function ProfileUpdate() {
   var username = values.username,
       name = values.name,
       email = values.email,
+      about = values.about,
       password = values.password,
       error = values.error,
       success = values.success,
@@ -48073,39 +48075,249 @@ var ProfileUpdate = function ProfileUpdate() {
   Object(react__WEBPACK_IMPORTED_MODULE_2__["useEffect"])(function () {
     init();
   }, []);
-  return __jsx(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, __jsx("div", {
+
+  var handleChange = function handleChange(name) {
+    return function (e) {
+      var _objectSpread2;
+
+      // console.log(e.target.value);
+      var value = name === 'photo' ? e.target.files[0] : e.target.value;
+      var userFormData = new FormData();
+      userFormData.set(name, value);
+      setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__["default"])({}, values, (_objectSpread2 = {}, Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])(_objectSpread2, name, value), Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])(_objectSpread2, "userData", userFormData), Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])(_objectSpread2, "error", false), Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])(_objectSpread2, "success", false), _objectSpread2)));
+    };
+  };
+
+  var handleSubmit = function handleSubmit(e) {
+    e.preventDefault();
+    setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__["default"])({}, values, {
+      loading: true
+    }));
+    Object(_actions_user__WEBPACK_IMPORTED_MODULE_6__["update"])(token, userData).then(function (data) {
+      if (data.error) {
+        setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__["default"])({}, value, {
+          error: data.error,
+          success: false,
+          loading: false
+        }));
+      } else {
+        setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__["default"])({}, values, {
+          username: data.username,
+          name: data.name,
+          email: data.email,
+          about: data.about,
+          password: '',
+          success: true,
+          loading: false
+        }));
+      }
+    });
+  };
+
+  var profileUpdateForm = function profileUpdateForm() {
+    return __jsx("form", {
+      onSubmit: handleSubmit,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 78
+      },
+      __self: this
+    }, __jsx("div", {
+      className: "form-group",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 79
+      },
+      __self: this
+    }, __jsx("label", {
+      className: "btn btn-outline-info",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 80
+      },
+      __self: this
+    }, "Profile photo", __jsx("input", {
+      onChange: handleChange('photo'),
+      type: "file",
+      accept: "image/*",
+      hidden: true,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 82
+      },
+      __self: this
+    }))), __jsx("div", {
+      className: "form-group",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 85
+      },
+      __self: this
+    }, __jsx("label", {
+      className: "text-muted",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 86
+      },
+      __self: this
+    }, "Username"), __jsx("input", {
+      onChange: handleChange('username'),
+      type: "text",
+      value: username,
+      className: "form-control",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 87
+      },
+      __self: this
+    })), __jsx("div", {
+      className: "form-group",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 89
+      },
+      __self: this
+    }, __jsx("label", {
+      className: "text-muted",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 90
+      },
+      __self: this
+    }, "Name"), __jsx("input", {
+      onChange: handleChange('name'),
+      type: "text",
+      value: name,
+      className: "form-control",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 91
+      },
+      __self: this
+    })), __jsx("div", {
+      className: "form-group",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 93
+      },
+      __self: this
+    }, __jsx("label", {
+      className: "text-muted",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 94
+      },
+      __self: this
+    }, "Email"), __jsx("input", {
+      onChange: handleChange('email'),
+      type: "text",
+      value: email,
+      className: "form-control",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 95
+      },
+      __self: this
+    })), __jsx("div", {
+      className: "form-group",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 97
+      },
+      __self: this
+    }, __jsx("label", {
+      className: "text-muted",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 98
+      },
+      __self: this
+    }, "About"), __jsx("textarea", {
+      onChange: handleChange('about'),
+      type: "text",
+      value: about,
+      className: "form-control",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 99
+      },
+      __self: this
+    })), __jsx("div", {
+      className: "form-group",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 101
+      },
+      __self: this
+    }, __jsx("label", {
+      className: "text-muted",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 102
+      },
+      __self: this
+    }, "Password"), __jsx("input", {
+      onChange: handleChange('password'),
+      type: "text",
+      value: password,
+      className: "form-control",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 103
+      },
+      __self: this
+    })), __jsx("div", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 105
+      },
+      __self: this
+    }, __jsx("button", {
+      type: "submit",
+      className: "btn btn-primary",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 106
+      },
+      __self: this
+    }, "Submit")));
+  };
+
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 114
+    },
+    __self: this
+  }, __jsx("div", {
     className: "container",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 45
+      lineNumber: 115
     },
     __self: this
   }, __jsx("div", {
     className: "row",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 46
+      lineNumber: 116
     },
     __self: this
   }, __jsx("div", {
     className: "col-md-4",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 47
+      lineNumber: 117
     },
     __self: this
   }, "image"), __jsx("div", {
-    className: "col-md-8",
+    className: "col-md-8 mb-5",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 48
+      lineNumber: 118
     },
     __self: this
-  }, "update form", _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()({
-    username: username,
-    email: email,
-    name: name
-  })))));
+  }, profileUpdateForm()))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ProfileUpdate);

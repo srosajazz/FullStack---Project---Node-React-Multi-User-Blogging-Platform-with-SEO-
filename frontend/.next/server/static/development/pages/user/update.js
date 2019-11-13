@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -350,7 +350,8 @@ const update = (token, user) => {
     headers: {
       Accept: 'application/json',
       Authorization: `Bearer ${token}`
-    }
+    },
+    body: user
   }).then(response => {
     return response.json();
   }).catch(err => console.log(err));
@@ -683,22 +684,19 @@ const Private = ({
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/json/stringify */ "./node_modules/@babel/runtime-corejs2/core-js/json/stringify.js");
-/* harmony import */ var _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/objectSpread */ "./node_modules/@babel/runtime-corejs2/helpers/esm/objectSpread.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! next/router */ "next/router");
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _actions_auth__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/auth */ "./actions/auth.js");
-/* harmony import */ var _actions_user__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../actions/user */ "./actions/user.js");
-
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/objectSpread */ "./node_modules/@babel/runtime-corejs2/helpers/esm/objectSpread.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/router */ "next/router");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _actions_auth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/auth */ "./actions/auth.js");
+/* harmony import */ var _actions_user__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/user */ "./actions/user.js");
 
 var _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/components/auth/ProfileUpdate.js";
 
-var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
+var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
 
@@ -709,10 +707,11 @@ const ProfileUpdate = () => {
   const {
     0: values,
     1: setValues
-  } = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])({
+  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
     username: '',
     name: '',
     email: '',
+    about: '',
     password: '',
     error: false,
     success: false,
@@ -720,11 +719,12 @@ const ProfileUpdate = () => {
     photo: '',
     userData: ''
   });
-  const token = Object(_actions_auth__WEBPACK_IMPORTED_MODULE_5__["getCookie"])('token');
+  const token = Object(_actions_auth__WEBPACK_IMPORTED_MODULE_4__["getCookie"])('token');
   const {
     username,
     name,
     email,
+    about,
     password,
     error,
     success,
@@ -734,13 +734,13 @@ const ProfileUpdate = () => {
   } = values;
 
   const init = () => {
-    Object(_actions_user__WEBPACK_IMPORTED_MODULE_6__["getProfile"])(token).then(data => {
+    Object(_actions_user__WEBPACK_IMPORTED_MODULE_5__["getProfile"])(token).then(data => {
       if (data.error) {
-        setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__["default"])({}, values, {
+        setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, values, {
           error: data.error
         }));
       } else {
-        setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__["default"])({}, values, {
+        setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, values, {
           username: data.username,
           name: data.name,
           email: data.email,
@@ -750,42 +750,251 @@ const ProfileUpdate = () => {
     });
   };
 
-  Object(react__WEBPACK_IMPORTED_MODULE_2__["useEffect"])(() => {
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(() => {
     init();
   }, []);
-  return __jsx(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, __jsx("div", {
+
+  const handleChange = name => e => {
+    // console.log(e.target.value);
+    const value = name === 'photo' ? e.target.files[0] : e.target.value;
+    let userFormData = new FormData();
+    userFormData.set(name, value);
+    setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, values, {
+      [name]: value,
+      userData: userFormData,
+      error: false,
+      success: false
+    }));
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, values, {
+      loading: true
+    }));
+    Object(_actions_user__WEBPACK_IMPORTED_MODULE_5__["update"])(token, userData).then(data => {
+      if (data.error) {
+        setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, value, {
+          error: data.error,
+          success: false,
+          loading: false
+        }));
+      } else {
+        setValues(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, values, {
+          username: data.username,
+          name: data.name,
+          email: data.email,
+          about: data.about,
+          password: '',
+          success: true,
+          loading: false
+        }));
+      }
+    });
+  };
+
+  const profileUpdateForm = () => __jsx("form", {
+    onSubmit: handleSubmit,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 78
+    },
+    __self: undefined
+  }, __jsx("div", {
+    className: "form-group",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 79
+    },
+    __self: undefined
+  }, __jsx("label", {
+    className: "btn btn-outline-info",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 80
+    },
+    __self: undefined
+  }, "Profile photo", __jsx("input", {
+    onChange: handleChange('photo'),
+    type: "file",
+    accept: "image/*",
+    hidden: true,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 82
+    },
+    __self: undefined
+  }))), __jsx("div", {
+    className: "form-group",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 85
+    },
+    __self: undefined
+  }, __jsx("label", {
+    className: "text-muted",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 86
+    },
+    __self: undefined
+  }, "Username"), __jsx("input", {
+    onChange: handleChange('username'),
+    type: "text",
+    value: username,
+    className: "form-control",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 87
+    },
+    __self: undefined
+  })), __jsx("div", {
+    className: "form-group",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 89
+    },
+    __self: undefined
+  }, __jsx("label", {
+    className: "text-muted",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 90
+    },
+    __self: undefined
+  }, "Name"), __jsx("input", {
+    onChange: handleChange('name'),
+    type: "text",
+    value: name,
+    className: "form-control",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 91
+    },
+    __self: undefined
+  })), __jsx("div", {
+    className: "form-group",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 93
+    },
+    __self: undefined
+  }, __jsx("label", {
+    className: "text-muted",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 94
+    },
+    __self: undefined
+  }, "Email"), __jsx("input", {
+    onChange: handleChange('email'),
+    type: "text",
+    value: email,
+    className: "form-control",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 95
+    },
+    __self: undefined
+  })), __jsx("div", {
+    className: "form-group",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 97
+    },
+    __self: undefined
+  }, __jsx("label", {
+    className: "text-muted",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 98
+    },
+    __self: undefined
+  }, "About"), __jsx("textarea", {
+    onChange: handleChange('about'),
+    type: "text",
+    value: about,
+    className: "form-control",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 99
+    },
+    __self: undefined
+  })), __jsx("div", {
+    className: "form-group",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 101
+    },
+    __self: undefined
+  }, __jsx("label", {
+    className: "text-muted",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 102
+    },
+    __self: undefined
+  }, "Password"), __jsx("input", {
+    onChange: handleChange('password'),
+    type: "text",
+    value: password,
+    className: "form-control",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 103
+    },
+    __self: undefined
+  })), __jsx("div", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 105
+    },
+    __self: undefined
+  }, __jsx("button", {
+    type: "submit",
+    className: "btn btn-primary",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 106
+    },
+    __self: undefined
+  }, "Submit")));
+
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 114
+    },
+    __self: undefined
+  }, __jsx("div", {
     className: "container",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 45
+      lineNumber: 115
     },
     __self: undefined
   }, __jsx("div", {
     className: "row",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 46
+      lineNumber: 116
     },
     __self: undefined
   }, __jsx("div", {
     className: "col-md-4",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 47
+      lineNumber: 117
     },
     __self: undefined
   }, "image"), __jsx("div", {
-    className: "col-md-8",
+    className: "col-md-8 mb-5",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 48
+      lineNumber: 118
     },
     __self: undefined
-  }, "update form", _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()({
-    username,
-    email,
-    name
-  })))));
+  }, profileUpdateForm()))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ProfileUpdate);
@@ -2861,7 +3070,7 @@ const UserProfileUpdate = () => {
 
 /***/ }),
 
-/***/ 5:
+/***/ 3:
 /*!************************************!*\
   !*** multi ./pages/user/update.js ***!
   \************************************/
