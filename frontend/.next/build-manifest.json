@@ -12,13 +12,13 @@
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/blogs": [
+    "/user": [
       "static/runtime/webpack.js",
       "static/css/styles.chunk.css",
       "static/chunks/styles.js",
       "static/runtime/main.js"
     ],
-    "/profile/[username]": [
+    "/user/update": [
       "static/runtime/webpack.js",
       "static/css/styles.chunk.css",
       "static/chunks/styles.js",

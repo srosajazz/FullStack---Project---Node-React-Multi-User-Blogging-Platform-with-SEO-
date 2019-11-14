@@ -1,7 +1,7 @@
 module.exports =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
-/******/ 	var installedModules = require('../../../../ssr-module-cache.js');
+/******/ 	var installedModules = require('../../../ssr-module-cache.js');
 /******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
@@ -97,7 +97,7 @@ module.exports =
 /*!*************************!*\
   !*** ./actions/auth.js ***!
   \*************************/
-/*! exports provided: signup, signin, signout, setCookie, removeCookie, getCookie, setLocalStorage, removeLocalStorage, authenticate, isAuth */
+/*! exports provided: signup, signin, signout, setCookie, removeCookie, getCookie, setLocalStorage, removeLocalStorage, authenticate, isAuth, updateUser */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -112,6 +112,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeLocalStorage", function() { return removeLocalStorage; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "authenticate", function() { return authenticate; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isAuth", function() { return isAuth; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateUser", function() { return updateUser; });
 /* harmony import */ var _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/json/stringify */ "./node_modules/@babel/runtime-corejs2/core-js/json/stringify.js");
 /* harmony import */ var _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! isomorphic-fetch */ "isomorphic-fetch");
@@ -182,6 +183,9 @@ const authenticate = (data, next) => {
   next();
 };
 const isAuth = () => {
+  if (false) {}
+};
+const updateUser = (user, next) => {
   if (false) {}
 };
 
@@ -299,59 +303,6 @@ const listSearch = params => {
   console.log('query params', query);
   return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1___default()(`${_config__WEBPACK_IMPORTED_MODULE_2__["API"]}/blogs/search?${query}`, {
     method: 'GET'
-  }).then(response => {
-    return response.json();
-  }).catch(err => console.log(err));
-};
-
-/***/ }),
-
-/***/ "./actions/user.js":
-/*!*************************!*\
-  !*** ./actions/user.js ***!
-  \*************************/
-/*! exports provided: userPublicProfile, getProfile, update */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "userPublicProfile", function() { return userPublicProfile; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProfile", function() { return getProfile; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "update", function() { return update; });
-/* harmony import */ var isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! isomorphic-fetch */ "isomorphic-fetch");
-/* harmony import */ var isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../config */ "./config.js");
-
-
-const userPublicProfile = username => {
-  return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0___default()(`${_config__WEBPACK_IMPORTED_MODULE_1__["API"]}/user/${username}`, {
-    method: 'GET',
-    headers: {
-      Accept: 'application/json'
-    }
-  }).then(response => {
-    return response.json();
-  }).catch(err => console.log(err));
-};
-const getProfile = token => {
-  return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0___default()(`${_config__WEBPACK_IMPORTED_MODULE_1__["API"]}/user/profile`, {
-    method: 'GET',
-    headers: {
-      Accept: 'application/json',
-      Authorization: `Bearer ${token}`
-    }
-  }).then(response => {
-    return response.json();
-  }).catch(err => console.log(err));
-};
-const update = (token, user) => {
-  return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0___default()(`${_config__WEBPACK_IMPORTED_MODULE_1__["API"]}/user/update`, {
-    method: 'PUT',
-    headers: {
-      Accept: 'application/json',
-      Authorization: `Bearer ${token}`
-    },
-    body: user
   }).then(response => {
     return response.json();
   }).catch(err => console.log(err));
@@ -630,6 +581,48 @@ const Layout = ({
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Layout);
+
+/***/ }),
+
+/***/ "./components/auth/Private.js":
+/*!************************************!*\
+  !*** ./components/auth/Private.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/router */ "next/router");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _actions_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/auth */ "./actions/auth.js");
+var _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/components/auth/Private.js";
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+
+const Private = ({
+  children
+}) => {
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    if (!Object(_actions_auth__WEBPACK_IMPORTED_MODULE_2__["isAuth"])()) {
+      next_router__WEBPACK_IMPORTED_MODULE_1___default.a.push(`/signin`);
+    }
+  }, []);
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 11
+    },
+    __self: undefined
+  }, children);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Private);
 
 /***/ }),
 
@@ -2638,10 +2631,10 @@ module.exports = __webpack_require__(/*! ./dist/client/link */ "./node_modules/n
 
 /***/ }),
 
-/***/ "./pages/profile/[username].js":
-/*!*************************************!*\
-  !*** ./pages/profile/[username].js ***!
-  \*************************************/
+/***/ "./pages/user/index.js":
+/*!*****************************!*\
+  !*** ./pages/user/index.js ***!
+  \*****************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2649,375 +2642,141 @@ module.exports = __webpack_require__(/*! ./dist/client/link */ "./node_modules/n
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/head */ "next/head");
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Layout */ "./components/Layout.js");
-/* harmony import */ var _actions_user__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/user */ "./actions/user.js");
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../config */ "./config.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! moment */ "moment");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_6__);
-var _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/pages/profile/[username].js";
+/* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Layout */ "./components/Layout.js");
+/* harmony import */ var _components_auth_Private__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/auth/Private */ "./components/auth/Private.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_3__);
+var _jsxFileName = "/Users/sergiorosa_local/Desktop/BlogSEO/frontend/pages/user/index.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
 
-
-
-
-const UserProfile = ({
-  user,
-  blogs,
-  query
-}) => {
-  const head = () => __jsx(next_head__WEBPACK_IMPORTED_MODULE_1___default.a, {
+const UserIndex = () => {
+  return __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 7
+    },
+    __self: undefined
+  }, __jsx(_components_auth_Private__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 8
+    },
+    __self: undefined
+  }, __jsx("div", {
+    className: "container-fluid",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 9
+    },
+    __self: undefined
+  }, __jsx("div", {
+    className: "row",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 10
     },
     __self: undefined
-  }, __jsx("title", {
+  }, __jsx("div", {
+    className: "col-md-12 pt-5 pb-5",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 11
     },
     __self: undefined
-  }, user.username, " | ", _config__WEBPACK_IMPORTED_MODULE_5__["APP_NAME"]), __jsx("meta", {
-    name: "description",
-    content: `Blogs by ${user.username}`,
+  }, __jsx("h2", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 12
+    },
+    __self: undefined
+  }, "User Dashboard")), __jsx("div", {
+    className: "col-md-4",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 14
     },
     __self: undefined
-  }), __jsx("link", {
-    rel: "canonical",
-    href: `${_config__WEBPACK_IMPORTED_MODULE_5__["DOMAIN"]}/profile/${query.username}`,
+  }, __jsx("ul", {
+    class: "list-group",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 15
     },
     __self: undefined
-  }), __jsx("meta", {
-    property: "og:title",
-    content: `${user.username}| ${_config__WEBPACK_IMPORTED_MODULE_5__["APP_NAME"]}`,
+  }, __jsx("li", {
+    className: "list-group-item",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 16
     },
     __self: undefined
-  }), __jsx("meta", {
-    property: "og:description",
-    content: `Blogs by ${user.username}`,
+  }, __jsx("a", {
+    href: "/user/crud/blog",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 17
     },
     __self: undefined
-  }), __jsx("meta", {
-    property: "og:type",
-    content: "webiste",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 18
-    },
-    __self: undefined
-  }), __jsx("meta", {
-    property: "og:url",
-    content: `${_config__WEBPACK_IMPORTED_MODULE_5__["DOMAIN"]}/profile/${query.username}`,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 19
-    },
-    __self: undefined
-  }), __jsx("meta", {
-    property: "og:site_name",
-    content: `${_config__WEBPACK_IMPORTED_MODULE_5__["APP_NAME"]}`,
+  }, "Create Blog")), __jsx("li", {
+    className: "list-group-item",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 20
     },
     __self: undefined
-  }), __jsx("meta", {
-    property: "og:image",
-    content: `${_config__WEBPACK_IMPORTED_MODULE_5__["DOMAIN"]}/static/images/seoblog.jpg`,
+  }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_3___default.a, {
+    href: "/user/crud/blogs",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 21
+    },
+    __self: undefined
+  }, __jsx("a", {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 22
     },
     __self: undefined
-  }), __jsx("meta", {
-    property: "og:image:secure_url",
-    content: `${_config__WEBPACK_IMPORTED_MODULE_5__["DOMAIN"]}/static/images/seoblog.jpg`,
+  }, "Update/Delete Blog"))), __jsx("li", {
+    className: "list-group-item",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 23
+      lineNumber: 26
     },
     __self: undefined
-  }), __jsx("meta", {
-    property: "og:image:type",
-    content: "image/jpg",
+  }, __jsx("a", {
+    href: "/user/update",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 24
+      lineNumber: 27
     },
     __self: undefined
-  }), __jsx("meta", {
-    property: "fb:app_id",
-    content: `${_config__WEBPACK_IMPORTED_MODULE_5__["FB_APP_ID"]}`,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 25
-    },
-    __self: undefined
-  }));
-
-  const showUserBlogs = () => {
-    return blogs.map((blog, i) => {
-      return __jsx("div", {
-        className: "mt-4 mb-4",
-        key: i,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 32
-        },
-        __self: undefined
-      }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-        href: `/blogs/${blog.slug}`,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 33
-        },
-        __self: undefined
-      }, __jsx("a", {
-        className: "lead",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 34
-        },
-        __self: undefined
-      }, blog.title)));
-    });
-  };
-
-  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 42
-    },
-    __self: undefined
-  }, head(), __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 44
-    },
-    __self: undefined
-  }, __jsx("div", {
-    className: "container",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 45
-    },
-    __self: undefined
-  }, __jsx("div", {
-    className: "row",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 46
-    },
-    __self: undefined
-  }, __jsx("div", {
-    className: "col-md-12",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 47
-    },
-    __self: undefined
-  }, __jsx("div", {
-    className: "card",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 48
-    },
-    __self: undefined
-  }, __jsx("div", {
-    className: "card-body",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 49
-    },
-    __self: undefined
-  }, __jsx("div", {
-    className: "row",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 50
-    },
-    __self: undefined
-  }, __jsx("div", {
+  }, "Update profile")))), __jsx("div", {
     className: "col-md-8",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 51
+      lineNumber: 31
     },
     __self: undefined
-  }, __jsx("h5", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 52
-    },
-    __self: undefined
-  }, user.name), __jsx("p", {
-    className: "text-muted",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 53
-    },
-    __self: undefined
-  }, "Joined ", moment__WEBPACK_IMPORTED_MODULE_6___default()(user.createdAt).fromNow())), __jsx("div", {
-    className: "col-md-4",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 55
-    },
-    __self: undefined
-  }, __jsx("img", {
-    src: `${_config__WEBPACK_IMPORTED_MODULE_5__["API"]}/user/photo/${user.username}`,
-    className: "img img-fluid img-thumbnail mb-3",
-    style: {
-      maxHeight: '100px',
-      maxWidth: '100%'
-    },
-    alt: "user profile",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 56
-    },
-    __self: undefined
-  })))))))), __jsx("br", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 70
-    },
-    __self: undefined
-  }), __jsx("div", {
-    className: "container pb-5",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 72
-    },
-    __self: undefined
-  }, __jsx("div", {
-    className: "row",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 73
-    },
-    __self: undefined
-  }, __jsx("div", {
-    className: "col-md-6",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 74
-    },
-    __self: undefined
-  }, __jsx("div", {
-    className: "card",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 75
-    },
-    __self: undefined
-  }, __jsx("div", {
-    className: "card-body",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 76
-    },
-    __self: undefined
-  }, __jsx("h5", {
-    className: "card-title bg-primary pt-4 pb-4 pl-4 pr-4 text-white",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 77
-    },
-    __self: undefined
-  }, "Recent blogs by ", user.name), showUserBlogs()))), __jsx("div", {
-    className: "col-md-6",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 86
-    },
-    __self: undefined
-  }, __jsx("div", {
-    className: "card",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 87
-    },
-    __self: undefined
-  }, __jsx("div", {
-    className: "card-body",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 88
-    },
-    __self: undefined
-  }, __jsx("h5", {
-    className: "card-title bg-primary pt-4 pb-4 pl-4 pr-4 text-light",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 89
-    },
-    __self: undefined
-  }, "Message ", user.name), __jsx("br", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 92
-    },
-    __self: undefined
-  }), __jsx("p", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 93
-    },
-    __self: undefined
-  }, "contact form"))))))));
+  }, "right")))));
 };
 
-UserProfile.getInitialProps = ({
-  query
-}) => {
-  // console.log(query);
-  return Object(_actions_user__WEBPACK_IMPORTED_MODULE_4__["userPublicProfile"])(query.username).then(data => {
-    if (data.error) {
-      console.log(data.error);
-    } else {
-      // console.log(data);
-      return {
-        user: data.user,
-        blogs: data.blogs,
-        query
-      };
-    }
-  });
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (UserProfile);
+/* harmony default export */ __webpack_exports__["default"] = (UserIndex);
 
 /***/ }),
 
 /***/ 6:
-/*!*******************************************!*\
-  !*** multi ./pages/profile/[username].js ***!
-  \*******************************************/
+/*!***********************************!*\
+  !*** multi ./pages/user/index.js ***!
+  \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/sergiorosa_local/Desktop/BlogSEO/frontend/pages/profile/[username].js */"./pages/profile/[username].js");
+module.exports = __webpack_require__(/*! /Users/sergiorosa_local/Desktop/BlogSEO/frontend/pages/user/index.js */"./pages/user/index.js");
 
 
 /***/ }),
@@ -3143,17 +2902,6 @@ module.exports = require("js-cookie");
 
 /***/ }),
 
-/***/ "moment":
-/*!*************************!*\
-  !*** external "moment" ***!
-  \*************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("moment");
-
-/***/ }),
-
 /***/ "next/config":
 /*!******************************!*\
   !*** external "next/config" ***!
@@ -3162,17 +2910,6 @@ module.exports = require("moment");
 /***/ (function(module, exports) {
 
 module.exports = require("next/config");
-
-/***/ }),
-
-/***/ "next/head":
-/*!****************************!*\
-  !*** external "next/head" ***!
-  \****************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("next/head");
 
 /***/ }),
 
@@ -3287,4 +3024,4 @@ module.exports = require("url");
 /***/ })
 
 /******/ });
-//# sourceMappingURL=[username].js.map
+//# sourceMappingURL=user.js.map
